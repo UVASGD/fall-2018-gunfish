@@ -1,0 +1,22 @@
+﻿<Properties StartupConfiguration="{997F4E59-13FF-084B-86C9-A2D57262879C}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Resources/Scripts/Editor/NetworkTransformUtility.cs">
+    <Files>
+      <File FileName="Assets/Resources/Scripts/Networking/ServerController.cs" Line="1" Column="1" />
+      <File FileName="Assets/Resources/Scripts/Networking/PlayerController.cs" Line="49" Column="1" />
+      <File FileName="Assets/Resources/Scripts/Gunfish/Gunfish.cs" Line="248" Column="105" />
+      <File FileName="Assets/Resources/Scripts/Gunfish/LineSegment.cs" Line="40" Column="38" />
+      <File FileName="Assets/Resources/Scripts/Camera2DFollow.cs" Line="16" Column="109" />
+      <File FileName="Assets/Resources/Scripts/Networking/CustomMessages.cs" Line="161" Column="6" />
+      <File FileName="Assets/Resources/Scripts/Networking/MessageTypes.cs" Line="10" Column="1" />
+      <File FileName="Assets/Resources/Scripts/Gunfish/ConnectionScript.cs" Line="1" Column="3" />
+      <File FileName="Assets/Resources/Scripts/Editor/NetworkTransformUtility.cs" Line="11" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.Gunfish_220Unity PreferredExecutionTarget="Unity.Editor" />
+</Properties>
