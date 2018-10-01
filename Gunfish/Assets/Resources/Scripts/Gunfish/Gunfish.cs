@@ -289,6 +289,12 @@ public class Gunfish : NetworkBehaviour {
             rb.AddForce(force.normalized * 200);
         }
     }
+
+    public void Hit(Vector2 force) {
+        Knockback(force);
+        //Check gamemode, if race, then call Stun(), else call Damage()
+    }
+
     #region MESSAGE HANDLERS
 
     private void OnGunshotHit (NetworkMessage netMsg) {
