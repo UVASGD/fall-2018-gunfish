@@ -189,3 +189,18 @@ public class InputMsg : MessageBase {
         fish = gunfish;
     }
 }
+public class SpawnMsg : MessageBase
+{
+    public string path;
+    public Vector2 pos;
+    public GameObject player;
+    public SpawnMsg()
+    {
+    }
+    public SpawnMsg(string path, Vector2 pos,GameObject player)
+    {
+        this.path = path;
+        this.pos = pos;
+        this.player = player;
+    }
+}
