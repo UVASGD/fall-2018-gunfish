@@ -162,11 +162,21 @@ public class GunshotAudioMsg : MessageBase {
 }
 
 public class RayHitMsg : MessageBase {
-    public RayHitInfo[] rayHitInfo;
+    public RayHitInfo rayHitInfo;
 
     public RayHitMsg() { }
 
-    public RayHitMsg( RayHitInfo[] rayHitInfo ) {
+    public RayHitMsg(RayHitInfo rayHitInfo) {
+        this.rayHitInfo = rayHitInfo;
+    }
+}
+
+public class MultiRayHitMsg : MessageBase {
+    public RayHitInfo[] rayHitInfo;
+
+    public MultiRayHitMsg() { }
+
+    public MultiRayHitMsg( RayHitInfo[] rayHitInfo, Vector2 origin) {
         this.rayHitInfo = rayHitInfo;
     }
 }
@@ -179,6 +189,14 @@ public struct RayHitInfo {
 
     public Vector2 normal;
     public Color color;
+
+    public RayHitInfo(NetworkInstanceId netId, Vector2 origin, Vector2 end, Vector2 normal, Color color) {
+        this.netId = netId;
+        this.origin = origin;
+        this.end = end;
+        this.normal = normal;
+        this.color = color;
+    }
 }
 
 public class GameObjectMsg : MessageBase { 
