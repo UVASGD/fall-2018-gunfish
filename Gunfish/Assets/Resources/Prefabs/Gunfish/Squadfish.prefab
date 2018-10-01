@@ -11,6 +11,22 @@ Prefab:
   m_SourcePrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1860347802086032}
   m_IsPrefabAsset: 1
+--- !u!1 &1036355648853062
+GameObject:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4806235010370136}
+  - component: {fileID: 82017850417604920}
+  m_Layer: 0
+  m_Name: GunFX
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1063944580665946
 GameObject:
   m_ObjectHideFlags: 0
@@ -270,6 +286,7 @@ Transform:
   m_LocalScale: {x: 0.3, y: -0.5, z: 0.5}
   m_Children:
   - {fileID: 4738116208801998}
+  - {fileID: 4806235010370136}
   m_Father: {fileID: 4822638409536094}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
@@ -376,6 +393,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4032993820866346}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4806235010370136
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1036355648853062}
+  m_LocalRotation: {x: 0, y: -0, z: -0.00000004371139, w: -1}
+  m_LocalPosition: {x: 6.11, y: 0.23, z: 0}
+  m_LocalScale: {x: 3.333333, y: -2, z: 2}
+  m_Children: []
+  m_Father: {fileID: 4032993820866346}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4822638409536094
 Transform:
@@ -863,6 +893,101 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.30002004, y: 0.61585975}
   m_EdgeRadius: 0
+--- !u!82 &82017850417604920
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1036355648853062}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 7767a07f3564c45ba8b131ad48b2fcd1, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &114008582798272760
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -908,7 +1033,7 @@ MonoBehaviour:
   whenToUpdateTransform: 0
   sendRate: 30
   networkChannel: 1
-  childObjectToSync: {fileID: 1970304524586544}
+  childObjectToSync: {fileID: 0}
 --- !u!114 &114025505536223026
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -954,7 +1079,7 @@ MonoBehaviour:
   whenToUpdateTransform: 0
   sendRate: 30
   networkChannel: 1
-  childObjectToSync: {fileID: 1905499301409364}
+  childObjectToSync: {fileID: 0}
 --- !u!114 &114061981719677588
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -967,7 +1092,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunfish: {fileID: 114551001277557838}
-  segment: {fileID: 120862901843517972}
+  segment: {fileID: 0}
   index: 0
   grounded: 1
 --- !u!114 &114130494510356160
@@ -982,8 +1107,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunfish: {fileID: 114551001277557838}
-  segment: {fileID: 120862901843517972}
-  index: 8
+  segment: {fileID: 0}
+  index: 0
   grounded: 1
 --- !u!114 &114133855489168148
 MonoBehaviour:
@@ -997,8 +1122,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunfish: {fileID: 114551001277557838}
-  segment: {fileID: 120862901843517972}
-  index: 5
+  segment: {fileID: 0}
+  index: 0
   grounded: 1
 --- !u!114 &114140483886970082
 MonoBehaviour:
@@ -1012,8 +1137,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunfish: {fileID: 114551001277557838}
-  segment: {fileID: 120862901843517972}
-  index: 4
+  segment: {fileID: 0}
+  index: 0
   grounded: 1
 --- !u!114 &114154247352085540
 MonoBehaviour:
@@ -1060,7 +1185,7 @@ MonoBehaviour:
   whenToUpdateTransform: 0
   sendRate: 30
   networkChannel: 1
-  childObjectToSync: {fileID: 1197732922753914}
+  childObjectToSync: {fileID: 0}
 --- !u!114 &114164191171007386
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1106,7 +1231,7 @@ MonoBehaviour:
   whenToUpdateTransform: 0
   sendRate: 30
   networkChannel: 1
-  childObjectToSync: {fileID: 1916563825364596}
+  childObjectToSync: {fileID: 0}
 --- !u!114 &114202224007909368
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1119,8 +1244,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunfish: {fileID: 114551001277557838}
-  segment: {fileID: 120862901843517972}
-  index: 6
+  segment: {fileID: 0}
+  index: 0
   grounded: 1
 --- !u!114 &114241412779251752
 MonoBehaviour:
@@ -1134,8 +1259,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunfish: {fileID: 114551001277557838}
-  segment: {fileID: 120862901843517972}
-  index: 2
+  segment: {fileID: 0}
+  index: 0
   grounded: 1
 --- !u!114 &114285292003030032
 MonoBehaviour:
@@ -1182,7 +1307,7 @@ MonoBehaviour:
   whenToUpdateTransform: 0
   sendRate: 30
   networkChannel: 1
-  childObjectToSync: {fileID: 1279738201494532}
+  childObjectToSync: {fileID: 0}
 --- !u!114 &114371404202030886
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1195,8 +1320,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunfish: {fileID: 114551001277557838}
-  segment: {fileID: 120862901843517972}
-  index: 1
+  segment: {fileID: 0}
+  index: 0
   grounded: 1
 --- !u!114 &114380839637393526
 MonoBehaviour:
@@ -1243,7 +1368,7 @@ MonoBehaviour:
   whenToUpdateTransform: 0
   sendRate: 30
   networkChannel: 1
-  childObjectToSync: {fileID: 1063944580665946}
+  childObjectToSync: {fileID: 0}
 --- !u!114 &114387280755807786
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1255,9 +1380,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07d2b487ecd774b208a4e51a34f0b6eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: 800
+  force: 3000
   maxFireCD: 1
-  fireSound: {fileID: 8300000, guid: 7767a07f3564c45ba8b131ad48b2fcd1, type: 3}
+  fireSound: {fileID: 1036355648853062}
 --- !u!114 &114487773318126290
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1318,7 +1443,7 @@ MonoBehaviour:
   currentJumpCD: 0
   maxJumpCD: 1
   currentAirborneJumpCD: 0
-  maxAirborneJumpCD: 0.1
+  maxAirborneJumpCD: 0.4
   fire: 0
   currentFireCD: 0
   maxFireCD: 1
@@ -1372,7 +1497,7 @@ MonoBehaviour:
   whenToUpdateTransform: 0
   sendRate: 30
   networkChannel: 1
-  childObjectToSync: {fileID: 1792154925114570}
+  childObjectToSync: {fileID: 0}
 --- !u!114 &114645449871140880
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1385,8 +1510,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunfish: {fileID: 114551001277557838}
-  segment: {fileID: 120862901843517972}
-  index: 7
+  segment: {fileID: 0}
+  index: 0
   grounded: 1
 --- !u!114 &114686835449023078
 MonoBehaviour:
@@ -1433,7 +1558,7 @@ MonoBehaviour:
   whenToUpdateTransform: 0
   sendRate: 30
   networkChannel: 1
-  childObjectToSync: {fileID: 1280253604576940}
+  childObjectToSync: {fileID: 0}
 --- !u!114 &114732971890307792
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1479,7 +1604,7 @@ MonoBehaviour:
   whenToUpdateTransform: 0
   sendRate: 30
   networkChannel: 1
-  childObjectToSync: {fileID: 1679328340436864}
+  childObjectToSync: {fileID: 0}
 --- !u!114 &114811819151407012
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1492,8 +1617,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunfish: {fileID: 114551001277557838}
-  segment: {fileID: 120862901843517972}
-  index: 9
+  segment: {fileID: 0}
+  index: 0
   grounded: 1
 --- !u!114 &114972314869732698
 MonoBehaviour:
@@ -1540,7 +1665,7 @@ MonoBehaviour:
   whenToUpdateTransform: 0
   sendRate: 30
   networkChannel: 1
-  childObjectToSync: {fileID: 1421646213425370}
+  childObjectToSync: {fileID: 0}
 --- !u!114 &114993721006596150
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1585,8 +1710,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunfish: {fileID: 114551001277557838}
-  segment: {fileID: 120862901843517972}
-  index: 3
+  segment: {fileID: 0}
+  index: 0
   grounded: 1
 --- !u!120 &120862901843517972
 LineRenderer:

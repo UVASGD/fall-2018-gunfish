@@ -18,5 +18,11 @@ using UnityEngine;
 public class Gun : MonoBehaviour {
     public float force = 3000f;
     public float maxFireCD = 1f;
-    public AudioClip fireSound;
+    public GameObject fireSound;
+
+    public void DisplayShoot()
+    {
+        fireSound.GetComponent<AudioSource>().Play();
+        //DIsplay particle fx
+    }
 }
