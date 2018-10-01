@@ -26,9 +26,21 @@ public class PlayerController : NetworkBehaviour {
         NetworkManager.singleton.client.RegisterHandler(MessageTypes.DEBUGLOGMSG, OnDebugLog);
         NetworkManager.singleton.client.RegisterHandler(MessageTypes.GUNSHOTPARTICLEMSG, OnGunshotParticle);
         NetworkManager.singleton.client.RegisterHandler(MessageTypes.GUNSHOTAUDIOMSG, OnGunshotAudio);
+        NetworkManager.singleton.client.RegisterHandler(MessageTypes.RAYHIT, OnRayHit);
     }
 
     #region MESSAGE HANDLERS
+
+    private void OnRayHit (NetworkMessage netMsg) {
+        RayHitMsg msg = netMsg.ReadMessage<RayHitMsg>();
+
+        foreach (RayHitInfo hitInfo in msg.rayHitInfo) {
+            if ( hitInfo.netId != NetworkInstanceId.Invalid || !hitInfo.netId.IsEmpty() ) {
+                Gunfish fishHit = ClientScene.FindLocalObject(hitInfo.netId).GetComponent<Gunfish>();
+                fishHit.Knockback( -hitInfo.normal );
+            }
+        }
+    }
 
     private void OnGunshotAudio (NetworkMessage netMsg) {
         //Debug.Log("Client is good");

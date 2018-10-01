@@ -66,7 +66,7 @@ public class Gunfish : NetworkBehaviour {
 
     }
 
-    //Initialize Camera and audio sources for ever local player
+    //Initialize Camera and audio sources for every local player
     public override void OnStartLocalPlayer () {
         base.OnStartLocalPlayer();
 
@@ -283,6 +283,12 @@ public class Gunfish : NetworkBehaviour {
         return (groundedCount == 0);
     }
 
+    //
+    public void Knockback( Vector2 force ) {
+        if (hasAuthority) {
+            rb.AddForce(force.normalized * 200);
+        }
+    }
     #region MESSAGE HANDLERS
 
     private void OnGunshotHit (NetworkMessage netMsg) {

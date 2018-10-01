@@ -161,7 +161,25 @@ public class GunshotAudioMsg : MessageBase {
     }
 }
 
+public class RayHitMsg : MessageBase {
+    public RayHitInfo[] rayHitInfo;
 
+    public RayHitMsg() { }
+
+    public RayHitMsg( RayHitInfo[] rayHitInfo ) {
+        this.rayHitInfo = rayHitInfo;
+    }
+}
+
+public struct RayHitInfo {
+    public NetworkInstanceId netId;
+
+    public Vector2 origin;
+    public Vector2 end;
+
+    public Vector2 normal;
+    public Color color;
+}
 
 public class GameObjectMsg : MessageBase { 
     public GameObject obj;
