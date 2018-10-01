@@ -70,7 +70,7 @@ public class PlayerController : NetworkBehaviour {
     {
         GunshotMsg msg = netMsg.ReadMessage<GunshotMsg>();
         Gunfish gunfish = ClientScene.FindLocalObject(msg.netId).GetComponent<Gunfish>();
-        gunfish.DisplayShoot();
+        gunfish.gun.DisplayShoot(); 
     }
 
     #endregion

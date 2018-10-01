@@ -20,6 +20,7 @@ public class Gun : MonoBehaviour {
     public float maxFireCD = 1f;
     public GameObject fireSound;
 
+    //Gunshot audio and visual fx
     public void DisplayShoot()
     {
         fireSound.GetComponent<AudioSource>().Play();

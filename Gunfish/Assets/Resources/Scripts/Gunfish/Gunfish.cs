@@ -283,11 +283,13 @@ public class Gunfish : NetworkBehaviour {
         return (groundedCount == 0);
     }
 
+    /* gun already has this
     //Visual and Audio FX for shooting
     public void DisplayShoot ()
     {
         gun.DisplayShoot();
     }
+    */
 
     #region MESSAGE HANDLERS
 
