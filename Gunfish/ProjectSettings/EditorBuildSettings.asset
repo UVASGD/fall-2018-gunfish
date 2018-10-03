@@ -20,3 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Clown Menu.unity
     guid: 8ebecec45a3454801af9f4e7deae4964
+  - enabled: 1
+    path: Assets/level2.unity
+    guid: 7bd7b2faf492e81428aca47aa3ef15ec
+  m_configObjects: {}
