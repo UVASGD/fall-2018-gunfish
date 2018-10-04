@@ -9,6 +9,8 @@ public class MainMenuManager : MonoBehaviour {
 
     Button joinButton;
     Button hostButton;
+    InputField addrField;
+    InputField portField;
 
     public string Addr
     {
@@ -32,15 +34,19 @@ public class MainMenuManager : MonoBehaviour {
     void Awake()
     {
         //Goes Panel -> JoinContainer -> (1: addr, 2:port) -> Text component
-        addrString = transform.GetChild(2).GetChild(1).GetChild(1).GetComponent<Text>();
-        portString = transform.GetChild(2).GetChild(2).GetChild(1).GetComponent<Text>();
+        addrField = transform.GetChild(2).GetChild(1).GetComponent<InputField>();
+        portField = transform.GetChild(2).GetChild(2).GetComponent<InputField>();
         hostButton = transform.GetChild(1).GetComponent<Button>(); //Get buttons for method delegation
         joinButton = transform.GetChild(2).GetChild(0).GetComponent<Button>();
+        addrString = transform.GetChild(2).GetChild(1).GetChild(1).GetComponent<Text>();
+        portString = transform.GetChild(2).GetChild(2).GetChild(1).GetComponent<Text>();
 
         CustomNetworkManager manager = GameObject.Find("NetworkManager").GetComponent<CustomNetworkManager>();
 
         hostButton.onClick.AddListener(delegate { manager.StartHost_Button(); });
         joinButton.onClick.AddListener(delegate { manager.StartClient_Button(); });
+        addrField.onEndEdit.AddListener(delegate { manager.UpdateAddress(); });
+        portField.onEndEdit.AddListener(delegate { manager.UpdatePort(); });
 
     }
 
