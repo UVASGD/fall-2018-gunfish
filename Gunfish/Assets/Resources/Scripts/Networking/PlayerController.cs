@@ -45,7 +45,7 @@ public class PlayerController : NetworkBehaviour {
 
     private void HandleHitInfo(RayHitInfo rayHitInfo) {
         if (rayHitInfo.netId == ownedGunfish.netId) {
-            ownedGunfish.Hit(-rayHitInfo.normal);
+            ownedGunfish.Hit(-rayHitInfo.normal, 200, rayHitInfo.end);
         }
         /*
         else if (hitInfo.netId.IsEmpty()) {

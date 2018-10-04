@@ -284,14 +284,14 @@ public class Gunfish : NetworkBehaviour {
     }
 
     //
-    public void Knockback( Vector2 force ) {
+    public void Knockback( Vector2 force, int magnitude, Vector2 position ) {
         if (hasAuthority) {
-            rb.AddForce(force.normalized * 200);
+            rb.AddForceAtPosition(force.normalized * magnitude, position);
         }
     }
 
-    public void Hit(Vector2 force) {
-        Knockback(force);
+    public void Hit(Vector2 force, int magnitude, Vector2 position) {
+        Knockback(force, magnitude, position);
         //Check gamemode, if race, then call Stun(), else call Damage()
     }
 
