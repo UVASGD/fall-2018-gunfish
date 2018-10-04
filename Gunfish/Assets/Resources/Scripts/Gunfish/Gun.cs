@@ -18,12 +18,12 @@ using UnityEngine;
 public class Gun : MonoBehaviour {
     public float force = 3000f;
     public float maxFireCD = 1f;
-    public GameObject fireSound;
+    public GameObject fireFX;
 
     //Gunshot audio and visual fx
     public void DisplayShoot()
     {
-        fireSound.GetComponent<AudioSource>().Play();
-        //DIsplay particle fx
+        fireFX.GetComponent<AudioSource>().Play();
+        fireFX.GetComponent<ParticleSystem>().Play();
     }
 }
