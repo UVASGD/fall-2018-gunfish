@@ -15,6 +15,7 @@ public class PlayerController : NetworkBehaviour {
     //}
 
     private void Start () {
+        DontDestroyOnLoad(gameObject);
         if (gunshotDebris == null) {
             gunshotDebris = Resources.Load<GameObject>("Prefabs/Debris");
         }

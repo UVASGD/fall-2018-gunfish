@@ -6,6 +6,7 @@ using UnityEngine.Networking;
 public class ServerController : NetworkBehaviour {
 
     public override void OnStartServer () {
+        DontDestroyOnLoad(gameObject);
         ConnectionConfig config = new ConnectionConfig();
         config.DisconnectTimeout = 5000; //If the player times out for 5 seconds, disconnect them
         Debug.Log("Server start");
@@ -20,6 +21,7 @@ public class ServerController : NetworkBehaviour {
     #region MESSAGE HANDLERS
 
     public void OnGunshotAudio (NetworkMessage netMsg) {
+        NetworkManager.singleton.ServerChangeScene("RaceGameMode");
         //Debug.Log("Server is good");
         GunshotAudioMsg msg = netMsg.ReadMessage<GunshotAudioMsg>();
 
