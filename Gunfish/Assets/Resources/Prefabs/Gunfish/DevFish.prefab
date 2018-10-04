@@ -1257,7 +1257,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   force: 800
   maxFireCD: 1
-  fireSound: {fileID: 8300000, guid: 7767a07f3564c45ba8b131ad48b2fcd1, type: 3}
+  fireFX: {fileID: 0}
 --- !u!114 &114487773318126290
 MonoBehaviour:
   m_ObjectHideFlags: 1

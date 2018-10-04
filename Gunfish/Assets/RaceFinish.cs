@@ -14,7 +14,7 @@ public class RaceFinish : MonoBehaviour {
         if(other.gameObject.CompareTag("Player"))
         {
             Gunfish gunfish = other.gameObject.GetComponentInParent<Gunfish>();
-            //RaceFinishDel(gunfish);
+            RaceFinishEvent(gunfish);
         }
     }
 }
