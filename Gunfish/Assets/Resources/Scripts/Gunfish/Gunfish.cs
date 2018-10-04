@@ -66,6 +66,7 @@ public class Gunfish : NetworkBehaviour {
 
     }
 
+
     //Initialize Camera and audio sources for ever local player
     public override void OnStartLocalPlayer () {
         base.OnStartLocalPlayer();

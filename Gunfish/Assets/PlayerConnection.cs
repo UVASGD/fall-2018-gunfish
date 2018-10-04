@@ -11,7 +11,7 @@ public class PlayerConnection : NetworkBehaviour
 	// Use this for initialization
 	void Start ()
     {
-        NetworkManager.singleton.client.RegisterHandler(MessageTypes.SPAWNMSG, );
+        //NetworkManager.singleton.client.RegisterHandler(MessageTypes.SPAWNMSG, );
 
     }
     public override void OnStartLocalPlayer()
