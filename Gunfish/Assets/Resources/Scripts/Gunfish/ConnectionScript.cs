@@ -1,28 +1,25 @@
-﻿//using System.Collections;
-//using System.Collections.Generic;
-//using UnityEngine;
-//using UnityEngine.Networking;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Networking;
 
-//public class ConnectionScript : NetworkBehaviour {
+public class ConnectionScript : NetworkBehaviour {
 
-//	[SerializeField] private GameObject gunfishPrefab;
+	[SerializeField] private GameObject gunfishPrefab;
+    private string fishPath = "Prefabs/Gunfish/Squadfish";
 
-//	// Use this for initialization
-//	override public void OnStartLocalPlayer () {
-//		//Resources.Load ("Prefabs/Gunfish");
-//        gameObject.AddComponent<PlayerController>();
-//		//CmdSpawnFish ();
+	//// Use this for initialization
+	override public void OnStartLocalPlayer () {
+        NetworkManager.singleton.client.Send(MessageTypes.SPAWNMSG, new SpawnMsg(fishPath, transform.position, gameObject));
+    }
 
-//        //NetworkManager.singleton.client.Send(MessageTypes.SPAWNMSG, new GameObjectMsg(gunfishPrefab));
-//	}
-
-//	[Command] private void CmdSpawnFish () {
-//		GameObject go = Instantiate (gunfishPrefab, transform.position, Quaternion.identity) as GameObject;
-//        NetworkServer.SpawnWithClientAuthority (go, connectionToClient);
-//	}
+	//[Command] private void CmdSpawnFish () {
+	//	GameObject go = Instantiate (gunfishPrefab, transform.position, Quaternion.identity) as GameObject;
+ //       NetworkServer.SpawnWithClientAuthority (go, connectionToClient);
+	//}
 	
-//	// Update is called once per frame
-//	void Update () {
+	//// Update is called once per frame
+	//void Update () {
 		
-//	}
-//}
+	//}
+}

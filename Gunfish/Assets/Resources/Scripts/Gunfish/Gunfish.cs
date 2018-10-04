@@ -66,6 +66,9 @@ public class Gunfish : NetworkBehaviour {
 
     }
 
+    public override void OnStartAuthority () {
+        rb.isKinematic = false;
+    }
 
     //Initialize Camera and audio sources for ever local player
     public override void OnStartLocalPlayer () {
