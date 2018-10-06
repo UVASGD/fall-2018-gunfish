@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class LobbyManager : MonoBehaviour {
+public class LobbyManager : NetworkLobbyManager {
+
+    public static LobbyManager instance;
 
     private string playerName;
     private GameObject[] gunfishList;
@@ -14,19 +16,16 @@ public class LobbyManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
+        if (instance == null) {
+            instance = this;
+        } else {
+            Destroy(instance);
+        }
+
         gunfishList = GunfishList.Get();
         gunfishIndex = 0;
-
-
+        //NetworkLobbyManager.singleton.OnServerConnect(
 	}
-
-    private void OnPlayerConnected (NetworkIdentity player) {
-        playerCount++;
-        if (playerCount == maxPlayerCount) {
-            StartGame();
-        }
-    }
-
 
     public void StartGame () {
 
@@ -38,4 +37,10 @@ public class LobbyManager : MonoBehaviour {
     void Update () {
 		
 	}
+
+    public override void OnServerConnect (NetworkConnection conn) {
+        base.OnServerConnect (conn);
+
+        Debug.Log("Whatcha doing fam");
+    }
 }

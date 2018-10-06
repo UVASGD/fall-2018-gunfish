@@ -3,13 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class ConnectionScript : NetworkBehaviour {
+public class PlayerConnection : NetworkBehaviour {
 
 	[SerializeField] private GameObject gunfishPrefab;
     private string fishPath = "Prefabs/Gunfish/Squadfish";
 
+    public int score;
+    public int place;
+
 	//// Use this for initialization
 	override public void OnStartLocalPlayer () {
+        
         NetworkManager.singleton.client.Send(MessageTypes.SPAWNMSG, new SpawnMsg(fishPath, transform.position, gameObject));
     }
 
