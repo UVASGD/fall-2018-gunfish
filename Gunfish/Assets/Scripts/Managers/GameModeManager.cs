@@ -45,5 +45,7 @@ public class GameModeManager : ScriptableObject {
 
                 break;
         }
+
+        return true;
     }
 }

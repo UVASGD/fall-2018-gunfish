@@ -128,7 +128,8 @@ MonoBehaviour:
   m_MinPlayers: 0
   m_LobbyPlayerPrefab: {fileID: 114128233952404974, guid: 05067bbfd89304ddea53d8c45eddc8aa,
     type: 2}
-  m_GamePlayerPrefab: {fileID: 0}
+  m_GamePlayerPrefab: {fileID: 1524286868541690, guid: d8e78fd736ef6438e9075c4574ec7048,
+    type: 2}
   m_LobbyScene: Lobby
   m_PlayScene: Level Test
   lobbySlots: []

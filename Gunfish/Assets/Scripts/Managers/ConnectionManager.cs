@@ -16,8 +16,14 @@ public class ConnectionManager : MonoBehaviour {
         } else {
             Destroy(this);
         }
+
+        EventManager.StartListening("Buttered Lettuce", OnButteredLuttuce);
 	}
 	
+    void OnButteredLuttuce () {
+        Debug.Log("Nice cover, Arin.");
+    }
+
 	// Update is called once per frame
 	void Update () {
 		
