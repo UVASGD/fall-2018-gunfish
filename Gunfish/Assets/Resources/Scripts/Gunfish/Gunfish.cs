@@ -282,6 +282,21 @@ public class Gunfish : NetworkBehaviour {
     public bool IsGrounded () {
         return (groundedCount == 0);
     }
+    
+    //Skeleton knockback method
+    public void Knockback(Vector2 force, Vector2 pos)
+    {
+        rb.AddForceAtPosition(force, pos);
+    }
+
+    /*
+    public void Hit()
+    {
+        //Check for game manager
+    }
+    */
+    
+    
 
     //
     public void Knockback( Vector2 force, int magnitude, Vector2 position ) {

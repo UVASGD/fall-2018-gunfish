@@ -25,6 +25,7 @@ public class PlayerController : NetworkBehaviour {
 
         NetworkManager.singleton.client.RegisterHandler(MessageTypes.RAYHIT, OnRayHit);
         NetworkManager.singleton.client.RegisterHandler(MessageTypes.MULTIRAYHIT, OnMultiRayHit);
+        NetworkManager.singleton.client.RegisterHandler(MessageTypes.GUNSHOT, OnGunshot);
     }
 
     #region MESSAGE HANDLERS
@@ -88,6 +89,13 @@ public class PlayerController : NetworkBehaviour {
         DebugLogMsg msg = netMsg.ReadMessage<DebugLogMsg>();
 
         Debug.Log(msg.log);
+    }
+
+    private void OnGunshot (NetworkMessage netMsg)
+    {
+        GunshotMsg msg = netMsg.ReadMessage<GunshotMsg>();
+        Gunfish gunfish = ClientScene.FindLocalObject(msg.netId).GetComponent<Gunfish>();
+        gunfish.gun.DisplayShoot(); 
     }
 
     #endregion

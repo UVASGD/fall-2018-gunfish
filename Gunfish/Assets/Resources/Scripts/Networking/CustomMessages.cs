@@ -225,3 +225,15 @@ public class InputMsg : MessageBase {
         fish = gunfish;
     }
 }
+
+public class GunshotMsg :MessageBase
+{
+    public NetworkInstanceId netId;
+
+    public GunshotMsg() { }
+
+    public GunshotMsg(NetworkInstanceId id)
+    {
+        netId = id;
+    }
+}

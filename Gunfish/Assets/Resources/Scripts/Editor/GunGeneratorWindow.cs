@@ -103,7 +103,6 @@ public class GunGeneratorWindow : EditorWindow {
             
         Gun gun = gunGO.AddComponent<Gun>();
         gun.force = force;
-        gun.fireSound = fireSound;
         gun.maxFireCD = shotCooldown;
 
         PrefabUtility.CreatePrefab(path, gunGO);
