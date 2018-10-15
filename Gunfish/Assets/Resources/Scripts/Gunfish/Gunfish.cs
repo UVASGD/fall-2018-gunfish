@@ -53,7 +53,7 @@ public class Gunfish : NetworkBehaviour {
 
     [Header("Audio")]
     public AudioClip[] flops;
-    public AudioClip[] shots;
+    //public AudioClip[] shots;
 
     private AudioSource flopSource;
     private AudioSource shotSource;
@@ -104,6 +104,8 @@ public class Gunfish : NetworkBehaviour {
         } else {
             shotSource = gun.gameObject.AddComponent<AudioSource>();
         }
+
+        /*
         if (shots.Length == 0) {
             shots = new AudioClip[] {Resources.LoadAll<AudioClip>("Audio/Shots/")[0]};
         }
@@ -115,7 +117,7 @@ public class Gunfish : NetworkBehaviour {
     //When the Gunfish is started (server and client), assign fish info
     private void Start () {
         //Register Messages
-        NetworkManager.singleton.client.RegisterHandler(MessageTypes.GUNSHOTHITMSG, OnGunshotHit);
+        //NetworkManager.singleton.client.RegisterHandler(MessageTypes.GUNSHOTHITMSG, OnGunshotHit);
 
         rb = GetComponent<Rigidbody2D>();
         gun = GetComponentInChildren<Gun>();
@@ -245,8 +247,7 @@ public class Gunfish : NetworkBehaviour {
 
         Vector3 position = transform.position;
 
-        NetworkManager.singleton.client.Send(MessageTypes.GUNSHOTAUDIOMSG, new GunshotAudioMsg(0, position));
-        NetworkManager.singleton.client.Send(MessageTypes.NETIDMSG, new NetIdMsg(netId));
+        NetworkManager.singleton.client.Send(MessageTypes.GUNSHOT, new GunfishMsg(netId));
 
         ////Shoot bullet raycast. Do multiple hits to avoid collision with own fish pieces
         //Vector3 direction = transform.GetChild(transform.childCount-1).right.normalized;
@@ -295,11 +296,18 @@ public class Gunfish : NetworkBehaviour {
         //Check for game manager
     }
     */
-    
-    
+
+    public void DisplayShoot() {
+        gun.DisplayShoot();
+    }
+
+    [ServerCallback]
+    public HitInfo ServerShoot() {
+        return gun.ServerShoot();
+    }
 
     #region MESSAGE HANDLERS
-
+    /*
     private void OnGunshotHit (NetworkMessage netMsg) {
         GunshotHitMsg msg = netMsg.ReadMessage<GunshotHitMsg>();
 
@@ -311,6 +319,7 @@ public class Gunfish : NetworkBehaviour {
         //LOSE HEALTH HERE
         //health -= msg.damage;
     }
+    */
 
     #endregion
 }

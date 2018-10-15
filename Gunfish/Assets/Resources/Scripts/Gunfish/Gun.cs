@@ -20,10 +20,18 @@ public class Gun : MonoBehaviour {
     public float maxFireCD = 1f;
     public GameObject fireFX;
 
+    AudioSource boomSound;
+    ParticleSystem muzzleFlash;
+
+    private void Start() {
+        boomSound = GetComponentInChildren<AudioSource>();
+        muzzleFlash = GetComponentInChildren<ParticleSystem>();
+    }
+
     //Gunshot audio and visual fx
     public void DisplayShoot()
     {
-        fireFX.GetComponent<AudioSource>().Play();
-        fireFX.GetComponent<ParticleSystem>().Play();
+        boomSound.Play();
+        muzzleFlash.Play();
     }
 }

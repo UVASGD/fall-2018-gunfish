@@ -8,10 +8,10 @@ public class ServerController : NetworkBehaviour {
     public override void OnStartServer () {
         ConnectionConfig config = new ConnectionConfig();
         config.DisconnectTimeout = 5000; //If the player times out for 5 seconds, disconnect them
-        Debug.Log("Server start");
-        NetworkServer.RegisterHandler(MessageTypes.NETIDMSG, OnNetID);
+        //Debug.Log("Server start");
+        //NetworkServer.RegisterHandler(MessageTypes.NETIDMSG, OnNetID);
         NetworkServer.RegisterHandler(MessageTypes.GUNSHOT, OnGunshot);
-        NetworkServer.RegisterHandler(MessageTypes.GUNSHOTAUDIOMSG, OnGunshotAudio);
+        //NetworkServer.RegisterHandler(MessageTypes.GUNSHOTAUDIOMSG, OnGunshotAudio);
     }
 
     public void SendClientDebugLog (string msg) {
@@ -24,9 +24,16 @@ public class ServerController : NetworkBehaviour {
     {
         GunfishMsg msg = netMsg.ReadMessage<GunfishMsg>();
 
+        //Get the gunfish, tell it to shoot, and get the hit information
+        Gunfish gunfish = NetworkServer.FindLocalObject(msg.netId).GetComponent<Gunfish>();
+        HitInfo hitInfo = gunfish.ServerShoot();
+        NetworkServer.SendToAll(MessageTypes.);
+        
+        //This message handles gunshot audio and muzzle flash
         NetworkServer.SendToAll(MessageTypes.GUNSHOT, new GunfishMsg(msg.netId));
     }
 
+    /*
     //Depreciated
     public void OnGunshotAudio (NetworkMessage netMsg) {
         //Debug.Log("Server is good");
@@ -98,6 +105,7 @@ public class ServerController : NetworkBehaviour {
             }
         }
     }
+    */
 
     #endregion
 }

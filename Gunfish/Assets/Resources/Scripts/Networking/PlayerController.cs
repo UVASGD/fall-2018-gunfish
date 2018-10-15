@@ -24,13 +24,13 @@ public class PlayerController : NetworkBehaviour {
         //Debug.Log("ConnId: " + connectionToServer.connectionId);
 
         NetworkManager.singleton.client.RegisterHandler(MessageTypes.DEBUGLOGMSG, OnDebugLog);
-        NetworkManager.singleton.client.RegisterHandler(MessageTypes.GUNSHOTPARTICLEMSG, OnGunshotParticle);
-        NetworkManager.singleton.client.RegisterHandler(MessageTypes.GUNSHOTAUDIOMSG, OnGunshotAudio);
+        //NetworkManager.singleton.client.RegisterHandler(MessageTypes.GUNSHOTPARTICLEMSG, OnGunshotParticle);
+        //NetworkManager.singleton.client.RegisterHandler(MessageTypes.GUNSHOTAUDIOMSG, OnGunshotAudio);
         NetworkManager.singleton.client.RegisterHandler(MessageTypes.GUNSHOT, OnGunshot);
     }
 
     #region MESSAGE HANDLERS
-
+    /*
     private void OnGunshotAudio (NetworkMessage netMsg) {
         //Debug.Log("Client is good");
         GunshotAudioMsg msg = netMsg.ReadMessage<GunshotAudioMsg>();
@@ -59,6 +59,7 @@ public class PlayerController : NetworkBehaviour {
         main.startColor = new Color(msg.r, msg.g, msg.b);
         Destroy(hitDebris, 2f);
     }
+    */
 
     private void OnDebugLog (NetworkMessage netMsg) {
         DebugLogMsg msg = netMsg.ReadMessage<DebugLogMsg>();
@@ -70,7 +71,7 @@ public class PlayerController : NetworkBehaviour {
     {
         GunfishMsg msg = netMsg.ReadMessage<GunfishMsg>();
         Gunfish gunfish = ClientScene.FindLocalObject(msg.netId).GetComponent<Gunfish>();
-        gunfish.gun.DisplayShoot(); 
+        gunfish.DisplayShoot();
     }
 
     #endregion
