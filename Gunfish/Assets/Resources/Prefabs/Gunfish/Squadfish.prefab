@@ -157,6 +157,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1743740867984450
+GameObject:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4688486735557354}
+  m_Layer: 0
+  m_Name: BarrelPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1792154925114570
 GameObject:
   m_ObjectHideFlags: 0
@@ -285,6 +300,7 @@ Transform:
   m_LocalPosition: {x: 1, y: 0, z: 0}
   m_LocalScale: {x: 0.3, y: -0.5, z: 0.5}
   m_Children:
+  - {fileID: 4688486735557354}
   - {fileID: 4738116208801998}
   - {fileID: 4806235010370136}
   m_Father: {fileID: 4822638409536094}
@@ -368,6 +384,19 @@ Transform:
   m_Father: {fileID: 4822638409536094}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4688486735557354
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1743740867984450}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.5, y: 0.3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4032993820866346}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4707162568946396
 Transform:
   m_ObjectHideFlags: 1
@@ -392,7 +421,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4032993820866346}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4806235010370136
 Transform:
@@ -400,12 +429,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1036355648853062}
-  m_LocalRotation: {x: 0, y: -0, z: -0.00000004371139, w: -1}
-  m_LocalPosition: {x: 6.11, y: 0.23, z: 0}
-  m_LocalScale: {x: 3.333333, y: -2, z: 2}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4032993820866346}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4822638409536094
 Transform:
@@ -413,7 +442,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1860347802086032}
-  m_LocalRotation: {x: 0, y: 0, z: 1, w: -0.00000004371139}
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -429,7 +458,7 @@ Transform:
   - {fileID: 4032993820866346}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!4 &4999622357174170
 Transform:
   m_ObjectHideFlags: 1
@@ -1033,7 +1062,7 @@ MonoBehaviour:
   whenToUpdateTransform: 0
   sendRate: 30
   networkChannel: 1
-  childObjectToSync: {fileID: 0}
+  childObjectToSync: {fileID: 1792154925114570}
 --- !u!114 &114025505536223026
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1079,7 +1108,7 @@ MonoBehaviour:
   whenToUpdateTransform: 0
   sendRate: 30
   networkChannel: 1
-  childObjectToSync: {fileID: 0}
+  childObjectToSync: {fileID: 1860347802086032}
 --- !u!114 &114061981719677588
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1092,7 +1121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunfish: {fileID: 114551001277557838}
-  segment: {fileID: 0}
+  segment: {fileID: 120862901843517972}
   index: 0
   grounded: 1
 --- !u!114 &114130494510356160
@@ -1107,8 +1136,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunfish: {fileID: 114551001277557838}
-  segment: {fileID: 0}
-  index: 0
+  segment: {fileID: 120862901843517972}
+  index: 8
   grounded: 1
 --- !u!114 &114133855489168148
 MonoBehaviour:
@@ -1122,8 +1151,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunfish: {fileID: 114551001277557838}
-  segment: {fileID: 0}
-  index: 0
+  segment: {fileID: 120862901843517972}
+  index: 5
   grounded: 1
 --- !u!114 &114140483886970082
 MonoBehaviour:
@@ -1137,8 +1166,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunfish: {fileID: 114551001277557838}
-  segment: {fileID: 0}
-  index: 0
+  segment: {fileID: 120862901843517972}
+  index: 4
   grounded: 1
 --- !u!114 &114154247352085540
 MonoBehaviour:
@@ -1185,7 +1214,7 @@ MonoBehaviour:
   whenToUpdateTransform: 0
   sendRate: 30
   networkChannel: 1
-  childObjectToSync: {fileID: 0}
+  childObjectToSync: {fileID: 1970304524586544}
 --- !u!114 &114164191171007386
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1231,7 +1260,7 @@ MonoBehaviour:
   whenToUpdateTransform: 0
   sendRate: 30
   networkChannel: 1
-  childObjectToSync: {fileID: 0}
+  childObjectToSync: {fileID: 1280253604576940}
 --- !u!114 &114202224007909368
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1244,8 +1273,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunfish: {fileID: 114551001277557838}
-  segment: {fileID: 0}
-  index: 0
+  segment: {fileID: 120862901843517972}
+  index: 6
   grounded: 1
 --- !u!114 &114241412779251752
 MonoBehaviour:
@@ -1259,8 +1288,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunfish: {fileID: 114551001277557838}
-  segment: {fileID: 0}
-  index: 0
+  segment: {fileID: 120862901843517972}
+  index: 2
   grounded: 1
 --- !u!114 &114285292003030032
 MonoBehaviour:
@@ -1307,7 +1336,7 @@ MonoBehaviour:
   whenToUpdateTransform: 0
   sendRate: 30
   networkChannel: 1
-  childObjectToSync: {fileID: 0}
+  childObjectToSync: {fileID: 1916563825364596}
 --- !u!114 &114371404202030886
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1320,8 +1349,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunfish: {fileID: 114551001277557838}
-  segment: {fileID: 0}
-  index: 0
+  segment: {fileID: 120862901843517972}
+  index: 1
   grounded: 1
 --- !u!114 &114380839637393526
 MonoBehaviour:
@@ -1368,7 +1397,7 @@ MonoBehaviour:
   whenToUpdateTransform: 0
   sendRate: 30
   networkChannel: 1
-  childObjectToSync: {fileID: 0}
+  childObjectToSync: {fileID: 1905499301409364}
 --- !u!114 &114387280755807786
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1382,7 +1411,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   force: 3000
   maxFireCD: 1
-  fireSound: {fileID: 1036355648853062}
+  distance: 50
+  barrelPoint: {fileID: 1743740867984450}
+  boomSound: {fileID: 0}
+  muzzleFlash: {fileID: 0}
 --- !u!114 &114487773318126290
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1428,7 +1460,7 @@ MonoBehaviour:
   whenToUpdateTransform: 0
   sendRate: 30
   networkChannel: 1
-  childObjectToSync: {fileID: 0}
+  childObjectToSync: {fileID: 1279738201494532}
 --- !u!114 &114551001277557838
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1447,11 +1479,10 @@ MonoBehaviour:
   fire: 0
   currentFireCD: 0
   maxFireCD: 1
-  rb: {fileID: 0}
-  gun: {fileID: 0}
+  rb: {fileID: 50425083907755996}
+  gun: {fileID: 114387280755807786}
   groundedCount: 0
   flops: []
-  shots: []
 --- !u!114 &114577325329253028
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1497,7 +1528,7 @@ MonoBehaviour:
   whenToUpdateTransform: 0
   sendRate: 30
   networkChannel: 1
-  childObjectToSync: {fileID: 0}
+  childObjectToSync: {fileID: 1063944580665946}
 --- !u!114 &114645449871140880
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1510,8 +1541,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunfish: {fileID: 114551001277557838}
-  segment: {fileID: 0}
-  index: 0
+  segment: {fileID: 120862901843517972}
+  index: 7
   grounded: 1
 --- !u!114 &114686835449023078
 MonoBehaviour:
@@ -1558,7 +1589,7 @@ MonoBehaviour:
   whenToUpdateTransform: 0
   sendRate: 30
   networkChannel: 1
-  childObjectToSync: {fileID: 0}
+  childObjectToSync: {fileID: 1421646213425370}
 --- !u!114 &114732971890307792
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1604,7 +1635,7 @@ MonoBehaviour:
   whenToUpdateTransform: 0
   sendRate: 30
   networkChannel: 1
-  childObjectToSync: {fileID: 0}
+  childObjectToSync: {fileID: 1197732922753914}
 --- !u!114 &114811819151407012
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1617,8 +1648,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunfish: {fileID: 114551001277557838}
-  segment: {fileID: 0}
-  index: 0
+  segment: {fileID: 120862901843517972}
+  index: 9
   grounded: 1
 --- !u!114 &114972314869732698
 MonoBehaviour:
@@ -1665,7 +1696,7 @@ MonoBehaviour:
   whenToUpdateTransform: 0
   sendRate: 30
   networkChannel: 1
-  childObjectToSync: {fileID: 0}
+  childObjectToSync: {fileID: 1679328340436864}
 --- !u!114 &114993721006596150
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1710,8 +1741,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunfish: {fileID: 114551001277557838}
-  segment: {fileID: 0}
-  index: 0
+  segment: {fileID: 120862901843517972}
+  index: 3
   grounded: 1
 --- !u!120 &120862901843517972
 LineRenderer:
@@ -1750,15 +1781,15 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: -0.30002004, y: -0.000000026228586, z: 0}
-  - {x: -0.6000401, y: -0.00000005245717, z: 0}
-  - {x: -0.9000601, y: -0.00000007868575, z: 0}
-  - {x: -1.2000802, y: -0.00000010491434, z: 0}
-  - {x: -1.5001001, y: -0.00000013114293, z: 0}
-  - {x: -1.8001202, y: -0.0000001573715, z: 0}
-  - {x: -2.1001403, y: -0.0000001836001, z: 0}
-  - {x: -2.4001603, y: -0.00000020982868, z: 0}
-  - {x: -2.7001803, y: -0.00000023605726, z: 0}
+  - {x: -0.30002004, y: 0, z: 0}
+  - {x: -0.6000401, y: 0, z: 0}
+  - {x: -0.9000601, y: 0, z: 0}
+  - {x: -1.2000802, y: 0, z: 0}
+  - {x: -1.5001001, y: 0, z: 0}
+  - {x: -1.8001202, y: 0, z: 0}
+  - {x: -2.1001403, y: 0, z: 0}
+  - {x: -2.4001603, y: 0, z: 0}
+  - {x: -2.7001803, y: 0, z: 0}
   m_Parameters:
     serializedVersion: 2
     widthMultiplier: 1
@@ -1882,7 +1913,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: -0.15001002, y: 0}
-  m_ConnectedAnchor: {x: 0.15001005, y: -0.000000019073184}
+  m_ConnectedAnchor: {x: 0.15001005, y: -0.000000026228587}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -1905,7 +1936,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: -0.15001002, y: 0}
-  m_ConnectedAnchor: {x: 0.15000999, y: -0.000000019073182}
+  m_ConnectedAnchor: {x: 0.15000999, y: -0.000000026228584}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -1928,7 +1959,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: -0.15001002, y: 0}
-  m_ConnectedAnchor: {x: 0.15001011, y: -0.0000000190732}
+  m_ConnectedAnchor: {x: 0.15001011, y: -0.000000026228593}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -1951,7 +1982,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: -0.15001002, y: 0}
-  m_ConnectedAnchor: {x: 0.15000987, y: -0.00000001907315}
+  m_ConnectedAnchor: {x: 0.15000987, y: -0.000000026228573}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -1974,7 +2005,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: -0.15001002, y: 0}
-  m_ConnectedAnchor: {x: 0.15001011, y: -0.000000019073186}
+  m_ConnectedAnchor: {x: 0.15001011, y: -0.000000026228593}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -1997,7 +2028,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: -0.15001002, y: 0}
-  m_ConnectedAnchor: {x: 0.15001002, y: -0.000000019073182}
+  m_ConnectedAnchor: {x: 0.15001002, y: -0.000000026228586}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -2020,7 +2051,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: -0.15001002, y: 0}
-  m_ConnectedAnchor: {x: 0.15000987, y: -0.000000019073164}
+  m_ConnectedAnchor: {x: 0.15000987, y: -0.000000026228573}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -2043,7 +2074,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: -0.15001002, y: 0}
-  m_ConnectedAnchor: {x: 0.15000999, y: -0.000000019073175}
+  m_ConnectedAnchor: {x: 0.15000999, y: -0.000000026228584}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -2066,7 +2097,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: -0.15001002, y: 0}
-  m_ConnectedAnchor: {x: 0.15001002, y: -0.000000019073182}
+  m_ConnectedAnchor: {x: 0.15001002, y: -0.000000026228586}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0

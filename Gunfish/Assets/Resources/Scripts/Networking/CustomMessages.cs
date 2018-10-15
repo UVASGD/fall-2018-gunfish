@@ -162,6 +162,47 @@ public class GunshotAudioMsg : MessageBase {
     }
 }
 
+<<<<<<< HEAD
+=======
+public class RayHitMsg : MessageBase {
+    public RayHitInfo rayHitInfo;
+
+    public RayHitMsg() { }
+
+    public RayHitMsg(RayHitInfo rayHitInfo) {
+        this.rayHitInfo = rayHitInfo;
+    }
+}
+
+public class MultiRayHitMsg : MessageBase {
+    public RayHitInfo[] rayHitInfo;
+
+    public MultiRayHitMsg() { }
+
+    public MultiRayHitMsg( RayHitInfo[] rayHitInfo, Vector2 origin) {
+        this.rayHitInfo = rayHitInfo;
+    }
+}
+
+public struct RayHitInfo {
+    public NetworkInstanceId netId;
+
+    public Vector2 origin;
+    public Vector2 end;
+
+    public Vector2 normal;
+    public Color color;
+
+    public RayHitInfo(NetworkInstanceId netId, Vector2 origin, Vector2 end, Vector2 normal, Color color) {
+        this.netId = netId;
+        this.origin = origin;
+        this.end = end;
+        this.normal = normal;
+        this.color = color;
+    }
+}
+
+>>>>>>> GunfishHitMsg
 public class GameObjectMsg : MessageBase { 
     public GameObject obj;
 
@@ -191,7 +232,7 @@ public class InputMsg : MessageBase {
     }
 }
 
-public class GunfishMsg :MessageBase
+public class GunfishMsg : MessageBase
 {
     public NetworkInstanceId netId;
 
@@ -200,5 +241,25 @@ public class GunfishMsg :MessageBase
     public GunfishMsg(NetworkInstanceId id)
     {
         netId = id;
+    }
+}
+
+public class RayHitMsg : MessageBase {
+    public RayHitInfo rayHitInfo;
+
+    public RayHitMsg() { }
+
+    public RayHitMsg(RayHitInfo hitInfo) {
+        this.rayHitInfo = hitInfo;
+    }
+}
+
+public class MultiRayHitMsg : MessageBase {
+    public RayHitInfo[] rayHitInfos;
+
+    public MultiRayHitMsg() { }
+
+    public MultiRayHitMsg(RayHitInfo[] hitInfos) {
+        this.rayHitInfos = hitInfos;
     }
 }

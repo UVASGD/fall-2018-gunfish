@@ -33,6 +33,9 @@ using UnityEngine.Networking;
 [RequireComponent(typeof(NetworkConnection))]
 [RequireComponent(typeof(Rigidbody2D))]
 public class Gunfish : NetworkBehaviour {
+
+    //This information will be included in a gun info ScriptableObject
+    static float knockBackMagnitude = 200f;
     
     #region VARIABLES
     [Header("Input")]
@@ -66,7 +69,7 @@ public class Gunfish : NetworkBehaviour {
 
     }
 
-    //Initialize Camera and audio sources for ever local player
+    //Initialize Camera and audio sources for every local player
     public override void OnStartLocalPlayer () {
         base.OnStartLocalPlayer();
 
@@ -98,6 +101,7 @@ public class Gunfish : NetworkBehaviour {
 
         flopSource.clip = (flops.Length > 0 ? flops[Random.Range(0, flops.Length)] : null);
 
+        /*
         //Shot sounds
         if (gun.GetComponent<AudioSource>()) {
             shotSource = gun.gameObject.GetComponent<AudioSource>();
@@ -130,7 +134,7 @@ public class Gunfish : NetworkBehaviour {
 
         transform.eulerAngles = Vector3.forward * 180f;
 
-        //Set tha maxFireCD of the gunfish to the gun's maxFireCD.
+        //Set the maxFireCD of the gunfish to the gun's maxFireCD.
         //Fire cooldown is handled here to avoid multiple nested
         //Network Transforms
         maxFireCD = gun.maxFireCD;
@@ -283,30 +287,30 @@ public class Gunfish : NetworkBehaviour {
     public bool IsGrounded () {
         return (groundedCount == 0);
     }
-    
-    //Skeleton knockback method
-    public void Knockback(Vector2 force, Vector2 pos)
-    {
-        rb.AddForceAtPosition(force, pos);
+
+    public void Knockback(Vector2 direction, Vector2 position) {
+
+        if (hasAuthority) {
+            rb.AddForceAtPosition(direction * knockBackMagnitude, position);
+        }
     }
 
-    /*
-    public void Hit()
-    {
-        //Check for game manager
+    public void Hit(Vector2 direction, Vector2 position) {
+        Knockback(direction, position);
+        //Check gamemode, if race, then call Stun(), else call Damage()
     }
-    */
 
     public void DisplayShoot() {
         gun.DisplayShoot();
     }
 
+    #region MESSAGE HANDLERS
+
     [ServerCallback]
-    public HitInfo ServerShoot() {
+    public RayHitInfo ServerShoot() {
         return gun.ServerShoot();
     }
 
-    #region MESSAGE HANDLERS
     /*
     private void OnGunshotHit (NetworkMessage netMsg) {
         GunshotHitMsg msg = netMsg.ReadMessage<GunshotHitMsg>();
@@ -322,4 +326,5 @@ public class Gunfish : NetworkBehaviour {
     */
 
     #endregion
+
 }

@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public struct HitInfo {
-    NetworkInstanceId hitId;
-    Vector2 normal;
-    Vector2 origin;
-    Vector2 end;
-    Color color;
+public struct RayHitInfo {
+    public NetworkInstanceId netId;
+    public Vector2 origin;
+    public Vector2 end;
+    public Vector2 normal;
+    public Color color;
 
-    public HitInfo(NetworkInstanceId hitId, Vector2 normal, Vector2 origin, Vector2 end, Color color) {
-        this.hitId = hitId;
+    /*
+    public RayHitInfo(NetworkInstanceId netId, Vector2 normal, Vector2 origin, Vector2 end, Color color) {
+        this.netId = netId;
         this.normal = normal;
         this.origin = origin;
         this.end = end;
@@ -23,4 +24,5 @@ public struct HitInfo {
     //end
     //color
     //GunEnum
+    */
 }
