@@ -71,37 +71,5 @@ public class PlayerController : NetworkBehaviour {
 
         Debug.Log(msg.log);
     }
-
-    /*
-        private void OnGunshotAudio (NetworkMessage netMsg) {
-            //Debug.Log("Client is good");
-            GunshotAudioMsg msg = netMsg.ReadMessage<GunshotAudioMsg>();
-
-            GameObject audioObj = new GameObject();
-            audioObj.name = "GunshotAudioSource";
-            audioObj.transform.position = msg.position;
-            AudioSource audioSource = audioObj.AddComponent<AudioSource>();
-            audioSource.clip = gunshotAudio[msg.clipIndex];
-            audioSource.Play();
-            Destroy(audioObj, audioSource.clip.length);
-        }
-
-        private void OnGunshotParticle (NetworkMessage netMsg) {
-            GunshotParticleMsg msg = netMsg.ReadMessage<GunshotParticleMsg>();
-
-            Debug.Log("AHHHH");
-
-            GameObject hitDebris = Instantiate<GameObject>(
-                gunshotDebris, 
-                msg.position, 
-                Quaternion.Euler(msg.normal)
-            );
-
-            var main = hitDebris.GetComponent<ParticleSystem>().main;
-            main.startColor = new Color(msg.r, msg.g, msg.b);
-            Destroy(hitDebris, 2f);
-        }
-        */
-
     #endregion
 }

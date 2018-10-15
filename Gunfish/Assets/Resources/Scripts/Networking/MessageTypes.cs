@@ -10,18 +10,10 @@ public class MessageTypes {
 
     //GameObject (200-299)
     //public static short NETIDMSG = 200;
-    public static short SPAWNMSG = 201;
-
-    //Gunfish Specific (300-399)
-    /*
-    public static short GUNFISHMSG = 300;
-    public static short GUNSHOTHITMSG = 301;
-    public static short GUNSHOTPARTICLEMSG = 302;
-    public static short GUNSHOTAUDIOMSG = 303;
-    */
+    public static short SPAWNMSG = 200;
 
     //Gun Messages
-    public static short RAYHIT = 304;
-    public static short MULTIRAYHIT = 305;
-    public static short GUNSHOT = 306;
+    public static short RAYHIT = 300;
+    public static short MULTIRAYHIT = 301;
+    public static short GUNSHOT = 302;
 }

@@ -56,12 +56,8 @@ public class Gunfish : NetworkBehaviour {
 
     [Header("Audio")]
     public AudioClip[] flops;
-    //public AudioClip[] shots;
 
     private AudioSource flopSource;
-    //private AudioSource shotSource;
-
-    //private GameObject debris;
     #endregion
 
     public void ApplyVariableDefaults () {
@@ -89,25 +85,6 @@ public class Gunfish : NetworkBehaviour {
         }
 
         flopSource.clip = (flops.Length > 0 ? flops[Random.Range(0, flops.Length)] : null);
-
-        /*  
-        if (debris == null) {
-            debris = Resources.Load<GameObject>("Prefabs/Debris");
-        }
-          
-        //Shot sounds
-        if (gun.GetComponent<AudioSource>()) {
-            shotSource = gun.gameObject.GetComponent<AudioSource>();
-        } else {
-            shotSource = gun.gameObject.AddComponent<AudioSource>();
-        }
-
-        /*
-        if (shots.Length == 0) {
-            shots = new AudioClip[] {Resources.LoadAll<AudioClip>("Audio/Shots/")[0]};
-        }
-
-        shotSource.clip = (shots.Length > 0 ? shots[Random.Range(0, shots.Length)] : null);
         /***********************************************************/
     }
 
@@ -138,9 +115,6 @@ public class Gunfish : NetworkBehaviour {
         if (!isLocalPlayer) {
             rb.bodyType = RigidbodyType2D.Kinematic;
             foreach (Transform child in transform) {
-                //if (child.GetComponent<HingeJoint2D>()) {
-                //    child.GetComponent<HingeJoint2D>().enabled = false;
-                //}
 
                 if (child.GetComponent<Rigidbody2D>()) {
                     child.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
@@ -154,7 +128,6 @@ public class Gunfish : NetworkBehaviour {
     private void Update () {
         if (isLocalPlayer) {
             ClientInputHandler();
-            //Debug.Log("Grounded: " + (groundedCount > 0));
         }
 
         if (currentJumpCD <= 0f) {
@@ -245,34 +218,6 @@ public class Gunfish : NetworkBehaviour {
         currentFireCD = maxFireCD;
 
         NetworkManager.singleton.client.Send(MessageTypes.GUNSHOT, new GunfishMsg(netId));
-
-        ////Shoot bullet raycast. Do multiple hits to avoid collision with own fish pieces
-        //Vector3 direction = transform.GetChild(transform.childCount-1).right.normalized;
-        //RaycastHit2D[] hits = Physics2D.RaycastAll(
-        //    transform.GetChild(transform.childCount-1).position, direction
-        //);
-
-        //if (hits.Length > 0) {
-        //    foreach (RaycastHit2D hit in hits) {
-        //        if (hit.collider.CompareTag("Player")) {
-        //            //If it's a fish, ensure it's applied to the root
-        //            Rigidbody2D target = null;
-        //            if (hit.transform.parent == null) {
-        //                target = hit.transform.GetComponent<Rigidbody2D>();
-        //            } else if (hit.transform.parent.CompareTag("Player")) {
-        //                target = hit.transform.parent.GetComponent<Rigidbody2D>();
-        //            }
-
-        //            if (target != null) {
-        //                target.AddForce(direction * 200f);
-        //            }
-
-        //        } else if (hit.collider.CompareTag("Ground")) {
-        //            GameObject hitDebris = Instantiate<GameObject>(debris, hit.point, Quaternion.Euler(hit.normal));
-        //            Destroy(hitDebris, 2f);
-        //        }
-        //    }
-        //}
     }
 
     //Checks to see if any Transform in the Gunfish hierarchy
