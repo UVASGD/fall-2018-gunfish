@@ -12,18 +12,9 @@
 //the Inspector window.
 //
 //TODO:
-//This script utilizes NetworkTransforms to function. Many methods are
+//This script utilizes SmoothSync to function. Many methods are
 //called on the client, but linked properly to the server and other
-//clients inherently from the NetworkTransforms.
-//
-//I actually really don't like how this is set up for two reasons.
-//1) Network transforms are leave a lot of syncing under the hood, so
-//   it's much harder to figure out how pieces of code work, and whether
-//   they are called on the Client or the Server.
-//2) NetworkTransforms are actually not very good at handling multiple
-//   layers of chained Transforms, and the Gunfish are really jittery.
-//   A potential fix for this I'm experimenting with is seeing disabling
-//   various physics attributes on Gunfish without local player authority.
+//clients inherently from the SmoothSyncs.
 
 using UnityEngine;
 using System.Collections;
@@ -56,7 +47,6 @@ public class Gunfish : NetworkBehaviour {
 
     [Header("Audio")]
     public AudioClip[] flops;
-
     private AudioSource flopSource;
     #endregion
 
@@ -176,7 +166,7 @@ public class Gunfish : NetworkBehaviour {
                     Move(new Vector2(x, 1f).normalized * 500f, -x * 500f * Random.Range(0.5f, 1f));
                 }
             } else {
-                if (currentAirborneJumpCD <= 0f && transform.GetChild(transform.childCount / 2).GetComponent<Rigidbody2D>().angularVelocity < 360f) {
+                if (currentAirborneJumpCD <= 0f && transform.GetChild((transform.childCount / 2) - 1).GetComponent<Rigidbody2D>().angularVelocity < 360f) {
                     Rotate(100f * -x);
                 }
             }
@@ -195,8 +185,8 @@ public class Gunfish : NetworkBehaviour {
         flopSource.clip = (flops.Length > 0 ? flops[Random.Range(0, flops.Length)] : null);
         flopSource.Play();
 
-        transform.GetChild(transform.childCount / 2).GetComponent<Rigidbody2D>().AddForce(force);
-        transform.GetChild(transform.childCount / 2).GetComponent<Rigidbody2D>().AddTorque(torque);
+        transform.GetChild((transform.childCount / 2) - 1).GetComponent<Rigidbody2D>().AddForce(force);
+        transform.GetChild((transform.childCount / 2) - 1).GetComponent<Rigidbody2D>().AddTorque(torque);
 
         currentJumpCD = maxJumpCD;
 
@@ -204,7 +194,7 @@ public class Gunfish : NetworkBehaviour {
     }
 
     public void Rotate (float torque) {
-        transform.GetChild(transform.childCount / 2).GetComponent<Rigidbody2D>().AddTorque(torque);
+        transform.GetChild((transform.childCount / 2) - 1).GetComponent<Rigidbody2D>().AddTorque(torque);
 
         currentAirborneJumpCD = maxAirborneJumpCD;
     }
@@ -239,12 +229,11 @@ public class Gunfish : NetworkBehaviour {
         gun.DisplayShoot();
     }
 
-    #region MESSAGE HANDLERS
 
+    //SERVER CALLBACKS
     [ServerCallback]
     public RayHitInfo ServerShoot() {
         return gun.ServerShoot();
     }
-    #endregion
 
 }
