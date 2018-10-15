@@ -18,17 +18,19 @@ using UnityEngine.Networking;
 
 public class Gun : MonoBehaviour {
 
+    //We'll want a lot of these variables to reference a scriptableObject
     float force = 600f;
     public float Force { get { return force; } }
     public float maxFireCD = 1f;
     public float distance = 50f;
     public GameObject barrelPoint;
     public AudioSource boomSound;
-    public ParticleSystem muzzleFlash;
+    public LineRenderer muzzleFlash;
+    WaitForSeconds flashDuration = new WaitForSeconds(0.06f);
 
     private void Start() {
         boomSound = GetComponentInChildren<AudioSource>();
-        muzzleFlash = GetComponentInChildren<ParticleSystem>();
+        muzzleFlash = GetComponentInChildren<LineRenderer>();
     }
 
     //We're just treating gun as a single raycaster, but making a multiraycaster should be very easy
@@ -70,6 +72,12 @@ public class Gun : MonoBehaviour {
     public void DisplayShoot()
     {
         boomSound.Play();
-        //muzzleFlash.Play();
+        StartCoroutine(MuzzleFlash());
+    }
+
+    IEnumerator MuzzleFlash() {
+        muzzleFlash.enabled = true;
+        yield return flashDuration;
+        muzzleFlash.enabled = false;
     }
 }
