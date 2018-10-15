@@ -95,7 +95,7 @@ public class ServerController : NetworkBehaviour {
     private void OnSpawn(NetworkMessage netMsg) {
         SpawnMsg msg = netMsg.ReadMessage<SpawnMsg>();
         GameObject fish = Instantiate(Resources.Load(msg.path), msg.pos, Quaternion.identity) as GameObject;
-        NetworkServer.SpawnWithClientAuthority(fish, msg.player);
+        NetworkServer.SpawnWithClientAuthority(fish, msg.player.GetComponent<PlayerConnection>().connectionToClient);
     }
 
     #endregion

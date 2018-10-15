@@ -11,7 +11,11 @@ public class Camera2DFollow : MonoBehaviour
 	Vector3 vel = Vector3.zero;
 
     void FixedUpdate() {
-        if (!target) return;
+        if (!target) {
+            if (!(target = GameObject.FindWithTag("Player").transform)) {
+                return;
+            }
+        }
         //Debug.Log("Multiplier: " + (rb ? (1 / (1 + rb.velocity.magnitude / 20f)) : 1));
         adjustedSmoothTime = smoothTime * (1 / (1 + target.GetComponent<Rigidbody2D>().velocity.sqrMagnitude / 100f));
 

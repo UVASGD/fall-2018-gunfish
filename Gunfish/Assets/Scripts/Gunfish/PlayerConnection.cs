@@ -13,8 +13,8 @@ public class PlayerConnection : NetworkBehaviour {
 
 	//// Use this for initialization
 	override public void OnStartLocalPlayer () {
-        
         NetworkManager.singleton.client.Send(MessageTypes.SPAWNMSG, new SpawnMsg(fishPath, transform.position, gameObject));
+
     }
 
 	//[Command] private void CmdSpawnFish () {

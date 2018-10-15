@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4271101014385598}
   - component: {fileID: 114863552263559962}
-  - component: {fileID: 114469444077892628}
+  - component: {fileID: 114444584871829820}
   m_Layer: 0
   m_Name: PlayerConnection
   m_TagString: Untagged
@@ -41,7 +41,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114469444077892628
+--- !u!114 &114444584871829820
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -49,11 +49,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1524286868541690}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dffea37f1900946b5ab9bd9651460c29, type: 3}
+  m_Script: {fileID: 11500000, guid: 271fe57fae73c437e88f7492158357fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunfishPrefab: {fileID: 1860347802086032, guid: 24b3678961e9844269ecafea6b9fb3ab,
+  gunfishPrefab: {fileID: 1406721652179758, guid: 3988c1356dcf14b869d19f7acaf24fc1,
     type: 2}
+  score: 0
+  place: 0
 --- !u!114 &114863552263559962
 MonoBehaviour:
   m_ObjectHideFlags: 1
