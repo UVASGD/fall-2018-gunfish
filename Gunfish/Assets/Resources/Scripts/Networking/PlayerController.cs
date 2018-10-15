@@ -24,6 +24,12 @@ public class PlayerController : NetworkBehaviour {
         NetworkManager.singleton.client.RegisterHandler(MessageTypes.RAYHIT, OnRayHit);
         NetworkManager.singleton.client.RegisterHandler(MessageTypes.MULTIRAYHIT, OnMultiRayHit);
         NetworkManager.singleton.client.RegisterHandler(MessageTypes.GUNSHOT, OnGunshot);
+
+        foreach (Gunfish fish in FindObjectsOfType<Gunfish>()) {
+            if (fish.hasAuthority) {
+                ownedGunfish = fish;
+            }
+        }
     }
 
     #region MESSAGE HANDLERS
@@ -43,15 +49,15 @@ public class PlayerController : NetworkBehaviour {
     }
 
     private void HandleHitInfo(RayHitInfo rayHitInfo) {
-        if (!rayHitInfo.netId.IsEmpty()) {
-            //EffectsManager.DisplayBulletHit(rayHitInfo.end, rayHitInfo.normal, rayHitInfo.color);
+        if (rayHitInfo.netId != NetworkInstanceId.Invalid) {
+            EffectsManager.instance.DisplayBulletHit(rayHitInfo.end, rayHitInfo.normal, rayHitInfo.color);
 
             if (rayHitInfo.netId == ownedGunfish.netId) {
-                ownedGunfish.Hit(-rayHitInfo.normal.normalized, rayHitInfo.end);
+                ownedGunfish.Hit(-rayHitInfo.normal, rayHitInfo.end);
             }
         }
 
-        //EffectsManager.DisplayBulletLine(rayHitInfo.origin, rayHitInfo.end);
+        EffectsManager.instance.DisplayBulletLine(rayHitInfo.origin, rayHitInfo.end);
     }
 
     private void OnGunshot(NetworkMessage netMsg) {

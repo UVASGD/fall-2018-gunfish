@@ -8,10 +8,8 @@ public class ServerController : NetworkBehaviour {
     public override void OnStartServer () {
         ConnectionConfig config = new ConnectionConfig();
         config.DisconnectTimeout = 5000; //If the player times out for 5 seconds, disconnect them
-        //Debug.Log("Server start");
-        //NetworkServer.RegisterHandler(MessageTypes.NETIDMSG, OnNetID);
+
         NetworkServer.RegisterHandler(MessageTypes.GUNSHOT, OnGunshot);
-        //NetworkServer.RegisterHandler(MessageTypes.GUNSHOTAUDIOMSG, OnGunshotAudio);
     }
 
     public void SendClientDebugLog (string msg) {

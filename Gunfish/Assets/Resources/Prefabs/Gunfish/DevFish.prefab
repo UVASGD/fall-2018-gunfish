@@ -1140,7 +1140,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   force: 800
   maxFireCD: 1
-  fireFX: {fileID: 1415163473531858}
+  distance: 50
+  barrelPoint: {fileID: 0}
+  boomSound: {fileID: 0}
+  muzzleFlash: {fileID: 0}
 --- !u!114 &114140483886970082
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1453,7 +1456,6 @@ MonoBehaviour:
   gun: {fileID: 0}
   groundedCount: 0
   flops: []
-  shots: []
 --- !u!114 &114577325329253028
 MonoBehaviour:
   m_ObjectHideFlags: 1

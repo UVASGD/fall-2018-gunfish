@@ -17,7 +17,9 @@ using UnityEngine;
 using UnityEngine.Networking;
 
 public class Gun : MonoBehaviour {
-    public float force = 3000f;
+
+    float force = 600f;
+    public float Force { get { return force; } }
     public float maxFireCD = 1f;
     public float distance = 50f;
     public GameObject barrelPoint;
@@ -45,20 +47,21 @@ public class Gun : MonoBehaviour {
             }
 
             //if generic object
-            else if (hit.CompareTag("Environment")) {
+            else if (hit.CompareTag("Ground")) {
                 //rayHitInfo.netId.Value defaults to zero
                 rayHitInfo.color = hit.gameObject.GetComponent<SpriteRenderer>().color;
             }
 
             rayHitInfo.normal = rayHit.normal;
+            rayHitInfo.end = rayHit.point;
         }
         else {
             //if nothing was hit
             rayHitInfo.netId = NetworkInstanceId.Invalid;
+            rayHitInfo.end = barrelPoint.transform.position + (transform.right*distance);
         }
 
         rayHitInfo.origin = barrelPoint.transform.position;
-        rayHitInfo.end = rayHit.point;
 
         return rayHitInfo;
     }
@@ -67,6 +70,6 @@ public class Gun : MonoBehaviour {
     public void DisplayShoot()
     {
         boomSound.Play();
-        muzzleFlash.Play();
+        //muzzleFlash.Play();
     }
 }

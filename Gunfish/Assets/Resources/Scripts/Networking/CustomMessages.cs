@@ -202,7 +202,6 @@ public struct RayHitInfo {
     }
 }
 
->>>>>>> GunfishHitMsg
 public class GameObjectMsg : MessageBase { 
     public GameObject obj;
 
@@ -212,8 +211,6 @@ public class GameObjectMsg : MessageBase {
         this.obj = obj;
     }
 }
-*/
-
 
 public class InputMsg : MessageBase {
     //0 = not moving, 1 = left, 2 = right;
@@ -231,6 +228,7 @@ public class InputMsg : MessageBase {
         fish = gunfish;
     }
 }
+*/
 
 public class GunfishMsg : MessageBase
 {

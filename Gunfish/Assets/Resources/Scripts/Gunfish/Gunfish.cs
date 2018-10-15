@@ -35,7 +35,7 @@ using UnityEngine.Networking;
 public class Gunfish : NetworkBehaviour {
 
     //This information will be included in a gun info ScriptableObject
-    static float knockBackMagnitude = 200f;
+    static float knockBackMagnitude = 1000f;
     
     #region VARIABLES
     [Header("Input")]
@@ -59,32 +59,21 @@ public class Gunfish : NetworkBehaviour {
     //public AudioClip[] shots;
 
     private AudioSource flopSource;
-    private AudioSource shotSource;
+    //private AudioSource shotSource;
 
-    private GameObject debris;
+    //private GameObject debris;
     #endregion
 
     public void ApplyVariableDefaults () {
         maxJumpCD = 1f;
-
     }
 
     //Initialize Camera and audio sources for every local player
     public override void OnStartLocalPlayer () {
-        base.OnStartLocalPlayer();
 
         MusicManager.instance.PlayMusic();
 
         Camera.main.GetComponent<Camera2DFollow>().target = transform;
-
-        //Ensure that the gun is referenced before depending on it
-        if (!gun) {
-            gun = GetComponentInChildren<Gun>();
-        }
-
-        if (debris == null) {
-            debris = Resources.Load<GameObject>("Prefabs/Debris");
-        }
 
         //Setup the local audio handlers
         /***********************************************************/
@@ -101,7 +90,11 @@ public class Gunfish : NetworkBehaviour {
 
         flopSource.clip = (flops.Length > 0 ? flops[Random.Range(0, flops.Length)] : null);
 
-        /*
+        /*  
+        if (debris == null) {
+            debris = Resources.Load<GameObject>("Prefabs/Debris");
+        }
+          
         //Shot sounds
         if (gun.GetComponent<AudioSource>()) {
             shotSource = gun.gameObject.GetComponent<AudioSource>();
@@ -120,11 +113,12 @@ public class Gunfish : NetworkBehaviour {
 
     //When the Gunfish is started (server and client), assign fish info
     private void Start () {
-        //Register Messages
-        //NetworkManager.singleton.client.RegisterHandler(MessageTypes.GUNSHOTHITMSG, OnGunshotHit);
 
-        rb = GetComponent<Rigidbody2D>();
-        gun = GetComponentInChildren<Gun>();
+        if (!rb)
+            rb = GetComponent<Rigidbody2D>();
+
+        if (!gun)
+            gun = GetComponentInChildren<Gun>();
 
         groundedCount = 0;
 
@@ -210,7 +204,7 @@ public class Gunfish : NetworkBehaviour {
                 }
             } else {
                 if (currentAirborneJumpCD <= 0f && transform.GetChild(transform.childCount / 2).GetComponent<Rigidbody2D>().angularVelocity < 360f) {
-                    Rotate(50f * -x);
+                    Rotate(100f * -x);
                 }
             }
         }
@@ -220,11 +214,10 @@ public class Gunfish : NetworkBehaviour {
         }
     }
 
-    //Called on the server. Applies appropriate forces to the
+    //Called on the client. Applies appropriate forces to the
     //Gunfish. To call this function appropriately, it should
     //be called from the server, after calculating what force
     //and torque should be applied from the server as well.
-    //[ServerCallback]
     public void Move (Vector2 force, float torque) {
         flopSource.clip = (flops.Length > 0 ? flops[Random.Range(0, flops.Length)] : null);
         flopSource.Play();
@@ -233,6 +226,8 @@ public class Gunfish : NetworkBehaviour {
         transform.GetChild(transform.childCount / 2).GetComponent<Rigidbody2D>().AddTorque(torque);
 
         currentJumpCD = maxJumpCD;
+
+        //We might want to send a FlopMessage (for loud flops) so that everyone can hear the fish squish
     }
 
     public void Rotate (float torque) {
@@ -241,15 +236,13 @@ public class Gunfish : NetworkBehaviour {
         currentAirborneJumpCD = maxAirborneJumpCD;
     }
 
-    //Called on the server. Takes the info from the attached Gun
+    //Called on the Client. Takes the info from the attached Gun
     //component of a child GameObject, and applies a force. If
     //there is no Gun attached, simply will not fire.
     public void Shoot () {
-        rb.AddForceAtPosition(transform.right * gun.force, transform.position);
+        rb.AddForceAtPosition(transform.right * gun.Force, transform.position);
 
         currentFireCD = maxFireCD;
-
-        Vector3 position = transform.position;
 
         NetworkManager.singleton.client.Send(MessageTypes.GUNSHOT, new GunfishMsg(netId));
 
@@ -289,10 +282,7 @@ public class Gunfish : NetworkBehaviour {
     }
 
     public void Knockback(Vector2 direction, Vector2 position) {
-
-        if (hasAuthority) {
-            rb.AddForceAtPosition(direction * knockBackMagnitude, position);
-        }
+        rb.AddForceAtPosition(direction * knockBackMagnitude, position);
     }
 
     public void Hit(Vector2 direction, Vector2 position) {
@@ -310,21 +300,6 @@ public class Gunfish : NetworkBehaviour {
     public RayHitInfo ServerShoot() {
         return gun.ServerShoot();
     }
-
-    /*
-    private void OnGunshotHit (NetworkMessage netMsg) {
-        GunshotHitMsg msg = netMsg.ReadMessage<GunshotHitMsg>();
-
-        if (rb) {
-            rb.AddForceAtPosition(msg.force, msg.position);
-        }
-
-        //TODO
-        //LOSE HEALTH HERE
-        //health -= msg.damage;
-    }
-    */
-
     #endregion
 
 }
