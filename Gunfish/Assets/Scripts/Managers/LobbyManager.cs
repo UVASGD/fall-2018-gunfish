@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class LobbyManager : NetworkLobbyManager {
+public class LobbyManager : NetworkLobbyManager
+{
 
     public static LobbyManager instance;
 
@@ -14,33 +15,37 @@ public class LobbyManager : NetworkLobbyManager {
     public int playerCount = 0;
     private int maxPlayerCount = 4;
 
-	// Use this for initialization
-	void Awake () {
+    // Use this for initialization
+    void Awake() {
         if (instance == null) {
             instance = this;
-        } else {
+        }
+        else {
             Destroy(instance);
         }
 
         gunfishList = GunfishList.Get();
         gunfishIndex = 0;
         //NetworkLobbyManager.singleton.OnServerConnect(
-	}
+    }
 
-    public void StartGame () {
+    public void StartGame()
+    {
 
 
     }
     //public override 
 
     // Update is called once per frame
-    void Update () {
-		
-	}
+    void Update()
+    {
+         
+    }
 
-    public override void OnServerConnect (NetworkConnection conn) {
-        base.OnServerConnect (conn);
-
+    public override void OnServerConnect(NetworkConnection conn)
+    {
+        //base.OnServerConnect(conn);
+        
         Debug.Log("Whatcha doing fam");
     }
 }
