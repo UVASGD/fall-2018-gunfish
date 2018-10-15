@@ -190,13 +190,13 @@ public class InputMsg : MessageBase {
     }
 }
 
-public class GunshotMsg :MessageBase
+public class GunfishMsg :MessageBase
 {
     public NetworkInstanceId netId;
 
-    public GunshotMsg() { }
+    public GunfishMsg() { }
 
-    public GunshotMsg(NetworkInstanceId id)
+    public GunfishMsg(NetworkInstanceId id)
     {
         netId = id;
     }

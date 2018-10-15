@@ -68,7 +68,7 @@ public class PlayerController : NetworkBehaviour {
 
     private void OnGunshot (NetworkMessage netMsg)
     {
-        GunshotMsg msg = netMsg.ReadMessage<GunshotMsg>();
+        GunfishMsg msg = netMsg.ReadMessage<GunfishMsg>();
         Gunfish gunfish = ClientScene.FindLocalObject(msg.netId).GetComponent<Gunfish>();
         gunfish.gun.DisplayShoot(); 
     }
