@@ -239,6 +239,11 @@ public class Gunfish : NetworkBehaviour {
     //component of a child GameObject, and applies a force. If
     //there is no Gun attached, simply will not fire.
     public void Shoot () {
+        if(isLocalPlayer)
+        {
+            GameUIManager.Current.InitCooldown(maxFireCD);
+        }
+
         rb.AddForceAtPosition(transform.right * gun.force, transform.position);
 
         currentFireCD = maxFireCD;
