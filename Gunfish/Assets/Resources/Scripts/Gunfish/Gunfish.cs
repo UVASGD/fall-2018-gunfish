@@ -80,25 +80,26 @@ public class Gunfish : NetworkBehaviour {
 
     //When the Gunfish is started (server and client), assign fish info
     private void Start () {
+        if (isServer || isLocalPlayer) {
+            if (!rb)
+                rb = GetComponent<Rigidbody2D>();
 
-        if (!rb)
-            rb = GetComponent<Rigidbody2D>();
+            if (!gun)
+                gun = GetComponentInChildren<Gun>();
 
-        if (!gun)
-            gun = GetComponentInChildren<Gun>();
+            groundedCount = 0;
 
-        groundedCount = 0;
+            currentJumpCD = 0f;
+            currentFireCD = 0f;
+            currentAirborneJumpCD = 0f;
 
-        currentJumpCD = 0f;
-        currentFireCD = 0f;
-        currentAirborneJumpCD = 0f;
+            transform.eulerAngles = Vector3.forward * 180f;
 
-        transform.eulerAngles = Vector3.forward * 180f;
-
-        //Set the maxFireCD of the gunfish to the gun's maxFireCD.
-        //Fire cooldown is handled here to avoid multiple nested
-        //Network Transforms
-        maxFireCD = gun.maxFireCD;
+            //Set the maxFireCD of the gunfish to the gun's maxFireCD.
+            //Fire cooldown is handled here to avoid multiple nested
+            //Network Transforms
+            maxFireCD = gun.maxFireCD;
+        }
 
         //Disable HingeJoints on all but the local player to
         //prevent weird desyncs in movement
