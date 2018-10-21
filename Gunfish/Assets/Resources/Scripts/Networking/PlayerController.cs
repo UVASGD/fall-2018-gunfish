@@ -53,7 +53,7 @@ public class PlayerController : NetworkBehaviour {
             EffectsManager.instance.DisplayBulletHit(rayHitInfo.end, rayHitInfo.normal, rayHitInfo.color);
 
             if (rayHitInfo.netId == ownedGunfish.netId) {
-                ownedGunfish.Hit(-rayHitInfo.normal, rayHitInfo.end);
+                ownedGunfish.Hit((rayHitInfo.end - rayHitInfo.origin).normalized);
             }
         }
 
