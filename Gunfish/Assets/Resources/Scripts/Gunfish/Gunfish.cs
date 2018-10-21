@@ -121,26 +121,33 @@ public class Gunfish : NetworkBehaviour {
             ClientInputHandler();
         }
 
-        if (currentJumpCD <= 0f) {
-            currentJumpCD = 0f;
-        } else {
-            currentJumpCD -= Time.deltaTime;
-        }
-
-        if (currentFireCD <= 0f) {
-            currentFireCD = 0f;
-        } else {
-            currentFireCD -= Time.deltaTime;
-        }
-
-        if (currentAirborneJumpCD <= 0f) {
-            currentAirborneJumpCD = 0f;
-        } else {
-            currentAirborneJumpCD -= Time.deltaTime;
-        }
+        CDUpdate(ref currentJumpCD, maxJumpCD);
+        CDUpdate(ref currentFireCD, maxFireCD);
+        CDUpdate(ref currentAirborneJumpCD, maxAirborneJumpCD);
 
         if (groundedCount < 0) {
             groundedCount = 0;
+        }
+    }
+
+    private void CDUpdate(ref float CD, float maxCD, bool blocking = false) {
+        if (CD == float.NaN) {
+            return;
+        }
+
+        if (CD > maxCD) {
+            CD = maxCD;
+            if (blocking) {
+                //increment isBlocking
+            }
+        }
+        else if (CD > 0f)
+            CD -= Time.deltaTime;
+        else {
+            if (blocking) {
+                //decrement isBlocking;
+            }
+            CD = float.NaN;
         }
     }
 
@@ -163,17 +170,17 @@ public class Gunfish : NetworkBehaviour {
     public void ApplyMovement (float x, bool shoot) {
         if (x != 0) {
             if (groundedCount > 0) {
-                if (currentJumpCD <= 0f) {
+                if (float.IsNaN(currentJumpCD)) {
                     Move(new Vector2(x, 1f).normalized * 500f, -x * 500f * Random.Range(0.5f, 1f));
                 }
             } else {
-                if (currentAirborneJumpCD <= 0f && transform.GetChild((transform.childCount / 2) - 1).GetComponent<Rigidbody2D>().angularVelocity < 360f) {
+                if (float.IsNaN(currentAirborneJumpCD) && transform.GetChild((transform.childCount / 2) - 1).GetComponent<Rigidbody2D>().angularVelocity < 360f) {
                     Rotate(100f * -x);
                 }
             }
         }
 
-        if (shoot && currentFireCD <= 0f) {
+        if (shoot && float.IsNaN(currentFireCD)) {
             Shoot();
         }
     }
