@@ -215,6 +215,8 @@ public class Gunfish : NetworkBehaviour {
 
         currentFireCD = maxFireCD;
 
+        GameUIManager.Current.InitCooldown(maxFireCD);
+
         NetworkManager.singleton.client.Send(MessageTypes.GUNSHOT, new GunfishMsg(netId));
     }
 
