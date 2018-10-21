@@ -42,8 +42,6 @@ public class EffectsManager : MonoBehaviour {
         debrisPool[latestDP].Emit(10);
 
         latestDP = (latestDP+1) % debrisPool.Length;
-
-        //Play some audio based on what was hit
     }
 
     //We'll want to make this dependent on the gun in question, but for now, just display this one type of line
