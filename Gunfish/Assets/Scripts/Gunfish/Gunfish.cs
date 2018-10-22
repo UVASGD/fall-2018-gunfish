@@ -77,7 +77,9 @@ public class Gunfish : NetworkBehaviour {
 
         MusicManager.instance.PlayMusic();
 
-        Camera.main.GetComponent<Camera2DFollow>().target = transform;
+        if (Camera.main.GetComponent<Camera2DFollow>() != null) {
+            Camera.main.GetComponent<Camera2DFollow>().target = transform;
+        }
 
         //Ensure that the gun is referenced before depending on it
         if (!gun) {

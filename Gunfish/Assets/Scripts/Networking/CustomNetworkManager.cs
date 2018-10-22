@@ -23,6 +23,7 @@ public class CustomNetworkManager : NetworkManager
         //TODO: Replace random with fish selection
         GameObject player = (GameObject)Instantiate(fishList[Random.Range(0,fishList.Count)], targetPosition, Quaternion.identity);
         NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
+        //ClientScene.Ready(
         //networkConnections.Add(conn);
         //netIds.Add(player.GetComponent<Gunfish>().netId);
         //ConnectionManager.instance.netConns.Add(conn);

@@ -26,39 +26,18 @@ public class GameManager : NetworkBehaviour {
 
         mapIndex = 0;
 
-        //GameStateEvent += OnGameState;
         EventManager.StartListening(EventType.InitGame, OnStart);
         EventManager.StartListening(EventType.NextLevel, LoadNextLevel);
+        EventManager.StartListening(EventType.EndGame, OnEnd);
 	}
-
-    public delegate void GameStateChangeDel(GameState gameState);
-    public event GameStateChangeDel GameStateEvent;
-
-    void OnGameState (GameState gameState) {
-        switch (gameState) {
-            default:
-                break;
-            case GameState.Start:
-                SelectMaps();
-                break;
-            case GameState.Running:
-
-                break;
-            case GameState.NextLevel:
-                LoadNextLevel();
-                break;
-            case GameState.End:
-                
-                break;
-        }
-    }
 
     void OnStart() {
         SelectMaps();
     }
+
     void OnRunning()
     {
-        GameStateEvent(GameState.Running);
+        
     }
 
     void SelectMaps () {
@@ -83,29 +62,16 @@ public class GameManager : NetworkBehaviour {
 
     }
 
-    void LoadNextLevel()
-    {
-        if (++mapIndex == maps.Count) {
-            GameStateEvent(GameState.End);
+    void LoadNextLevel() {
+        if (mapIndex == maps.Count) {
+            EventManager.TriggerEvent(EventType.EndGame);
             return;
         }
-        NetworkManager.singleton.ServerChangeScene(maps[mapIndex]);
-
-        //if (fishFinished.Count-1 == fish.Count)
-        //{
-        //    GameStateEvent(GameState.NextLevel);
-        //}
-       
+        NetworkManager.singleton.ServerChangeScene(maps[mapIndex++]);
     }
    
-    void OnEnd()
-    {
-        GameStateEvent(GameState.End);
+    void OnEnd() {
+        Debug.Log("!!!!!! WOW YOU EXIST !!!!!!!");
     }
-	// Update is called once per frame
-	void Update () {
-		
-	}
-     
 }
 
