@@ -10,10 +10,10 @@ public class CustomNetworkManager : NetworkManager
     public override void OnStartServer()
     {
         fishList = new List<GameObject>(GunfishList.Get());
-        spawnPoints = FindObjectsOfType<NetworkStartPosition>();
     }
-    public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId)
-    {
+    public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId) {
+        spawnPoints = FindObjectsOfType<NetworkStartPosition>();
+        Debug.Log("SpawnPoints count: " + spawnPoints.Length);
         GameObject player = (GameObject)Instantiate(fishList[Random.Range(0,fishList.Count)], spawnPoints[0].transform.position, Quaternion.identity);
         NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
     }

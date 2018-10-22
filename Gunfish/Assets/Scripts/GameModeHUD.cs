@@ -14,6 +14,6 @@ public class GameModeHUD : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        NetworkManager.singleton.onlineScene = gameMode;
+        //NetworkManager.singleton.onlineScene = gameMode;
 	}
 }

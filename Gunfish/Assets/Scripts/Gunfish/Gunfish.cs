@@ -66,7 +66,8 @@ public class Gunfish : NetworkBehaviour {
 
     }
 
-    public override void OnStartAuthority () {
+    public override void OnStartAuthority() {
+        rb = GetComponent<Rigidbody2D>();
         rb.isKinematic = false;
     }
 
