@@ -21,10 +21,10 @@ public class RaceFinish : MonoBehaviour {
     {
         if(other.gameObject.CompareTag("Gunfish"))
         {
-            print("Checking finish...");
+            //print("Checking finish...");
             Gunfish gunfish = other.gameObject.GetComponentInParent<Gunfish>();
             if (finishedFish.Contains(gunfish)) return;
-            print("Finished!");
+            //print("Finished!");
             finishedFish.Add(gunfish);
             if (RaceFinishEvent != null)
                 RaceFinishEvent(gunfish);

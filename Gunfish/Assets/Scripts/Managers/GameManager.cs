@@ -64,7 +64,7 @@ public class GameManager : NetworkBehaviour {
     }
 
     public void OnPlayerFinish (Gunfish player) {
-        print("Shooping goop");
+        //print("Shooping goop");
         fishFinished.Add(player);
 
         //if (fishFinished.Count == fishCount) {
@@ -84,6 +84,7 @@ public class GameManager : NetworkBehaviour {
    
     void OnEnd() {
         Debug.Log("!!!!!! WOW YOU EXIST !!!!!!!");
+        NetworkManager.singleton.ServerChangeScene("RaceLobby");
     }
 }
 
