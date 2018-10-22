@@ -23,6 +23,7 @@ public class Gun : MonoBehaviour {
     public float Force { get { return force; } }
     public float maxFireCD = 1f;
     public float distance = 50f;
+    public Gradient shotTrailColor;
     public GameObject barrelPoint;
     public AudioSource boomSound;
     public LineRenderer muzzleFlash;

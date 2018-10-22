@@ -57,7 +57,7 @@ public class PlayerController : NetworkBehaviour {
             }
         }
 
-        EffectsManager.instance.DisplayBulletLine(rayHitInfo.origin, rayHitInfo.end);
+        EffectsManager.instance.DisplayBulletLine(rayHitInfo.origin, rayHitInfo.end, ownedGunfish.gun.shotTrailColor);
     }
 
     private void OnGunshot(NetworkMessage netMsg) {
