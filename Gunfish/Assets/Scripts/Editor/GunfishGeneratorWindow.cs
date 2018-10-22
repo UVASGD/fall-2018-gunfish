@@ -26,6 +26,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using UnityEngine.Networking;
 
 public class GunfishGeneratorWindow : EditorWindow {
 
@@ -115,7 +116,7 @@ public class GunfishGeneratorWindow : EditorWindow {
         }      
     }
 
-    [MenuItem("Gunfish/Flip Selected Textures %t")]
+    [MenuItem("Gunfish/Flip Selected Textures %#t")]
     private static void FlipTexture () {
         Texture2D[] selectedTextures = Selection.GetFiltered<Texture2D>(SelectionMode.Assets);
         Texture2D[] flippedTextures = new Texture2D[selectedTextures.Length];
@@ -183,24 +184,23 @@ public class GunfishGeneratorWindow : EditorWindow {
 
     private void CreateGunfish () {
         GameObject[] fishPieces = new GameObject[numberOfDivisions];
-        fishPieces[0] = new GameObject(fishName);
+        GameObject parent = new GameObject(fishName);
+        //fishPieces[0] = new GameObject(fishName);
 
         float fishWidth = texture.width / gunfishSprite.pixelsPerUnit;
         float fishHeight = texture.height / gunfishSprite.pixelsPerUnit;
 
-        LineRenderer lineFish = fishPieces[0].AddComponent<LineRenderer>();
+        LineRenderer lineFish = parent.AddComponent<LineRenderer>();
         lineFish.positionCount = numberOfDivisions;
         lineFish.startWidth = fishHeight;
         lineFish.endWidth = fishHeight;
         lineFish.alignment = LineAlignment.TransformZ;
         lineFish.material = material;
 
+        parent.AddComponent<NetworkIdentity>();
 
         for (int i = 0; i < numberOfDivisions; i++) {
-            if (i > 0) {
-                fishPieces [i] = new GameObject ("Fish[" + i.ToString () + "]");
-            }
-
+            fishPieces [i] = new GameObject ("Fish[" + i.ToString () + "]");
             fishPieces[i].layer = LayerMask.NameToLayer("Player");
 
             //Line Renderer

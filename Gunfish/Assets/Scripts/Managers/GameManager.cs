@@ -14,7 +14,7 @@ public class GameManager : NetworkBehaviour {
     public int mapIndex = 0;
 
     public List<Gunfish> fishFinished = new List<Gunfish>();
-    public List<Gunfish> fish = new List<Gunfish>();
+    public int fishCount;
     // Use this for initialization
     void Awake () {
         if (instance == null)
@@ -25,10 +25,13 @@ public class GameManager : NetworkBehaviour {
         DontDestroyOnLoad(this);
 
         mapIndex = 0;
+        fishCount = 0;
 
         EventManager.StartListening(EventType.InitGame, OnStart);
         EventManager.StartListening(EventType.NextLevel, LoadNextLevel);
         EventManager.StartListening(EventType.EndGame, OnEnd);
+
+
 	}
 
     void OnStart() {
@@ -58,11 +61,20 @@ public class GameManager : NetworkBehaviour {
             indices[otherIndex] = temp;
             maps.Add(scenes[indices[i]].name);
         }
+    }
 
+    public void OnPlayerFinish (Gunfish player) {
+        print("Shooping goop");
+        fishFinished.Add(player);
 
+        //if (fishFinished.Count == fishCount) {
+            //print("Goop is shooped!");
+            EventManager.TriggerEvent(EventType.NextLevel);
+        //}
     }
 
     void LoadNextLevel() {
+        fishFinished.Clear();
         if (mapIndex == maps.Count) {
             EventManager.TriggerEvent(EventType.EndGame);
             return;
