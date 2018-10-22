@@ -26,7 +26,7 @@ using UnityEngine.Networking;
 public class Gunfish : NetworkBehaviour {
 
     //This information will be included in a gun info ScriptableObject
-    static float knockBackMagnitude = 1000f;
+    //static float Misc.knockBackMagnitude = 1000f;
     
     #region VARIABLES
     [Header("Input")]
@@ -37,6 +37,9 @@ public class Gunfish : NetworkBehaviour {
     public bool fire;
     [SyncVar] [HideInInspector] public float currentFireCD;
     [HideInInspector] public float maxFireCD = 1f;
+    [HideInInspector]
+    float currentStunCD = float.NaN;
+    public int isBlocked = 0;
 
     [Header("Fish Info")]
     public Rigidbody2D rb;
@@ -118,12 +121,12 @@ public class Gunfish : NetworkBehaviour {
     //Also handles cooldowns
     private void Update () {
         if (isLocalPlayer) {
-            ClientInputHandler();
+            if (isBlocked == 0)
+            {
+                ClientInputHandler();
+            }
+            CheckCoolDowns();
         }
-
-        CDUpdate(ref currentJumpCD, maxJumpCD);
-        CDUpdate(ref currentFireCD, maxFireCD);
-        CDUpdate(ref currentAirborneJumpCD, maxAirborneJumpCD);
 
         if (groundedCount < 0) {
             groundedCount = 0;
@@ -131,24 +134,29 @@ public class Gunfish : NetworkBehaviour {
     }
 
     private void CDUpdate(ref float CD, float maxCD, bool blocking = false) {
-        if (CD == float.NaN) {
+        if (float.IsNaN(CD)) {
             return;
         }
 
         if (CD > maxCD) {
             CD = maxCD;
-            if (blocking) {
-                //increment isBlocking
-            }
         }
         else if (CD > 0f)
             CD -= Time.deltaTime;
         else {
             if (blocking) {
-                //decrement isBlocking;
+                isBlocked--;
             }
             CD = float.NaN;
         }
+    }
+
+    private void CheckCoolDowns()
+    {
+        CDUpdate(ref currentJumpCD, maxJumpCD);
+        CDUpdate(ref currentFireCD, maxFireCD);
+        CDUpdate(ref currentAirborneJumpCD, maxAirborneJumpCD);
+        CDUpdate(ref currentStunCD, float.PositiveInfinity, true);
     }
 
     //Checks user input on the Client. Also returns whether
@@ -225,12 +233,21 @@ public class Gunfish : NetworkBehaviour {
     }
 
     public void Knockback(Vector2 direction) {
-        rb.AddForce(direction * knockBackMagnitude);
+        rb.AddForce(direction * Misc.knockBackMagnitude);
     }
 
     public void Hit(Vector2 direction) {
         Knockback(direction);
+        Stun();
         //Check gamemode, if race, then call Stun(), else call Damage()
+    }
+
+    public void Stun()
+    {
+        //Oh no you got stunned
+        if (float.IsNaN(currentStunCD))
+            isBlocked++;
+        currentStunCD = Misc.stunTime;
     }
 
     public void DisplayShoot() {
