@@ -7,15 +7,20 @@ public class ConnectionManager : NetworkBehaviour {
 
     public static ConnectionManager instance;
 
-    public List<NetworkConnection> connections;
+    public List<NetworkConnection> netConns;
+    public List<Gunfish> gunfish;
 
 	// Use this for initialization
-	void Awake () {
+	void Start () {
         if (instance == null) {
             instance = this;
         } else {
             Destroy(gameObject);
         }
+
+        DontDestroyOnLoad(this);
+
+        EventManager.TriggerEvent(EventType.InitGame);
 	}
 
 	// Update is called once per frame
@@ -24,19 +29,19 @@ public class ConnectionManager : NetworkBehaviour {
 	}
 
     public void SortByScore () {
-        List<PlayerConnection> temp = new List<PlayerConnection>();
+        //List<PlayerConnection> temp = new List<PlayerConnection>();
 
-        for (int i = 0; i < players.Count; i++) {
-            int highest = 0;
-            int highestIndex = 0;
-            for (int j = 0; j < players.Count; j++) {
-                if (players[j].score > highest) {
-                    highest = players[j].score;
-                    highestIndex = j;
-                }
-            }
-            temp.Add(players[highestIndex]);
-        }
-        players = temp;
+        //for (int i = 0; i < players.Count; i++) {
+        //    int highest = 0;
+        //    int highestIndex = 0;
+        //    for (int j = 0; j < players.Count; j++) {
+        //        if (players[j].score > highest) {
+        //            highest = players[j].score;
+        //            highestIndex = j;
+        //        }
+        //    }
+        //    temp.Add(players[highestIndex]);
+        //}
+        //players = temp;
     }
 }

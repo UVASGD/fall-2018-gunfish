@@ -15,6 +15,9 @@ public enum EventType {
     OnFishDied,
     OnTimeElapsed,
 
+    InitGame,
+    NextLevel,
+
 }
 
 public class EventManager : MonoBehaviour {
