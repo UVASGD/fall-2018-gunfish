@@ -22,7 +22,7 @@ public class ServerController : NetworkBehaviour {
     #region MESSAGE HANDLERS
 
     public void OnGunshotAudio (NetworkMessage netMsg) {
-        NetworkManager.singleton.ServerChangeScene("RaceGameMode");
+        //NetworkManager.singleton.ServerChangeScene("RaceGameMode");
         //Debug.Log("Server is good");
         GunshotAudioMsg msg = netMsg.ReadMessage<GunshotAudioMsg>();
 

@@ -12,7 +12,7 @@ public class Camera2DFollow : MonoBehaviour
 
     void FixedUpdate() {
         if (!target) {
-            if (!(target = GameObject.FindWithTag("Player").transform)) {
+            if (!target) {
                 return;
             }
         }

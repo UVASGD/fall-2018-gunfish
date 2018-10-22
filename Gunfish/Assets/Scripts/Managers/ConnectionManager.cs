@@ -3,26 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class ConnectionManager : MonoBehaviour {
+public class ConnectionManager : NetworkBehaviour {
 
     public static ConnectionManager instance;
 
-    public List<PlayerConnection> players;
+    public List<NetworkConnection> connections;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
         if (instance == null) {
             instance = this;
         } else {
-            Destroy(this);
+            Destroy(gameObject);
         }
-
-        EventManager.StartListening("Buttered Lettuce", OnButteredLuttuce);
 	}
-	
-    void OnButteredLuttuce () {
-        Debug.Log("Nice cover, Arin.");
-    }
 
 	// Update is called once per frame
 	void Update () {

@@ -12,7 +12,7 @@ public class MusicManager : MonoBehaviour {
         if (!instance) {
             instance = this;
         } else {
-            Destroy(this);
+            Destroy(gameObject);
         }
 
         audioSource = instance.GetComponent<AudioSource>();
