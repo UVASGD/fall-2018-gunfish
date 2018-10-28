@@ -24,8 +24,10 @@ public class EffectsManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
-        if (!instance)
+        if (!instance) {
             instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
         else {
             Destroy(gameObject);
             return;
