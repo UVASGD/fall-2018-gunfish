@@ -23,7 +23,7 @@ public class EffectsManager : MonoBehaviour {
     //WaitForSeconds shotDuration = new WaitForSeconds(0.04f);
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
         if (!instance)
             instance = this;
         else {
@@ -41,6 +41,7 @@ public class EffectsManager : MonoBehaviour {
             line.material = lineMaterial;
             line.colorGradient = defaultShotColor;
         }
+        DontDestroyOnLoad(this);
 	}
 
     public void DisplayBulletHit(Vector2 point, Vector2 normal, Color color) {

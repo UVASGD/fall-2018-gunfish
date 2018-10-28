@@ -8,15 +8,15 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications: []
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 0}
+  m_SourcePrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1106912395885742}
-  m_IsPrefabParent: 1
+  m_IsPrefabAsset: 1
 --- !u!1 &1106912395885742
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 4068694955522636}
   - component: {fileID: 114271430207170604}
@@ -31,7 +31,7 @@ GameObject:
 --- !u!4 &4068694955522636
 Transform:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1106912395885742}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -44,7 +44,7 @@ Transform:
 --- !u!114 &114240496521808018
 MonoBehaviour:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1106912395885742}
   m_Enabled: 1
@@ -52,14 +52,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c65a00bd245f45638de9b4305ee9796, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveX: 0
-  shooting: 0
-  localPlayerConnectionObj: {fileID: 0}
-  gunfish: {fileID: 0}
+  gunshotDebris: {fileID: 1428631037508538, guid: 43da7b699025d4335998652753c63669,
+    type: 2}
+  gunshotAudio:
+  - {fileID: 8300000, guid: 7767a07f3564c45ba8b131ad48b2fcd1, type: 3}
 --- !u!114 &114271430207170604
 MonoBehaviour:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1106912395885742}
   m_Enabled: 1
