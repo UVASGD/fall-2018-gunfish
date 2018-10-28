@@ -45,6 +45,10 @@ public class Gunfish : NetworkBehaviour {
     [Tooltip("The number of fish pieces not touching the ground. (0 = grounded)")]
     public int groundedCount = 0;
 
+    [Tooltip("This is the force and torque of the moving fish")]
+    public float moveForce = 500f;
+    public float moveTorque = 100f;
+
     [Header("Audio")]
     public AudioClip[] flops;
     private AudioSource flopSource;
