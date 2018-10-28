@@ -155,7 +155,7 @@ public class Gunfish : NetworkBehaviour {
     //or not an input message should be sent to the server.
     public void ClientInputHandler () {
         float x = Input.GetAxisRaw("Horizontal");
-        bool shoot = Input.GetKeyDown(KeyCode.Space);
+        bool shoot = Input.GetButtonDown("Fire1");
 
         bool apply = (x != 0f || shoot);
 
@@ -171,11 +171,11 @@ public class Gunfish : NetworkBehaviour {
         if (x != 0) {
             if (groundedCount > 0) {
                 if (float.IsNaN(currentJumpCD)) {
-                    Move(new Vector2(x, 1f).normalized * 500f, -x * 500f * Random.Range(0.5f, 1f));
+                    Move(new Vector2(x, 1f).normalized * moveForce, -x * moveForce * Random.Range(0.5f, 1f));
                 }
             } else {
                 if (float.IsNaN(currentAirborneJumpCD) && transform.GetChild((transform.childCount / 2) - 1).GetComponent<Rigidbody2D>().angularVelocity < 360f) {
-                    Rotate(100f * -x);
+                    Rotate(moveTorque * -x);
                 }
             }
         }
