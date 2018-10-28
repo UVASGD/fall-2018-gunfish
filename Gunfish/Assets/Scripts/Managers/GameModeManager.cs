@@ -2,12 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ShotType {
-    damageAndKnockback,
-    damageOnly,
-    knockbackOnly,
-}
-
 public enum WinCondition {
     goal,
     points,
@@ -19,7 +13,7 @@ public class GameModeManager : ScriptableObject {
     public static GameModeManager instance;
 
     public string gameModeName = "Default Game Mode";
-    public ShotType shotType = ShotType.damageAndKnockback;
+    //public ShotType shotType = ShotType.damageAndKnockback;
     public WinCondition winCondition = WinCondition.lastFishStanding;
     public int numberOfRounds = 5;
 

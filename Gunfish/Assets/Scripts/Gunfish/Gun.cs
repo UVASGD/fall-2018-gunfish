@@ -28,6 +28,8 @@ public class Gun : MonoBehaviour {
     public AudioSource boomSound;
     public LineRenderer muzzleFlash;
     WaitForSeconds flashDuration = new WaitForSeconds(0.06f);
+    public GunType rayGun = GunType.Ray;
+    public ShotType smallShot = ShotType.Small;
 
     private void Start() {
         boomSound = GetComponentInChildren<AudioSource>();
