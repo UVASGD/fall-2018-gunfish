@@ -23,11 +23,12 @@ using UnityEngine.Networking;
 
 [RequireComponent(typeof(NetworkConnection))]
 [RequireComponent(typeof(Rigidbody2D))]
-public class Gunfish : NetworkBehaviour {
+public class Gunfish : NetworkBehaviour
+{
 
     //This information will be included in a gun info ScriptableObject
     static float knockBackMagnitude = 1000f;
-    
+
     #region VARIABLES
     [Header("Input")]
     [SyncVar] public float currentJumpCD;
@@ -37,6 +38,10 @@ public class Gunfish : NetworkBehaviour {
     public bool fire;
     [SyncVar] [HideInInspector] public float currentFireCD;
     [HideInInspector] public float maxFireCD = 1f;
+
+    //nametag
+    [SyncVar] public string username;
+    Transform nameplate;
 
     [Header("Fish Info")]
     public Rigidbody2D rb;
@@ -50,13 +55,15 @@ public class Gunfish : NetworkBehaviour {
     private AudioSource flopSource;
     #endregion
 
-    public void ApplyVariableDefaults () {
+    public void ApplyVariableDefaults()
+    {
         maxJumpCD = 1f;
     }
 
     //Initialize Camera and audio sources for every local player
-    public override void OnStartLocalPlayer () {
-
+    public override void OnStartLocalPlayer()
+    {
+        Debug.Log("Did onstartlocalplayer with network id " + netId);
         MusicManager.instance.PlayMusic();
 
         Camera.main.GetComponent<Camera2DFollow>().target = transform;
@@ -64,13 +71,17 @@ public class Gunfish : NetworkBehaviour {
         //Setup the local audio handlers
         /***********************************************************/
         //Flop sounds
-        if (GetComponent<AudioSource>()) {
+        if (GetComponent<AudioSource>())
+        {
             flopSource = gameObject.GetComponent<AudioSource>();
-        } else {
+        }
+        else
+        {
             flopSource = gameObject.AddComponent<AudioSource>();
         }
 
-        if (flops.Length == 0) {
+        if (flops.Length == 0)
+        {
             flops = Resources.LoadAll<AudioClip>("Audio/Flops/");
         }
 
@@ -78,9 +89,31 @@ public class Gunfish : NetworkBehaviour {
         /***********************************************************/
     }
 
+    private void Awake()
+    {
+        nameplate = GameObject.Find("nameplate").transform;
+    }
+
+    [Command]
+    void CmdChangeUsername(string newUsername) {
+        Debug.Log("did the command with network id " + netId);
+        username = newUsername;
+    }
+    public override void OnStartClient()
+    {
+        Debug.Log("Did onstartclient with network id " + netId);
+        if (isServer || isLocalPlayer)
+        {
+            //TODO get this from dontdestroyonload object
+            string theUsername = Random.Range(0, 100).ToString();
+            CmdChangeUsername(theUsername);
+        }
+        OnUsernameChanged(username);
+    }
     //When the Gunfish is started (server and client), assign fish info
     private void Start () {
         if (isServer || isLocalPlayer) {
+            Debug.Log("got past check with network id " + netId);
             if (!rb)
                 rb = GetComponent<Rigidbody2D>();
 
@@ -239,6 +272,11 @@ public class Gunfish : NetworkBehaviour {
         gun.DisplayShoot();
     }
 
+    void OnUsernameChanged(string newUsername){
+        Debug.Log("Did onusernamechanged");
+        Debug.Log(newUsername);
+        nameplate.GetComponent<TextMesh>().text = newUsername;
+    }
 
     //SERVER CALLBACKS
     [ServerCallback]
