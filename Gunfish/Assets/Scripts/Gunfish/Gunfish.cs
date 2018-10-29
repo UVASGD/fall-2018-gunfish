@@ -234,12 +234,12 @@ public class Gunfish : NetworkBehaviour {
         return (groundedCount == 0);
     }
 
-    public void Knockback(Vector2 direction) {
-        rb.AddForce(direction * Misc.knockBackMagnitude);
+    public void Knockback(Vector2 direction, ShotType shotType) {
+        rb.AddForce(direction * Misc.ShotDict[shotType].knockbackMagnitude);
     }
 
-    public void Hit(Vector2 direction) {
-        Knockback(direction);
+    public void Hit(Vector2 direction, ShotType shotType) {
+        Knockback(direction, shotType);
         //Check gamemode, if race, then call Stun(), else call Damage()
     }
 

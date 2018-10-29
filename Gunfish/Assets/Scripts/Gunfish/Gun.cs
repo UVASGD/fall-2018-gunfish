@@ -60,7 +60,7 @@ public class Gun : MonoBehaviour {
             }
 
             rayHitInfo.normal = rayHit.normal;
-            rayHitInfo.end = rayHit.point;
+            rayHitInfo.end = rayHit.point;           
         }
         else {
             //if nothing was hit
@@ -69,6 +69,7 @@ public class Gun : MonoBehaviour {
         }
 
         rayHitInfo.origin = barrelPoint.transform.position;
+        rayHitInfo.shotType = shotType;
 
         return rayHitInfo;
     }
