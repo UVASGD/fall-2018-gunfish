@@ -40,6 +40,7 @@ public class Gunfish : NetworkBehaviour {
 
     [Header("Fish Info")]
     public Rigidbody2D rb;
+    public Rigidbody2D middleRb;
     public Gun gun;
 
     [Tooltip("The number of fish pieces not touching the ground. (0 = grounded)")]
@@ -96,6 +97,8 @@ public class Gunfish : NetworkBehaviour {
 
             if (!gun)
                 gun = GetComponentInChildren<Gun>();
+
+            middleRb = transform.GetChild((transform.childCount / 2) - 1).GetComponent<Rigidbody2D>();
 
             groundedCount = 0;
 
@@ -184,7 +187,7 @@ public class Gunfish : NetworkBehaviour {
                     Move(new Vector2(x, 1f).normalized * moveForce, -x * moveForce * Random.Range(0.5f, 1f));
                 }
             } else {
-                if (float.IsNaN(currentAirborneJumpCD) && transform.GetChild((transform.childCount / 2) - 1).GetComponent<Rigidbody2D>().angularVelocity < 360f) {
+                if (float.IsNaN(currentAirborneJumpCD) && middleRb.angularVelocity < 360f) {
                     Rotate(moveTorque * -x);
                 }
             }
@@ -200,11 +203,11 @@ public class Gunfish : NetworkBehaviour {
     //be called from the server, after calculating what force
     //and torque should be applied from the server as well.
     public void Move (Vector2 force, float torque) {
-        flopSource.clip = (flops.Length > 0 ? flops[Random.Range(0, flops.Length)] : null);
+        flopSource.clip = (flops.Length > 0) ? flops[Random.Range(0, flops.Length)] : null;
         flopSource.Play();
 
-        transform.GetChild((transform.childCount / 2) - 1).GetComponent<Rigidbody2D>().AddForce(force);
-        transform.GetChild((transform.childCount / 2) - 1).GetComponent<Rigidbody2D>().AddTorque(torque);
+        middleRb.AddForce(force);
+        middleRb.AddTorque(torque);
 
         currentJumpCD = maxJumpCD;
 
@@ -212,7 +215,7 @@ public class Gunfish : NetworkBehaviour {
     }
 
     public void Rotate (float torque) {
-        transform.GetChild((transform.childCount / 2) - 1).GetComponent<Rigidbody2D>().AddTorque(torque);
+        middleRb.AddTorque(torque);
 
         currentAirborneJumpCD = maxAirborneJumpCD;
     }
