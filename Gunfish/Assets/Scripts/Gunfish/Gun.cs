@@ -19,21 +19,21 @@ using UnityEngine.Networking;
 public class Gun : MonoBehaviour {
 
     //We'll want a lot of these variables to reference a scriptableObject
-    float force = 600f;
-    public float Force { get { return force; } }
-    public float maxFireCD = 1f;
-    public float distance = 50f;
+    public ShotInfo shotInfo;
     public Gradient shotTrailColor;
     public GameObject barrelPoint;
     public AudioSource boomSound;
     public LineRenderer muzzleFlash;
-    WaitForSeconds flashDuration = new WaitForSeconds(0.06f);
-    public GunType rayGun = GunType.Ray;
-    public ShotType smallShot = ShotType.Small;
+    WaitForSeconds flashDuration;
+    public GunType gunType = GunType.Ray;
+    public ShotType shotType = ShotType.Medium;
 
     private void Start() {
         boomSound = GetComponentInChildren<AudioSource>();
         muzzleFlash = GetComponentInChildren<LineRenderer>();
+        shotInfo = Misc.ShotDict[shotType];
+        flashDuration = new WaitForSeconds(shotInfo.flashDuration);
+
     }
 
     //We're just treating gun as a single raycaster, but making a multiraycaster should be very easy
@@ -41,7 +41,7 @@ public class Gun : MonoBehaviour {
 
         RayHitInfo rayHitInfo = new RayHitInfo();
 
-        RaycastHit2D rayHit = Physics2D.Raycast(barrelPoint.transform.position, transform.right, distance);
+        RaycastHit2D rayHit = Physics2D.Raycast(barrelPoint.transform.position, transform.right, shotInfo.distance);
         if (rayHit) {
             GameObject hit = rayHit.collider.gameObject;
 
@@ -49,12 +49,14 @@ public class Gun : MonoBehaviour {
             if (hit.CompareTag("Gunfish")) {
                 rayHitInfo.netId = hit.GetComponentInParent<Gunfish>().netId;
                 rayHitInfo.color = Color.red;
+                rayHitInfo.hitType = HitType.Fish;
             }
 
             //if generic object
             else if (hit.CompareTag("Ground")) {
                 //rayHitInfo.netId.Value defaults to zero
                 rayHitInfo.color = hit.gameObject.GetComponent<SpriteRenderer>().color;
+                rayHitInfo.hitType = HitType.Wood;
             }
 
             rayHitInfo.normal = rayHit.normal;
@@ -63,7 +65,7 @@ public class Gun : MonoBehaviour {
         else {
             //if nothing was hit
             rayHitInfo.netId = NetworkInstanceId.Invalid;
-            rayHitInfo.end = barrelPoint.transform.position + (transform.right*distance);
+            rayHitInfo.end = barrelPoint.transform.position + (transform.right*shotInfo.distance);
         }
 
         rayHitInfo.origin = barrelPoint.transform.position;

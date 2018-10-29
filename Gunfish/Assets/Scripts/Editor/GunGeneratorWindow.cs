@@ -103,7 +103,7 @@ public class GunGeneratorWindow : EditorWindow {
             
         Gun gun = gunGO.AddComponent<Gun>();
         //gun.orce = force;
-        gun.maxFireCD = shotCooldown;
+        gun.shotInfo.maxFireCD = shotCooldown;
 
         PrefabUtility.CreatePrefab(path, gunGO);
         DestroyImmediate(gunGO);
