@@ -24,9 +24,6 @@ using UnityEngine.Networking;
 [RequireComponent(typeof(NetworkConnection))]
 [RequireComponent(typeof(Rigidbody2D))]
 public class Gunfish : NetworkBehaviour {
-
-    //This information will be included in a gun info ScriptableObject
-    static float knockBackMagnitude = 1000f;
     
     #region VARIABLES
     [Header("Input")]
@@ -238,7 +235,7 @@ public class Gunfish : NetworkBehaviour {
     }
 
     public void Knockback(Vector2 direction) {
-        rb.AddForce(direction * knockBackMagnitude);
+        rb.AddForce(direction * Misc.knockBackMagnitude);
     }
 
     public void Hit(Vector2 direction) {
