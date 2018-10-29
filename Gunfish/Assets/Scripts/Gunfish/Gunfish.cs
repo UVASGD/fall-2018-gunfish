@@ -41,6 +41,8 @@ public class Gunfish : NetworkBehaviour {
     float currentStunCD = float.NaN;
     public int isBlocked = 0;
 
+    public ShotType shotType = ShotType.Medium;
+
     [Header("Fish Info")]
     public Rigidbody2D rb;
     public Rigidbody2D middleRb;
@@ -93,6 +95,8 @@ public class Gunfish : NetworkBehaviour {
 
             if (!gun)
                 gun = GetComponentInChildren<Gun>();
+
+            gun.SetShotType(shotType);
 
             groundedCount = 0;
 
@@ -165,7 +169,7 @@ public class Gunfish : NetworkBehaviour {
     //or not an input message should be sent to the server.
     public void ClientInputHandler() {
         float x = Input.GetAxisRaw("Horizontal");
-        bool shoot = Input.GetKeyDown(KeyCode.Space);
+        bool shoot = Input.GetButtonDown("Fire1");
 
         bool apply = (x != 0f || shoot);
 

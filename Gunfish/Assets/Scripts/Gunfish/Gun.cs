@@ -31,9 +31,12 @@ public class Gun : MonoBehaviour {
     private void Start() {
         boomSound = GetComponentInChildren<AudioSource>();
         muzzleFlash = GetComponentInChildren<LineRenderer>();
+    }
+
+    public void SetShotType(ShotType shotType) {
+        this.shotType = shotType;
         shotInfo = Misc.ShotDict[shotType];
         flashDuration = new WaitForSeconds(shotInfo.flashDuration);
-
     }
 
     //We're just treating gun as a single raycaster, but making a multiraycaster should be very easy

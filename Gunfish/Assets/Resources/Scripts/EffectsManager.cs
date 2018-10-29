@@ -40,6 +40,7 @@ public class EffectsManager : MonoBehaviour {
         //we'll probably want to preset these, since not every child that a particle system is necessarily part of the debris pool
         debrisPool = GetComponentsInChildren<ParticleSystem>();
         linePool = GetComponentsInChildren<LineRenderer>();
+        audioPool = GetComponentsInChildren<AudioSource>();
 
         // Configure Lines
         Material lineMaterial = new Material(Shader.Find("Particles/Additive"));
