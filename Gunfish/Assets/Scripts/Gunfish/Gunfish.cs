@@ -43,6 +43,7 @@ public class Gunfish : NetworkBehaviour {
 
     [Header("Fish Info")]
     public Rigidbody2D rb;
+    public Rigidbody2D middleRb;
     public Gun gun;
 
     [Tooltip("The number of fish pieces not touching the ground. (0 = grounded)")]
@@ -87,6 +88,8 @@ public class Gunfish : NetworkBehaviour {
         if (isServer || isLocalPlayer) {
             if (!rb)
                 rb = GetComponent<Rigidbody2D>();
+
+            middleRb = transform.GetChild((transform.childCount / 2) - 1).GetComponent<Rigidbody2D>();
 
             if (!gun)
                 gun = GetComponentInChildren<Gun>();
@@ -182,7 +185,7 @@ public class Gunfish : NetworkBehaviour {
                 }
             }
             else {
-                if (float.IsNaN(currentAirborneJumpCD) && transform.GetChild((transform.childCount / 2) - 1).GetComponent<Rigidbody2D>().angularVelocity < 360f) {
+                if (float.IsNaN(currentAirborneJumpCD) && middleRb.angularVelocity < 360f) {
                     Rotate(100f * -x);
                 }
             }
@@ -201,8 +204,8 @@ public class Gunfish : NetworkBehaviour {
         flopSource.clip = (flops.Length > 0 ? flops[Random.Range(0, flops.Length)] : null);
         flopSource.Play();
 
-        transform.GetChild((transform.childCount / 2) - 1).GetComponent<Rigidbody2D>().AddForce(force);
-        transform.GetChild((transform.childCount / 2) - 1).GetComponent<Rigidbody2D>().AddTorque(torque);
+        middleRb.AddForce(force);
+        middleRb.AddTorque(torque);
 
         currentJumpCD = maxJumpCD;
 
@@ -210,7 +213,7 @@ public class Gunfish : NetworkBehaviour {
     }
 
     public void Rotate(float torque) {
-        transform.GetChild((transform.childCount / 2) - 1).GetComponent<Rigidbody2D>().AddTorque(torque);
+        middleRb.AddTorque(torque);
 
         currentAirborneJumpCD = maxAirborneJumpCD;
     }
@@ -232,12 +235,12 @@ public class Gunfish : NetworkBehaviour {
         return (groundedCount == 0);
     }
 
-    public void Knockback(Vector2 direction) {
-        rb.AddForce(direction * Misc.knockBackMagnitude);
+    public void Knockback(Vector2 direction, ShotType shotType) {
+        rb.AddForce(direction * Misc.ShotDict[shotType].knockbackMagnitude);
     }
 
-    public void Hit(Vector2 direction) {
-        Knockback(direction);
+    public void Hit(Vector2 direction, ShotType shotType) {
+        Knockback(direction, shotType);
         Stun();
         //Check gamemode, if race, then call Stun(), else call Damage()
     }
