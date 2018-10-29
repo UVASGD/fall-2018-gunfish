@@ -24,7 +24,10 @@ using UnityEngine.Networking;
 [RequireComponent(typeof(NetworkConnection))]
 [RequireComponent(typeof(Rigidbody2D))]
 public class Gunfish : NetworkBehaviour {
-    
+
+    //This information will be included in a gun info ScriptableObject
+    //static float Misc.knockBackMagnitude = 1000f;
+
     #region VARIABLES
     [Header("Input")]
     [SyncVar] public float currentJumpCD;
@@ -34,47 +37,40 @@ public class Gunfish : NetworkBehaviour {
     public bool fire;
     [SyncVar] [HideInInspector] public float currentFireCD;
     [HideInInspector] public float maxFireCD = 1f;
+    [HideInInspector]
+    float currentStunCD = float.NaN;
+    public int isBlocked = 0;
 
     [Header("Fish Info")]
     public Rigidbody2D rb;
-    public Rigidbody2D middleRb;
     public Gun gun;
 
     [Tooltip("The number of fish pieces not touching the ground. (0 = grounded)")]
     public int groundedCount = 0;
-
-    [Tooltip("This is the force and torque of the moving fish")]
-    public float moveForce = 500f;
-    public float moveTorque = 100f;
 
     [Header("Audio")]
     public AudioClip[] flops;
     private AudioSource flopSource;
     #endregion
 
-    public void ApplyVariableDefaults () {
+    public void ApplyVariableDefaults() {
         maxJumpCD = 1f;
     }
 
-    //public override void OnStartAuthority() {
-    //    rb = GetComponent<Rigidbody2D>();
-    //    rb.isKinematic = false;
-    //}
+    //Initialize Camera and audio sources for every local player
+    public override void OnStartLocalPlayer() {
 
-    //Initialize Camera and audio sources for ever local player
-    public override void OnStartLocalPlayer () {
         MusicManager.instance.PlayMusic();
 
-        if (Camera.main.GetComponent<Camera2DFollow>() != null) {
-            Camera.main.GetComponent<Camera2DFollow>().target = transform;
-        }
+        Camera.main.GetComponent<Camera2DFollow>().target = transform;
 
         //Setup the local audio handlers
         /***********************************************************/
         //Flop sounds
         if (GetComponent<AudioSource>()) {
             flopSource = gameObject.GetComponent<AudioSource>();
-        } else {
+        }
+        else {
             flopSource = gameObject.AddComponent<AudioSource>();
         }
 
@@ -87,15 +83,13 @@ public class Gunfish : NetworkBehaviour {
     }
 
     //When the Gunfish is started (server and client), assign fish info
-    private void Start () {
-        if (isServer || hasAuthority) {
+    private void Start() {
+        if (isServer || isLocalPlayer) {
             if (!rb)
                 rb = GetComponent<Rigidbody2D>();
 
             if (!gun)
                 gun = GetComponentInChildren<Gun>();
-
-            middleRb = transform.GetChild((transform.childCount / 2) - 1).GetComponent<Rigidbody2D>();
 
             groundedCount = 0;
 
@@ -113,7 +107,7 @@ public class Gunfish : NetworkBehaviour {
 
         //Disable HingeJoints on all but the local player to
         //prevent weird desyncs in movement
-        if (!hasAuthority) {
+        if (!isLocalPlayer) {
             rb.bodyType = RigidbodyType2D.Kinematic;
             foreach (Transform child in transform) {
 
@@ -126,14 +120,13 @@ public class Gunfish : NetworkBehaviour {
 
     //Calls input handler on appropriate local players.
     //Also handles cooldowns
-    private void Update () {
-        if (hasAuthority) {
-            ClientInputHandler();
+    private void Update() {
+        if (isLocalPlayer) {
+            if (isBlocked == 0) {
+                ClientInputHandler();
+            }
+            CheckCoolDowns();
         }
-
-        CDUpdate(ref currentJumpCD, maxJumpCD);
-        CDUpdate(ref currentFireCD, maxFireCD);
-        CDUpdate(ref currentAirborneJumpCD, maxAirborneJumpCD);
 
         if (groundedCount < 0) {
             groundedCount = 0;
@@ -147,27 +140,31 @@ public class Gunfish : NetworkBehaviour {
 
         if (CD > maxCD) {
             CD = maxCD;
-            if (blocking) {
-                //increment isBlocking
-            }
         }
         else if (CD > 0f)
             CD -= Time.deltaTime;
         else {
             if (blocking) {
-                //decrement isBlocking;
+                isBlocked--;
             }
             CD = float.NaN;
         }
     }
 
+    private void CheckCoolDowns() {
+        CDUpdate(ref currentJumpCD, maxJumpCD);
+        CDUpdate(ref currentFireCD, maxFireCD);
+        CDUpdate(ref currentAirborneJumpCD, maxAirborneJumpCD);
+        CDUpdate(ref currentStunCD, float.PositiveInfinity, true);
+    }
+
     //Checks user input on the Client. Also returns whether
     //or not an input message should be sent to the server.
-    public void ClientInputHandler () {
+    public void ClientInputHandler() {
         float x = Input.GetAxisRaw("Horizontal");
-        bool shoot = Input.GetButtonDown("Fire1");
+        bool shoot = Input.GetKeyDown(KeyCode.Space);
 
-        bool apply = (x != 0f|| shoot);
+        bool apply = (x != 0f || shoot);
 
         if (apply) {
             ApplyMovement(x, shoot);
@@ -177,15 +174,16 @@ public class Gunfish : NetworkBehaviour {
     //If the movement is non-zero, apply it. Since Gunfish
     //Utilizes NetworkTransforms, this automatically syncs
     //to the server as well as every client
-    public void ApplyMovement (float x, bool shoot) {
+    public void ApplyMovement(float x, bool shoot) {
         if (x != 0) {
             if (groundedCount > 0) {
                 if (float.IsNaN(currentJumpCD)) {
-                    Move(new Vector2(x, 1f).normalized * moveForce, -x * moveForce * Random.Range(0.5f, 1f));
+                    Move(new Vector2(x, 1f).normalized * 500f, -x * 500f * Random.Range(0.5f, 1f));
                 }
-            } else {
-                if (float.IsNaN(currentAirborneJumpCD) && middleRb.angularVelocity < 360f) {
-                    Rotate(moveTorque * -x);
+            }
+            else {
+                if (float.IsNaN(currentAirborneJumpCD) && transform.GetChild((transform.childCount / 2) - 1).GetComponent<Rigidbody2D>().angularVelocity < 360f) {
+                    Rotate(100f * -x);
                 }
             }
         }
@@ -199,20 +197,20 @@ public class Gunfish : NetworkBehaviour {
     //Gunfish. To call this function appropriately, it should
     //be called from the server, after calculating what force
     //and torque should be applied from the server as well.
-    public void Move (Vector2 force, float torque) {
-        flopSource.clip = (flops.Length > 0) ? flops[Random.Range(0, flops.Length)] : null;
+    public void Move(Vector2 force, float torque) {
+        flopSource.clip = (flops.Length > 0 ? flops[Random.Range(0, flops.Length)] : null);
         flopSource.Play();
 
-        middleRb.AddForce(force);
-        middleRb.AddTorque(torque);
+        transform.GetChild((transform.childCount / 2) - 1).GetComponent<Rigidbody2D>().AddForce(force);
+        transform.GetChild((transform.childCount / 2) - 1).GetComponent<Rigidbody2D>().AddTorque(torque);
 
         currentJumpCD = maxJumpCD;
 
         //We might want to send a FlopMessage (for loud flops) so that everyone can hear the fish squish
     }
 
-    public void Rotate (float torque) {
-        middleRb.AddTorque(torque);
+    public void Rotate(float torque) {
+        transform.GetChild((transform.childCount / 2) - 1).GetComponent<Rigidbody2D>().AddTorque(torque);
 
         currentAirborneJumpCD = maxAirborneJumpCD;
     }
@@ -220,7 +218,7 @@ public class Gunfish : NetworkBehaviour {
     //Called on the Client. Takes the info from the attached Gun
     //component of a child GameObject, and applies a force. If
     //there is no Gun attached, simply will not fire.
-    public void Shoot () {
+    public void Shoot() {
         rb.AddForceAtPosition(transform.right * gun.shotInfo.force, transform.position);
 
         currentFireCD = maxFireCD;
@@ -230,17 +228,25 @@ public class Gunfish : NetworkBehaviour {
 
     //Checks to see if any Transform in the Gunfish hierarchy
     //is touching the ground.
-    public bool IsGrounded () {
+    public bool IsGrounded() {
         return (groundedCount == 0);
     }
 
-    public void Knockback(Vector2 direction, ShotType shotType) {
-        rb.AddForce(direction * Misc.ShotDict[shotType].knockbackMagnitude);
+    public void Knockback(Vector2 direction) {
+        rb.AddForce(direction * Misc.knockBackMagnitude);
     }
 
-    public void Hit(Vector2 direction, ShotType shotType) {
-        Knockback(direction, shotType);
+    public void Hit(Vector2 direction) {
+        Knockback(direction);
+        Stun();
         //Check gamemode, if race, then call Stun(), else call Damage()
+    }
+
+    public void Stun() {
+        //Oh no you got stunned
+        if (float.IsNaN(currentStunCD))
+            isBlocked++;
+        currentStunCD = Misc.stunTime;
     }
 
     public void DisplayShoot() {
