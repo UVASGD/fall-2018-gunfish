@@ -108,7 +108,7 @@ public class Gunfish : NetworkBehaviour {
             //Set the maxFireCD of the gunfish to the gun's maxFireCD.
             //Fire cooldown is handled here to avoid multiple nested
             //Network Transforms
-            maxFireCD = gun.maxFireCD;
+            maxFireCD = gun.shotInfo.maxFireCD;
         }
 
         //Disable HingeJoints on all but the local player to
@@ -221,7 +221,7 @@ public class Gunfish : NetworkBehaviour {
     //component of a child GameObject, and applies a force. If
     //there is no Gun attached, simply will not fire.
     public void Shoot () {
-        rb.AddForceAtPosition(transform.right * gun.Force, transform.position);
+        rb.AddForceAtPosition(transform.right * gun.shotInfo.force, transform.position);
 
         currentFireCD = maxFireCD;
 

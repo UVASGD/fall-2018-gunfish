@@ -17,6 +17,10 @@ public class EffectsManager : MonoBehaviour {
     AudioSource[] audioPool;
     int latestAS;
 
+    public AudioClip[] FishClips;
+
+    public AudioClip[] WoodClips;
+
     [SerializeField]
     LineRenderer[] linePool;
     int latestLR;
@@ -46,15 +50,31 @@ public class EffectsManager : MonoBehaviour {
         DontDestroyOnLoad(this);
 	}
 
-    public void DisplayBulletHit(Vector2 point, Vector2 normal, Color color) {
+    public void DisplayBulletHit(Vector2 point, Vector2 normal, Color color, HitType hit){
         GameObject debris = debrisPool[latestDP].gameObject;
+        
         debris.transform.position = point;
         debris.transform.up = normal;
         var main = debrisPool[latestDP].main;
         main.startColor = color;
         debrisPool[latestDP].Emit(10);
-
         latestDP = (latestDP+1) % debrisPool.Length;
+        PlayHit(point, hit);
+    }
+
+    void PlayHit(Vector2 point, HitType hit) {
+        GameObject audioPlayer = audioPool[latestAS].gameObject;
+        audioPlayer.transform.position = point;
+        switch (hit)
+        {
+            case HitType.Wood:
+                audioPool[latestAS].clip = (WoodClips.Length > 0) ? WoodClips[Random.Range(0, WoodClips.Length)] : null;
+                break;
+            case HitType.Fish:
+                audioPool[latestAS].clip = (FishClips.Length > 0) ? FishClips[Random.Range(0, FishClips.Length)] : null;
+                break;
+        }
+        latestAS = (latestAS + 1) % audioPool.Length;
     }
 
     //We'll want to make this dependent on the gun in question, but for now, just display this one type of line
