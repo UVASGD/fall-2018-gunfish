@@ -1368,8 +1368,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07d2b487ecd774b208a4e51a34f0b6eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxFireCD: 1
-  distance: 50
   shotTrailColor:
     serializedVersion: 2
     key0: {r: 1, g: 1, b: 1, a: 1}
@@ -1402,8 +1400,8 @@ MonoBehaviour:
   barrelPoint: {fileID: 1451622449753684}
   boomSound: {fileID: 82759708657709202}
   muzzleFlash: {fileID: 0}
-  rayGun: 0
-  smallShot: 0
+  gunType: 0
+  shotType: 1
 --- !u!114 &114301516953048256
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1774,6 +1772,7 @@ MonoBehaviour:
   currentFireCD: 0
   maxFireCD: 1
   isBlocked: 0
+  shotType: 1
   rb: {fileID: 50768839381947424}
   middleRb: {fileID: 0}
   gun: {fileID: 114280357430119944}
