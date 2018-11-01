@@ -36,5 +36,3 @@ sysinfo.txt
 *.apk
 *.unitypackage
 Gunfish/ProjectSettings/ProjectVersion\.txt
-
-*.meta
