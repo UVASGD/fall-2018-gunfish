@@ -24,8 +24,6 @@ public class EventManager : MonoBehaviour {
 
     private Dictionary <string, UnityEvent> eventDictionary;
 
-    private static EventManager eventManager;
-
     public static EventManager instance;
 
     void Awake () {
@@ -43,6 +41,7 @@ public class EventManager : MonoBehaviour {
     }
 
     public static void StartListening (string eventName, UnityAction listener) {
+        if (instance == null) return;
         UnityEvent thisEvent = null;
         if (instance.eventDictionary.TryGetValue (eventName, out thisEvent)) {
             thisEvent.AddListener (listener);
@@ -54,7 +53,7 @@ public class EventManager : MonoBehaviour {
     }
 
     public static void StopListening (string eventName, UnityAction listener) {
-        if (eventManager == null) return;
+        if (instance == null) return;
         UnityEvent thisEvent = null;
         if (instance.eventDictionary.TryGetValue (eventName, out thisEvent)) {
             thisEvent.RemoveListener (listener);
@@ -62,6 +61,7 @@ public class EventManager : MonoBehaviour {
     }
 
     public static void TriggerEvent (string eventName) {
+        if (instance == null) return;
         UnityEvent thisEvent = null;
         if (instance.eventDictionary.TryGetValue (eventName, out thisEvent)) {
             thisEvent.Invoke ();

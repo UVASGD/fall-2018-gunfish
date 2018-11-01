@@ -36,8 +36,8 @@ public class GunGeneratorWindow : EditorWindow {
     static AudioClip fireSound;
     static float shotCooldown;
 
-    static float minCD = 0.1f;
-    static float maxCD = 3f;
+    //static float minCD = 0.1f;
+    //static float maxCD = 3f;
 
 
     [MenuItem("Gunfish/Create New Gun %g")]

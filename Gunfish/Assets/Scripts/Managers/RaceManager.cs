@@ -94,7 +94,7 @@ public class RaceManager : NetworkBehaviour {
 
     public void TrySwapLevel () {
         
-        if (ConnectionManager.instance.readyCount == ConnectionManager.instance.readyFish.Count && ConnectionManager.instance.readyFish.Count > (gameActive ? 0 : 1)) {
+        if (ConnectionManager.instance.readyCount == ConnectionManager.instance.readyFish.Count && ConnectionManager.instance.readyFish.Count > (gameActive ? 0 : 0)) {
             //print("Time to go to next level!");
             fishFinished.Clear();
             ConnectionManager.instance.SetAllFishReady(false);

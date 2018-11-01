@@ -123,7 +123,7 @@ public class GunfishGeneratorWindow : EditorWindow {
 
         for (int t = 0; t < selectedTextures.Length; t++) {
             string path = AssetDatabase.GetAssetPath(selectedTextures[t]);
-            TextureImporter importer = (TextureImporter)AssetImporter.GetAtPath(path);
+            //TextureImporter importer = (TextureImporter)AssetImporter.GetAtPath(path);
                 
             int width = selectedTextures[t].width;
             int height = selectedTextures[t].height;
