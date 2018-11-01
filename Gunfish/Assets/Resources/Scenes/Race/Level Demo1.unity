@@ -985,7 +985,7 @@ MonoBehaviour:
     i13: 61
     i14: 191
     i15: 33
-  m_ServerOnly: 1
+  m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
 --- !u!1 &867630468
 GameObject:
