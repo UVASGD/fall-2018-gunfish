@@ -204,6 +204,7 @@ MonoBehaviour:
   mapIndex: 0
   fishFinished: []
   fishCount: 0
+  gameActive: 0
 --- !u!1001 &620969898
 Prefab:
   m_ObjectHideFlags: 0
