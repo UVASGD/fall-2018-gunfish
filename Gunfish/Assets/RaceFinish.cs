@@ -14,7 +14,7 @@ public class RaceFinish : NetworkBehaviour {
 
     [ServerCallback]
     //When player collides with the finish box, this method is called
-    private void OnCollisionEnter2D(Collision2D other) {
+    private void OnTriggerEnter2D(Collision2D other) {
         if(other.gameObject.CompareTag("Gunfish")) {
             Gunfish gunfish = other.gameObject.GetComponentInParent<Gunfish>();
 
