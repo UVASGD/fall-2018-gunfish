@@ -4,6 +4,7 @@
 [Bb]uild/
 [Bb]uilds/
 Assets/AssetStoreTools*
+Assets/Resources/Prefabs/Deprecated/
 
 # Visual Studio cache directory
 .vs/
