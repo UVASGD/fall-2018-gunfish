@@ -37,7 +37,7 @@ public class ConnectionManager : NetworkBehaviour {
         readyFish.Add(fish, false);
         print("Add gunfish not ready ++");
         notReadyCount++;
-        RaceManager.instance.CheckLevelOver();
+        RaceManager.instance.TrySwapLevel();
     }
 
     public void RemoveGunfish (NetworkConnection conn) {
@@ -60,7 +60,7 @@ public class ConnectionManager : NetworkBehaviour {
         }
 
         readyFish.Remove(fish);
-        RaceManager.instance.CheckLevelOver();
+        RaceManager.instance.TrySwapLevel();
     }
 
     public void SetReady (Gunfish fish, bool ready) {
@@ -80,7 +80,7 @@ public class ConnectionManager : NetworkBehaviour {
             readyCount--;
             notReadyCount++;
         }
-        RaceManager.instance.CheckLevelOver();
+        RaceManager.instance.TrySwapLevel();
     }
 
     public void SetAllFishReady (bool ready) {

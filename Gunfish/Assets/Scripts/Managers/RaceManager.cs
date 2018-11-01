@@ -17,6 +17,8 @@ public class RaceManager : NetworkBehaviour {
     public List<Gunfish> fishFinished = new List<Gunfish>();
     public int fishCount;
 
+    public bool gameActive;
+
     // Use this for initialization
     void Awake () {
         if (instance == null)
@@ -28,6 +30,8 @@ public class RaceManager : NetworkBehaviour {
 
         mapIndex = 0;
         fishCount = 0;
+
+        gameActive = false;
 
         EventManager.StartListening(EventType.InitGame, OnStart);
         EventManager.StartListening(EventType.NextLevel, LoadNextLevel);
@@ -48,7 +52,7 @@ public class RaceManager : NetworkBehaviour {
 
     void SetReady () {
         ConnectionManager.instance.SetAllFishReady(true);
-        CheckLevelOver();
+        TrySwapLevel();
     }
 
     void OnStart() {
@@ -85,14 +89,16 @@ public class RaceManager : NetworkBehaviour {
     public void PlayerFinish (Gunfish gunfish) {
         fishFinished.Add(gunfish);
         ConnectionManager.instance.SetReady(gunfish, true);
-        CheckLevelOver();
+        TrySwapLevel();
     }
 
-    public void CheckLevelOver () {
-        if (ConnectionManager.instance.readyCount == ConnectionManager.instance.readyFish.Count && ConnectionManager.instance.readyFish.Count > 0) {
+    public void TrySwapLevel () {
+        
+        if (ConnectionManager.instance.readyCount == ConnectionManager.instance.readyFish.Count && ConnectionManager.instance.readyFish.Count > (gameActive ? 0 : 1)) {
             //print("Time to go to next level!");
             fishFinished.Clear();
             ConnectionManager.instance.SetAllFishReady(false);
+
             LoadNextLevel();
         }
     }
@@ -107,8 +113,11 @@ public class RaceManager : NetworkBehaviour {
         //ConnectionManager.instance.SetAllFishReady(false);
 
         if (mapIndex == maps.Count) {
+            gameActive = false;
             EventManager.TriggerEvent(EventType.EndGame);
             return;
+        } else {
+            gameActive = true;
         }
         NetworkManager.singleton.ServerChangeScene(maps[mapIndex++]);
     }

@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/Resources/Scenes/Level Test.unity
     guid: 3d61ea129ff9a4b199e586e22d1ac699
   - enabled: 1
-    path: Assets/Resources/Scenes/Level Demo1.unity
+    path: Assets/Resources/Scenes/Race/Level Demo1.unity
     guid: 5a310d19e461b40aeaa6169ab22431bd
   - enabled: 1
     path: Assets/Resources/Scenes/RaceLobby.unity
@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Resources/Scenes/Race/RaceGameMode 2.unity
     guid: f244c0eeebadf458f9da29914e7111e9
+  - enabled: 1
+    path: Assets/Resources/Scenes/Race/level2.unity
+    guid: b1f8885f7c1524e3eaa6d1315e7fdfe9
   m_configObjects: {}

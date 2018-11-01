@@ -10,10 +10,12 @@ public class CustomNetworkManager : NetworkManager
     //public List<NetworkInstanceId> netIds;
 
     public override void OnStartServer() {
+        base.OnStartServer();
         fishList = new List<GameObject>(GunfishList.Get());
     }
 
     public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId) {
+        base.OnServerAddPlayer(conn, playerControllerId);
         spawnPoints = FindObjectsOfType<NetworkStartPosition>(); //Get list of all spawn points in the scene
 
         //If there aren't any spawn points in the scene, spawn players at the origin
@@ -28,9 +30,10 @@ public class CustomNetworkManager : NetworkManager
     }
 
     public override void OnServerRemovePlayer (NetworkConnection conn, UnityEngine.Networking.PlayerController player) {
+        base.OnServerRemovePlayer(conn, player);
         ConnectionManager.instance.RemoveGunfish(conn);
         //print("Removing player");
-        RaceManager.instance.CheckLevelOver();
+        RaceManager.instance.TrySwapLevel();
     }
 
     //IEnumerator TriggerStartEvent () {
