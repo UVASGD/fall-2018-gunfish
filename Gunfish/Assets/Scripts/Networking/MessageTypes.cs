@@ -16,4 +16,7 @@ public class MessageTypes {
     public static short RAYHIT = 300;
     public static short MULTIRAYHIT = 301;
     public static short GUNSHOT = 302;
+
+    //Race Messages
+    public static short PLAYERFINISH = 400;
 }

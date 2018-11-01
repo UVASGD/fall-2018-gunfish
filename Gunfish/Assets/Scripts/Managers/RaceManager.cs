@@ -6,15 +6,17 @@ using UnityEngine.SceneManagement;
 
 public enum GameState { Start, Running, NextLevel, End }
 
-public class GameManager : NetworkBehaviour {
+//SERVER ONLY
+public class RaceManager : NetworkBehaviour {
 
-    public static GameManager instance;
+    public static RaceManager instance;
 
     public List<string> maps = new List<string>();
     public int mapIndex = 0;
 
     public List<Gunfish> fishFinished = new List<Gunfish>();
     public int fishCount;
+
     // Use this for initialization
     void Awake () {
         if (instance == null)
@@ -30,23 +32,38 @@ public class GameManager : NetworkBehaviour {
         EventManager.StartListening(EventType.InitGame, OnStart);
         EventManager.StartListening(EventType.NextLevel, LoadNextLevel);
         EventManager.StartListening(EventType.EndGame, OnEnd);
+    }
 
+    private void Start () {
+        SelectMaps();
+        Invoke("SetReady", 3f);
+    }
 
-	}
+    private void Update () {
+        //if (ConnectionManager.instance.readyCount >= 1) {
+        //    ConnectionManager.instance.SetAllFishReady(false);
+        //    LoadNextLevel();
+        //}
+    }
+
+    void SetReady () {
+        ConnectionManager.instance.SetAllFishReady(true);
+        CheckLevelOver();
+    }
 
     void OnStart() {
         SelectMaps();
     }
 
-    void OnRunning()
-    {
-        
+    void OnRunning() {
+
     }
 
     void SelectMaps () {
-        print("Selecting maps");
         maps.Clear();
         mapIndex = 0;
+
+        print("Selecting");
 
         Object[] scenes = Resources.LoadAll("Scenes/Race/");
         int[] indices = new int[scenes.Length];
@@ -55,6 +72,7 @@ public class GameManager : NetworkBehaviour {
             indices[i] = i;
         }
 
+        //Randomize the index list and add the maps to the map list
         for (int i = 0; i < Mathf.Min(5, indices.Length); i++) {
             int temp = indices[i];
             int otherIndex = Random.Range(i, indices.Length);
@@ -64,28 +82,41 @@ public class GameManager : NetworkBehaviour {
         }
     }
 
-    public void OnPlayerFinish (Gunfish player) {
-        //print("Shooping goop");
-        fishFinished.Add(player);
+    public void PlayerFinish (Gunfish gunfish) {
+        fishFinished.Add(gunfish);
+        ConnectionManager.instance.SetReady(gunfish, true);
+        CheckLevelOver();
+    }
 
-        //if (fishFinished.Count == fishCount) {
-            //print("Goop is shooped!");
-            EventManager.TriggerEvent(EventType.NextLevel);
-        //}
+    public void CheckLevelOver () {
+        if (ConnectionManager.instance.readyCount == ConnectionManager.instance.readyFish.Count && ConnectionManager.instance.readyFish.Count > 0) {
+            print("Time to go to next level!");
+            fishFinished.Clear();
+            ConnectionManager.instance.SetAllFishReady(false);
+            LoadNextLevel();
+        }
     }
 
     void LoadNextLevel() {
+        print("Loading level " + (mapIndex + 1) + "...");
+        print("Map index: " + (mapIndex + 1) + ", Count: " + maps.Count); 
+        print("");
         fishFinished.Clear();
+
+        ConnectionManager.instance.SetAllFishReady(false);
+
         if (mapIndex == maps.Count) {
             EventManager.TriggerEvent(EventType.EndGame);
             return;
         }
         NetworkManager.singleton.ServerChangeScene(maps[mapIndex++]);
     }
-   
+
     void OnEnd() {
-        Debug.Log("!!!!!! WOW YOU EXIST !!!!!!!");
+        Debug.Log("!!!!!!! WOW YOU EXIST !!!!!!!");
         NetworkManager.singleton.ServerChangeScene("RaceLobby");
     }
+
+
 }
 

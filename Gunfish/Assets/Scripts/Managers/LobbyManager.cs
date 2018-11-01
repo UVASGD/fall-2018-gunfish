@@ -39,13 +39,13 @@ public class LobbyManager : NetworkLobbyManager
     // Update is called once per frame
     void Update()
     {
-         
+
     }
 
     public override void OnServerConnect(NetworkConnection conn)
     {
         //base.OnServerConnect(conn);
-        
+
         Debug.Log("Whatcha doing fam");
     }
 }

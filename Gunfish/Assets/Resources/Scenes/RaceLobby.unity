@@ -142,7 +142,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb11a1d5f60a044acb7ef646f16244b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunfish: []
+  readyCount: 0
+  notReadyCount: 0
 --- !u!114 &395700248
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,7 +197,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 395700246}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0ff088ed25cd4d6b80d12803cda39e0, type: 3}
+  m_Script: {fileID: 11500000, guid: dc107a692d39849bbb01027b7d58fdcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maps: []

@@ -9,11 +9,10 @@ public class CustomNetworkManager : NetworkManager
     //public List<NetworkConnection> networkConnections;
     //public List<NetworkInstanceId> netIds;
 
-    public override void OnStartServer()
-    {
+    public override void OnStartServer() {
         fishList = new List<GameObject>(GunfishList.Get());
-        EventManager.TriggerEvent(EventType.InitGame);
     }
+
     public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId) {
         spawnPoints = FindObjectsOfType<NetworkStartPosition>(); //Get list of all spawn points in the scene
 
@@ -24,34 +23,29 @@ public class CustomNetworkManager : NetworkManager
         //TODO: Replace random with fish selection
         GameObject player = (GameObject)Instantiate(fishList[Random.Range(0,fishList.Count)], targetPosition, Quaternion.identity);
         NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
-        GameManager.instance.fishCount++;
-    }
-
-    public override void OnServerConnect (NetworkConnection conn) {
-        StartCoroutine(TriggerStartEvent());
-    }
-
-    IEnumerator TriggerStartEvent () {
-        int seconds = 3;
-        print(seconds);
-        yield return new WaitForSeconds(1f);
-        seconds--;
-        print(seconds);
-        yield return new WaitForSeconds(1f);
-        seconds--;
-        print(seconds);
-        yield return new WaitForSeconds(1f);
-
-        EventManager.TriggerEvent(EventType.NextLevel);
+        print("Adding player");
+        ConnectionManager.instance.AddGunfish(player.GetComponent<Gunfish>());
     }
 
     public override void OnServerRemovePlayer (NetworkConnection conn, UnityEngine.Networking.PlayerController player) {
-        base.OnServerRemovePlayer (conn, player);
-        GameManager.instance.fishCount--;
-        //ConnectionManager.instance.netConns.Remove(conn);
+        ConnectionManager.instance.RemoveGunfish(conn);
+        print("Removing player");
+        RaceManager.instance.CheckLevelOver();
+    }
 
-        //foreach (NetworkInstanceId fish in conn.clientOwnedObjects) {
-        //    ConnectionManager.instance.gunfish.Remove(NetworkServer.FindLocalObject(fish).GetComponent<Gunfish>());
-        //}
+    //IEnumerator TriggerStartEvent () {
+    //    int seconds = 10;
+
+    //    while (seconds > 0) {
+    //        print(seconds);
+    //        yield return new WaitForSeconds(1f);
+    //        seconds--;
+    //    }
+
+    //    EventManager.TriggerEvent(EventType.NextLevel);
+    //}
+
+    public override void OnServerSceneChanged (string sceneName) {
+        base.OnServerSceneChanged (sceneName);
     }
 }

@@ -8,8 +8,8 @@ public class ClientReset : MonoBehaviour {
 	void Start () {
         MusicManager.instance.PlayMusic();
 
-        if (GameManager.instance) {
-            Destroy(GameManager.instance.gameObject);
+        if (RaceManager.instance) {
+            Destroy(RaceManager.instance.gameObject);
         }
 
         if (GameObject.Find("PlayerController")) {
