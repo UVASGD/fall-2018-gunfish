@@ -23,13 +23,13 @@ public class CustomNetworkManager : NetworkManager
         //TODO: Replace random with fish selection
         GameObject player = (GameObject)Instantiate(fishList[Random.Range(0,fishList.Count)], targetPosition, Quaternion.identity);
         NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
-        print("Adding player");
+        //print("Adding player");
         ConnectionManager.instance.AddGunfish(player.GetComponent<Gunfish>());
     }
 
     public override void OnServerRemovePlayer (NetworkConnection conn, UnityEngine.Networking.PlayerController player) {
         ConnectionManager.instance.RemoveGunfish(conn);
-        print("Removing player");
+        //print("Removing player");
         RaceManager.instance.CheckLevelOver();
     }
 

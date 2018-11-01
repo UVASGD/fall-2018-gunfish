@@ -35,6 +35,7 @@ public class ConnectionManager : NetworkBehaviour {
 
     public void AddGunfish (Gunfish fish) {
         readyFish.Add(fish, false);
+        print("Add gunfish not ready ++");
         notReadyCount++;
         RaceManager.instance.CheckLevelOver();
     }
@@ -75,6 +76,7 @@ public class ConnectionManager : NetworkBehaviour {
             readyCount++;
             notReadyCount--;
         } else {
+            print("Set not ready ++");
             readyCount--;
             notReadyCount++;
         }
@@ -87,7 +89,7 @@ public class ConnectionManager : NetworkBehaviour {
 
         foreach (Gunfish fish in keys) {
             readyFish[fish] = ready;
-            print("Setting " + fish.name + " to " + ready);
+            //print("Setting " + fish.name + " to " + ready);
         }
 
         if (ready) {
@@ -97,6 +99,12 @@ public class ConnectionManager : NetworkBehaviour {
             readyCount = 0;
             notReadyCount = readyFish.Count;
         }
+    }
+
+    public void Clear () {
+        readyFish.Clear();
+        readyCount = 0;
+        notReadyCount = 0;
     }
 
     //   void StartGame () {

@@ -63,7 +63,7 @@ public class RaceManager : NetworkBehaviour {
         maps.Clear();
         mapIndex = 0;
 
-        print("Selecting");
+        //print("Selecting");
 
         Object[] scenes = Resources.LoadAll("Scenes/Race/");
         int[] indices = new int[scenes.Length];
@@ -90,7 +90,7 @@ public class RaceManager : NetworkBehaviour {
 
     public void CheckLevelOver () {
         if (ConnectionManager.instance.readyCount == ConnectionManager.instance.readyFish.Count && ConnectionManager.instance.readyFish.Count > 0) {
-            print("Time to go to next level!");
+            //print("Time to go to next level!");
             fishFinished.Clear();
             ConnectionManager.instance.SetAllFishReady(false);
             LoadNextLevel();
@@ -98,12 +98,13 @@ public class RaceManager : NetworkBehaviour {
     }
 
     void LoadNextLevel() {
-        print("Loading level " + (mapIndex + 1) + "...");
-        print("Map index: " + (mapIndex + 1) + ", Count: " + maps.Count); 
+        //print("Loading level " + (mapIndex + 1) + "...");
+        //print("Map index: " + (mapIndex + 1) + ", Count: " + maps.Count); 
         print("");
         fishFinished.Clear();
 
-        ConnectionManager.instance.SetAllFishReady(false);
+        ConnectionManager.instance.Clear();
+        //ConnectionManager.instance.SetAllFishReady(false);
 
         if (mapIndex == maps.Count) {
             EventManager.TriggerEvent(EventType.EndGame);

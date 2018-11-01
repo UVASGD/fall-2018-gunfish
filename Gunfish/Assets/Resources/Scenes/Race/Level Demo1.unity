@@ -848,6 +848,8 @@ GameObject:
   - component: {fileID: 830947063}
   - component: {fileID: 830947062}
   - component: {fileID: 830947061}
+  - component: {fileID: 830947065}
+  - component: {fileID: 830947064}
   m_Layer: 0
   m_Name: Ground (10)
   m_TagString: Ground
@@ -942,6 +944,49 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &830947064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 830947060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38b28c0cd3247ba44bce35ce9e39a612, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &830947065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 830947060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 65
+    i1: 226
+    i2: 133
+    i3: 193
+    i4: 117
+    i5: 186
+    i6: 84
+    i7: 116
+    i8: 152
+    i9: 224
+    i10: 90
+    i11: 254
+    i12: 94
+    i13: 61
+    i14: 191
+    i15: 33
+  m_ServerOnly: 1
+  m_LocalPlayerAuthority: 0
 --- !u!1 &867630468
 GameObject:
   m_ObjectHideFlags: 0
