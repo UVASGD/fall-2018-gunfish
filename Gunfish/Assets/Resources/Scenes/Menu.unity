@@ -290,7 +290,8 @@ MonoBehaviour:
   m_PlayerSpawnMethod: 0
   m_OfflineScene: Menu
   m_OnlineScene: RaceLobby
-  m_SpawnPrefabs: []
+  m_SpawnPrefabs:
+  - {fileID: 1236624255850978, guid: afb244e4cc9c4de4784bdac19eec9d17, type: 2}
   m_CustomConfig: 0
   m_MaxConnections: 4
   m_ConnectionConfig:

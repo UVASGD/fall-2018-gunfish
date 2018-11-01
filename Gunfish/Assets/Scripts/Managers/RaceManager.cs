@@ -40,7 +40,7 @@ public class RaceManager : NetworkBehaviour {
 
     private void Start () {
         SelectMaps();
-        Invoke("SetReady", 3f);
+        Invoke("SetReady", 10f);
     }
 
     private void Update () {
@@ -94,7 +94,7 @@ public class RaceManager : NetworkBehaviour {
 
     public void TrySwapLevel () {
         
-        if (ConnectionManager.instance.readyCount == ConnectionManager.instance.readyFish.Count && ConnectionManager.instance.readyFish.Count > (gameActive ? 0 : 0)) {
+        if (ConnectionManager.instance.readyCount == ConnectionManager.instance.readyFish.Count && ConnectionManager.instance.readyFish.Count > (gameActive ? 0 : 1)) {
             //print("Time to go to next level!");
             fishFinished.Clear();
             ConnectionManager.instance.SetAllFishReady(false);
