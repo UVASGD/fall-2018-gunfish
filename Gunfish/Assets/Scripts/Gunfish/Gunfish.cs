@@ -40,6 +40,8 @@ public class Gunfish : NetworkBehaviour {
     [HideInInspector]
     float currentStunCD = float.NaN;
     public int isBlocked = 0;
+    bool isSwimming;
+    public float thrustTime = 0.75f;
 
     public ShotType shotType = ShotType.Medium;
 
@@ -183,7 +185,7 @@ public class Gunfish : NetworkBehaviour {
     //to the server as well as every client
     public void ApplyMovement(float x, bool shoot) {
         if (x != 0) {
-            if (groundedCount > 0) {
+            if (groundedCount > 0 && !isSwimming) {
                 if (float.IsNaN(currentJumpCD)) {
                     Move(new Vector2(x, 1f).normalized * 500f, -x * 500f * Random.Range(0.5f, 1f));
                 }
@@ -195,7 +197,7 @@ public class Gunfish : NetworkBehaviour {
             }
         }
 
-        if (shoot && float.IsNaN(currentFireCD)) {
+        if (shoot && float.IsNaN(currentFireCD) && !isSwimming) {
             Shoot();
         }
     }
@@ -258,6 +260,40 @@ public class Gunfish : NetworkBehaviour {
 
     public void DisplayShoot() {
         gun.DisplayShoot();
+    }
+
+
+    public void Swim() {
+        if (!isSwimming) {
+            Rigidbody2D[] sliceBodies = GetComponentsInChildren<Rigidbody2D>();
+            foreach (Rigidbody2D sliceRb in sliceBodies) {
+                sliceRb.gravityScale = 0;
+            }
+            isSwimming = true;
+            StopAllCoroutines();
+            StartCoroutine(Thrust(1.5f));
+        }
+    }
+
+    IEnumerator Thrust(float thrustDelay) {
+
+        yield return new WaitForSeconds(thrustDelay);
+
+        if (isSwimming) {
+            rb.AddRelativeForce(new Vector2(-400f, 0));
+            StartCoroutine(Thrust(thrustTime));
+        }
+    }
+
+    public void Unswim() {
+        if (isSwimming) {
+            Rigidbody2D[] sliceBodies = GetComponentsInChildren<Rigidbody2D>();
+            foreach (Rigidbody2D sliceRb in sliceBodies) {
+                sliceRb.gravityScale = 1;
+            }
+            isSwimming = false;
+            StopAllCoroutines();
+        }
     }
 
 

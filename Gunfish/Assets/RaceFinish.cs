@@ -6,11 +6,7 @@ using UnityEngine.Networking;
 //SERVER ONLY
 public class RaceFinish : NetworkBehaviour {
 
-    List<Gunfish> finishedFish;
-
-    private void Start () {
-        finishedFish = new List<Gunfish>(0);
-    }
+    static List<Gunfish> finishedFish = new List<Gunfish>();
 
     [ServerCallback]
     //When player collides with the finish box, this method is called
