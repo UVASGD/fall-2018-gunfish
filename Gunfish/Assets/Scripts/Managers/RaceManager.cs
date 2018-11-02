@@ -36,20 +36,20 @@ public class RaceManager : NetworkBehaviour {
 
         gameActive = false;
 
-        secondsRemaining = secondsToWaitInLobby;
-
         EventManager.StartListening(EventType.InitGame, OnStart);
         EventManager.StartListening(EventType.NextLevel, LoadNextLevel);
         EventManager.StartListening(EventType.EndGame, OnEnd);
     }
 
     private void Start () {
-        SelectMaps();
         //Invoke("SetReady", secondsUntilStartGame);
         StartCoroutine(StartTimer());
     }
 
     private IEnumerator StartTimer () {
+        secondsRemaining = secondsToWaitInLobby;
+        SelectMaps();
+
         while (secondsRemaining > -1) {
             yield return new WaitForSeconds(1f);
             secondsRemaining--;
