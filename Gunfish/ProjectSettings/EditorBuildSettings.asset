@@ -18,15 +18,15 @@ EditorBuildSettings:
     path: Assets/Resources/Scenes/RaceLobby.unity
     guid: 63d9ad946082f38489e71c347eb27bd9
   - enabled: 1
-    path: Assets/Resources/Scenes/Race/RaceGameMode.unity
-    guid: fbae5accf7f6f4878942fcff0a79fcca
-  - enabled: 1
-    path: Assets/Resources/Scenes/Race/RaceGameMode 1.unity
-    guid: ce14b25f202c6464291a25e31d27a05e
-  - enabled: 1
-    path: Assets/Resources/Scenes/Race/RaceGameMode 2.unity
-    guid: f244c0eeebadf458f9da29914e7111e9
-  - enabled: 1
     path: Assets/Resources/Scenes/Race/Level_1_Bubbles.unity
-    guid: 0db8fce8aa45948909ac616aac1a09f3
+    guid: f935e7a9fed80444aa37ced1a09f4aad
+  - enabled: 1
+    path: Assets/Resources/Scenes/Race/Level_2_Pipes.unity
+    guid: ac9eda53f8c394a99b91e0f13607172d
+  - enabled: 1
+    path: Assets/Resources/Scenes/Race/Level_3_Slick.unity
+    guid: b5c0e5f262ddf1c43aeb150e23be37cb
+  - enabled: 1
+    path: Assets/Resources/Scenes/Race/Level_4_BS.unity
+    guid: 6c66ce576e5daa9478d33ed55ab22bf8
   m_configObjects: {}

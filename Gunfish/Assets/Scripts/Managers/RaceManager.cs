@@ -19,6 +19,8 @@ public class RaceManager : NetworkBehaviour {
 
     public bool gameActive;
 
+    public float secondsUntilStartGame = 10f;
+
     // Use this for initialization
     void Awake () {
         if (instance == null)
@@ -40,7 +42,7 @@ public class RaceManager : NetworkBehaviour {
 
     private void Start () {
         SelectMaps();
-        Invoke("SetReady", 10f);
+        Invoke("SetReady", secondsUntilStartGame);
     }
 
     private void Update () {
@@ -94,7 +96,7 @@ public class RaceManager : NetworkBehaviour {
 
     public void TrySwapLevel () {
         
-        if (ConnectionManager.instance.readyCount == ConnectionManager.instance.readyFish.Count && ConnectionManager.instance.readyFish.Count > (gameActive ? 0 : 1)) {
+        if (ConnectionManager.instance.readyCount == ConnectionManager.instance.readyFish.Count && ConnectionManager.instance.readyFish.Count > (gameActive ? 0 : 0)) {
             //print("Time to go to next level!");
             fishFinished.Clear();
             ConnectionManager.instance.SetAllFishReady(false);
@@ -114,6 +116,8 @@ public class RaceManager : NetworkBehaviour {
 
         if (mapIndex == maps.Count) {
             gameActive = false;
+            SelectMaps();
+            Invoke("SetReady", secondsUntilStartGame);
             EventManager.TriggerEvent(EventType.EndGame);
             return;
         } else {
