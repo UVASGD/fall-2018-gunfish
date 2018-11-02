@@ -1899,7 +1899,7 @@ MonoBehaviour:
   isAngularVelocityCompressed: 0
   whenToUpdateTransform: 0
   sendRate: 20
-  networkChannel: 20
+  networkChannel: 1
   childObjectToSync: {fileID: 1933667610502282}
 --- !u!120 &120002667896637962
 LineRenderer:
