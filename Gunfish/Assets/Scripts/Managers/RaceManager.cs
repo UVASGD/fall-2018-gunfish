@@ -19,7 +19,8 @@ public class RaceManager : NetworkBehaviour {
 
     public bool gameActive;
 
-    public float secondsUntilStartGame = 10f;
+    public int secondsToWaitInLobby = 10;
+    [SyncVar] public int secondsRemaining;
 
     // Use this for initialization
     void Awake () {
@@ -35,6 +36,8 @@ public class RaceManager : NetworkBehaviour {
 
         gameActive = false;
 
+        secondsRemaining = secondsToWaitInLobby;
+
         EventManager.StartListening(EventType.InitGame, OnStart);
         EventManager.StartListening(EventType.NextLevel, LoadNextLevel);
         EventManager.StartListening(EventType.EndGame, OnEnd);
@@ -42,7 +45,16 @@ public class RaceManager : NetworkBehaviour {
 
     private void Start () {
         SelectMaps();
-        Invoke("SetReady", secondsUntilStartGame);
+        //Invoke("SetReady", secondsUntilStartGame);
+        StartCoroutine(StartTimer());
+    }
+
+    private IEnumerator StartTimer () {
+        while (secondsRemaining > -1) {
+            yield return new WaitForSeconds(1f);
+            secondsRemaining--;
+        }
+        SetReady();
     }
 
     private void Update () {
@@ -117,7 +129,8 @@ public class RaceManager : NetworkBehaviour {
         if (mapIndex == maps.Count) {
             gameActive = false;
             SelectMaps();
-            Invoke("SetReady", secondsUntilStartGame);
+            //Invoke("SetReady", secondsUntilStartGame);
+            StartCoroutine(StartTimer());
             EventManager.TriggerEvent(EventType.EndGame);
             return;
         } else {
