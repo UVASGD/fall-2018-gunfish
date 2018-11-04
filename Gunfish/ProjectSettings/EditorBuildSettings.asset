@@ -32,7 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Resources/Scenes/Race/Level_5_Water.unity
     guid: 1382af203727c4440ba69b73a71ae8b2
-  - enabled: 0
+  - enabled: 1
     path: Assets/Resources/Scenes/Race/Level_6_Funnel.unity
-    guid: 32cecc73983e4406fb2f891ade1036f0
+    guid: 388302802a2a64557b56ce2e4913009d
   m_configObjects: {}
