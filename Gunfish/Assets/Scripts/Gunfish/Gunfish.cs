@@ -66,7 +66,8 @@ public class Gunfish : NetworkBehaviour {
 
     [Header("Nameplate")]
     public GameObject nameplatePrefab;
-    [SyncVar] public string gameName;
+    NamePlate nameplate;
+    [SyncVar(hook ="SetName")] public string gameName;
     #endregion
 
     public void ApplyVariableDefaults() {
@@ -129,9 +130,10 @@ public class Gunfish : NetworkBehaviour {
             }
         }
 
-        GameObject nameplate = Instantiate(nameplatePrefab, transform.position, Quaternion.identity);
-        nameplate.GetComponent<NamePlate>().SetOwner(middleRb.gameObject);
-        nameplate.GetComponent<NamePlate>().SetName(gameName);
+        GameObject nameplateObj = Instantiate(nameplatePrefab, transform.position, Quaternion.identity);
+        nameplate = nameplateObj.GetComponent<NamePlate>();
+        nameplate.SetOwner(middleRb.gameObject);
+        nameplate.SetName(gameName);
 
         //Disable HingeJoints on all but the local player to
         //prevent weird desyncs in movement
@@ -319,6 +321,10 @@ public class Gunfish : NetworkBehaviour {
         }
     }
 
+    public void SetName(string newName) {
+        gameName = newName;
+        nameplate.SetName(gameName);
+    }
 
     //SERVER CALLBACKS
     [ServerCallback]

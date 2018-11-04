@@ -26,8 +26,10 @@ public class CustomNetworkManager : NetworkManager
         //Assign the players a random fish when they join
         //TODO: Replace random with fish selection
         GameObject player = (GameObject)Instantiate(fishList[Random.Range(0,fishList.Count)], targetPosition, Quaternion.identity);
+        
         NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
         //print("Adding player");
+
         ConnectionManager.instance.AddGunfish(player.GetComponent<Gunfish>());
     }
 
