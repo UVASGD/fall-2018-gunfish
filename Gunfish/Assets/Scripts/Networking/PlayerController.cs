@@ -5,18 +5,11 @@ using UnityEngine.Networking;
 
 public class PlayerController : NetworkBehaviour {
 
-    public GameObject gunshotDebris;
-    public AudioClip[] gunshotAudio;
-
     public static Gunfish ownedGunfish;
+    public static GameObject namePlate;
 
     private void Start () {
         DontDestroyOnLoad(gameObject);
-        if (gunshotDebris == null) {
-            gunshotDebris = Resources.Load<GameObject>("Prefabs/Debris");
-        }
-
-        gunshotAudio = Resources.LoadAll<AudioClip>("Audio/Shots/");
 
         //Debug.Log("ConnId: " + connectionToServer.connectionId);
 
