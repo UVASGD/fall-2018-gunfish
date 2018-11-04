@@ -34,14 +34,22 @@ public class Gunfish : NetworkBehaviour {
     [Range(0.1f, 5f)] public float maxJumpCD = 1f;
     [SyncVar] public float currentAirborneJumpCD;
     [Range(0.1f, 5f)] public float maxAirborneJumpCD = 0.4f;
+    [SyncVar] public float currentSwimCD;
+    [Range(0.1f, 5f)] public float maxSwimCD = 0.25f;
     public bool fire;
     [SyncVar] [HideInInspector] public float currentFireCD;
     [HideInInspector] public float maxFireCD = 1f;
     [HideInInspector]
     float currentStunCD = float.NaN;
     public int isBlocked = 0;
+
     bool isSwimming;
-    public float thrustTime = 0.75f;
+    public float thrustForce = 200f;
+    public float swimTorque = 175f;
+    //public float thrustTime = 0.25f;
+
+    public float jumpForce = 500f;
+    public float moveTorque = 100f;
 
     public ShotType shotType = ShotType.Medium;
 
@@ -164,6 +172,7 @@ public class Gunfish : NetworkBehaviour {
         CDUpdate(ref currentJumpCD, maxJumpCD);
         CDUpdate(ref currentFireCD, maxFireCD);
         CDUpdate(ref currentAirborneJumpCD, maxAirborneJumpCD);
+        CDUpdate(ref currentSwimCD, maxSwimCD);
         CDUpdate(ref currentStunCD, float.PositiveInfinity, true);
     }
 
@@ -187,18 +196,28 @@ public class Gunfish : NetworkBehaviour {
         if (x != 0) {
             if (groundedCount > 0 && !isSwimming) {
                 if (float.IsNaN(currentJumpCD)) {
-                    Move(new Vector2(x, 1f).normalized * 500f, -x * 500f * Random.Range(0.5f, 1f));
+                    Move(new Vector2(x, 1f).normalized * jumpForce, -x * jumpForce * Random.Range(0.5f, 1f));
                 }
             }
             else {
                 if (float.IsNaN(currentAirborneJumpCD) && middleRb.angularVelocity < 360f) {
-                    Rotate(100f * -x);
+                    if (isSwimming) {
+                        Rotate(swimTorque * -x);
+                    }
+                    else {
+                        Rotate(moveTorque * -x);
+                    }
                 }
             }
         }
 
-        if (shoot && float.IsNaN(currentFireCD) && !isSwimming) {
-            Shoot();
+        if (shoot && float.IsNaN(currentFireCD)) {
+            if (isSwimming) {
+                Thrust();
+            }
+            else {
+                Shoot();
+            }
         }
     }
 
@@ -270,20 +289,28 @@ public class Gunfish : NetworkBehaviour {
                 sliceRb.gravityScale = 0;
             }
             isSwimming = true;
-            StopAllCoroutines();
-            StartCoroutine(Thrust(1.5f));
+            //StopAllCoroutines();
+            //StartCoroutine(Thrust(1.5f));
         }
     }
 
+    void Thrust() {
+        if (float.IsNaN(currentSwimCD)) {
+            rb.AddRelativeForce(new Vector2(-thrustForce, 0));
+        }
+    }
+
+    /*
     IEnumerator Thrust(float thrustDelay) {
 
         yield return new WaitForSeconds(thrustDelay);
 
         if (isSwimming) {
-            rb.AddRelativeForce(new Vector2(-400f, 0));
+            rb.AddRelativeForce(new Vector2(-thrustForce, 0));
             StartCoroutine(Thrust(thrustTime));
         }
     }
+    */
 
     public void Unswim() {
         if (isSwimming) {
@@ -292,7 +319,7 @@ public class Gunfish : NetworkBehaviour {
                 sliceRb.gravityScale = 1;
             }
             isSwimming = false;
-            StopAllCoroutines();
+            //StopAllCoroutines();
         }
     }
 

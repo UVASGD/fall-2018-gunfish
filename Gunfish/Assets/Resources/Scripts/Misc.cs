@@ -9,7 +9,7 @@ public enum HitType {Fish, Wood};
 public static class Misc {
     public static float stunTime = .5f;
     public static Dictionary<ShotType, ShotInfo> ShotDict = new Dictionary<ShotType, ShotInfo>() {
-        {ShotType.Medium, new ShotInfo(500f, 1f, 50f, 1000f, 0.06f)}   
+        {ShotType.Medium, new ShotInfo(400f, 1f, 50f, 1000f, 0.06f)}   
     };
 }
 
