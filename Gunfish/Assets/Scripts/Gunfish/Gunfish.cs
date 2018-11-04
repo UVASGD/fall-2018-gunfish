@@ -30,26 +30,25 @@ public class Gunfish : NetworkBehaviour {
 
     #region VARIABLES
     [Header("Input")]
-    [SyncVar] public float currentJumpCD;
+    public float currentJumpCD;
     [Range(0.1f, 5f)] public float maxJumpCD = 1f;
-    [SyncVar] public float currentAirborneJumpCD;
+    public float currentAirborneJumpCD;
     [Range(0.1f, 5f)] public float maxAirborneJumpCD = 0.4f;
-    [SyncVar] public float currentSwimCD;
+    public float currentSwimCD;
     [Range(0.1f, 5f)] public float maxSwimCD = 0.25f;
     public bool fire;
-    [SyncVar] [HideInInspector] public float currentFireCD;
+    [HideInInspector] public float currentFireCD;
     [HideInInspector] public float maxFireCD = 1f;
     [HideInInspector]
     float currentStunCD = float.NaN;
     public int isBlocked = 0;
 
-    bool isSwimming;
+    [Header("Movement")]
     public float thrustForce = 200f;
     public float swimTorque = 175f;
-    //public float thrustTime = 0.25f;
-
     public float jumpForce = 500f;
     public float moveTorque = 100f;
+    bool isSwimming;
 
     public ShotType shotType = ShotType.Medium;
 
@@ -64,6 +63,10 @@ public class Gunfish : NetworkBehaviour {
     [Header("Audio")]
     public AudioClip[] flops;
     private AudioSource flopSource;
+
+    [Header("Nameplate")]
+    public GameObject nameplatePrefab;
+    [SyncVar] public string gameName;
     #endregion
 
     public void ApplyVariableDefaults() {
@@ -126,9 +129,13 @@ public class Gunfish : NetworkBehaviour {
             }
         }
 
+        GameObject nameplate = Instantiate(nameplatePrefab, transform.position, Quaternion.identity);
+        nameplate.GetComponent<NamePlate>().SetOwner(middleRb.gameObject);
+        nameplate.GetComponent<NamePlate>().SetName(gameName);
+
         //Disable HingeJoints on all but the local player to
         //prevent weird desyncs in movement
-        if (!isLocalPlayer) {
+        if (!hasAuthority) {
             rb.bodyType = RigidbodyType2D.Kinematic;
             foreach (Transform child in transform) {
 
@@ -293,8 +300,6 @@ public class Gunfish : NetworkBehaviour {
                 sliceRb.gravityScale = 0;
             }
             isSwimming = true;
-            //StopAllCoroutines();
-            //StartCoroutine(Thrust(1.5f));
         }
     }
 
@@ -304,18 +309,6 @@ public class Gunfish : NetworkBehaviour {
         }
     }
 
-    /*
-    IEnumerator Thrust(float thrustDelay) {
-
-        yield return new WaitForSeconds(thrustDelay);
-
-        if (isSwimming) {
-            rb.AddRelativeForce(new Vector2(-thrustForce, 0));
-            StartCoroutine(Thrust(thrustTime));
-        }
-    }
-    */
-
     public void Unswim() {
         if (isSwimming) {
             Rigidbody2D[] sliceBodies = GetComponentsInChildren<Rigidbody2D>();
@@ -323,7 +316,6 @@ public class Gunfish : NetworkBehaviour {
                 sliceRb.gravityScale = 1;
             }
             isSwimming = false;
-            //StopAllCoroutines();
         }
     }
 
