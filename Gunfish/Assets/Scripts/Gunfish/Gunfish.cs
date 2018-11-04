@@ -97,7 +97,7 @@ public class Gunfish : NetworkBehaviour {
 
     //When the Gunfish is started (server and client), assign fish info
     private void Start() {
-        if (isServer || isLocalPlayer) {
+        if (isServer || hasAuthority) {
             if (!rb)
                 rb = GetComponent<Rigidbody2D>();
 
@@ -120,6 +120,10 @@ public class Gunfish : NetworkBehaviour {
             //Fire cooldown is handled here to avoid multiple nested
             //Network Transforms
             maxFireCD = gun.shotInfo.maxFireCD;
+
+            if (hasAuthority) {
+                PlayerController.ownedGunfish = this;
+            }
         }
 
         //Disable HingeJoints on all but the local player to
