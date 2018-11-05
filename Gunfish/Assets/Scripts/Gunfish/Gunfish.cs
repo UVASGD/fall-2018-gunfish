@@ -48,7 +48,7 @@ public class Gunfish : NetworkBehaviour {
     public float swimTorque = 175f;
     public float jumpForce = 500f;
     public float moveTorque = 100f;
-    bool isSwimming;
+    int isSwimming = 0;
 
     public ShotType shotType = ShotType.Medium;
 
@@ -207,14 +207,14 @@ public class Gunfish : NetworkBehaviour {
     //to the server as well as every client
     public void ApplyMovement(float x, bool shoot) {
         if (x != 0) {
-            if (groundedCount > 0 && !isSwimming) {
+            if (groundedCount > 0 && isSwimming == 0) {
                 if (float.IsNaN(currentJumpCD)) {
                     Move(new Vector2(x, 1f).normalized * jumpForce, -x * jumpForce * Random.Range(0.5f, 1f));
                 }
             }
             else {
                 if (float.IsNaN(currentAirborneJumpCD) && middleRb.angularVelocity < 360f) {
-                    if (isSwimming) {
+                    if (isSwimming > 0) {
                         Rotate(swimTorque * -x);
                     }
                     else {
@@ -225,7 +225,7 @@ public class Gunfish : NetworkBehaviour {
         }
 
         if (shoot && float.IsNaN(currentFireCD)) {
-            if (isSwimming) {
+            if (isSwimming > 0) {
                 Thrust();
             }
             else {
@@ -296,13 +296,14 @@ public class Gunfish : NetworkBehaviour {
 
 
     public void Swim() {
-        if (!isSwimming) {
+        if (isSwimming == 0) {
             Rigidbody2D[] sliceBodies = GetComponentsInChildren<Rigidbody2D>();
             foreach (Rigidbody2D sliceRb in sliceBodies) {
                 sliceRb.gravityScale = 0;
             }
-            isSwimming = true;
         }
+
+        isSwimming++;
     }
 
     void Thrust() {
@@ -312,13 +313,14 @@ public class Gunfish : NetworkBehaviour {
     }
 
     public void Unswim() {
-        if (isSwimming) {
+        if (isSwimming > 0) {
             Rigidbody2D[] sliceBodies = GetComponentsInChildren<Rigidbody2D>();
             foreach (Rigidbody2D sliceRb in sliceBodies) {
                 sliceRb.gravityScale = 1;
             }
-            isSwimming = false;
         }
+
+        isSwimming--;
     }
 
     public void SetName(string newName) {
