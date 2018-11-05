@@ -105,8 +105,6 @@ public class Gunfish : NetworkBehaviour {
             if (!rb)
                 rb = GetComponent<Rigidbody2D>();
 
-            middleRb = transform.GetChild((transform.childCount / 2) - 1).GetComponent<Rigidbody2D>();
-
             if (!gun)
                 gun = GetComponentInChildren<Gun>();
 
@@ -129,6 +127,8 @@ public class Gunfish : NetworkBehaviour {
                 PlayerController.ownedGunfish = this;
             }
         }
+
+        middleRb = transform.GetChild((transform.childCount / 2) - 1).GetComponent<Rigidbody2D>();
 
         GameObject nameplateObj = Instantiate(nameplatePrefab, transform.position, Quaternion.identity);
         nameplate = nameplateObj.GetComponent<NamePlate>();
