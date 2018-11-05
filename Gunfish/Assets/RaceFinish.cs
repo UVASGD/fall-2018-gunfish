@@ -1,21 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class RaceFinish : MonoBehaviour {
+//SERVER ONLY
+public class RaceFinish : NetworkBehaviour {
 
-    public delegate void RaceFinishDel(Gunfish gunfish);
-    public event RaceFinishDel RaceFinishEvent;
+    static List<Gunfish> finishedFish = new List<Gunfish>();
 
-
+    [ServerCallback]
     //When player collides with the finish box, this method is called
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if(other.gameObject.CompareTag("Player"))
-        {
+    private void OnTriggerEnter2D(Collider2D other) {
+        if(other.gameObject.CompareTag("Gunfish")) {
             Gunfish gunfish = other.gameObject.GetComponentInParent<Gunfish>();
-            if (RaceFinishEvent != null)
-                RaceFinishEvent(gunfish);
+
+            foreach (var fish in finishedFish) {
+                if (fish == gunfish) return;
+            }
+
+            print("Other: " + other.transform.name);
+
+            finishedFish.Add(gunfish);
+            RaceManager.instance.PlayerFinish(gunfish);
         }
     }
 }

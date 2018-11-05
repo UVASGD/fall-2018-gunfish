@@ -4,6 +4,7 @@
 [Bb]uild/
 [Bb]uilds/
 Assets/AssetStoreTools*
+Assets/Resources/Prefabs/Deprecated/
 
 # Visual Studio cache directory
 .vs/
@@ -34,3 +35,4 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+Gunfish/ProjectSettings/ProjectVersion\.txt

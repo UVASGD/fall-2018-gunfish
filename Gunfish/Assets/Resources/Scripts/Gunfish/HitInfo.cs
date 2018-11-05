@@ -9,4 +9,6 @@ public struct RayHitInfo {
     public Vector2 end;
     public Vector2 normal;
     public Color color;
+    public HitType hitType;
+    public ShotType shotType;
 }
