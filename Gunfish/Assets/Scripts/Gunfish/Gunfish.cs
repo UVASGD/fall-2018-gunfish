@@ -327,8 +327,8 @@ public class Gunfish : NetworkBehaviour {
 
     //SERVER CALLBACKS
     [ServerCallback]
-    public RayHitInfo ServerShoot() {
-        return gun.ServerShoot();
+    public RayHitInfo ServerShoot(Gunfish gunfish) {
+        return gun.ServerShoot(gunfish);
     }
 
 }
