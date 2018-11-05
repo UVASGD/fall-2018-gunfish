@@ -1,0 +1,7 @@
+ManifestFileVersion: 0
+CRC: 198789682
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: racelevels
+      Dependencies: {}
