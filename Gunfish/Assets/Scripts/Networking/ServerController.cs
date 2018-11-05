@@ -13,7 +13,9 @@ public class ServerController : NetworkBehaviour {
         config.OverflowDropThreshold = 45;
         config.AckDelay = 33;
         config.AcksType = ConnectionAcksType.Acks128;
-        config.MaxSentMessageQueueSize = 300;
+        config.MaxSentMessageQueueSize = 5000;
+        config.MaxCombinedReliableMessageCount = 30;
+        config.MaxCombinedReliableMessageSize = 200;
 
         NetworkManager.singleton.maxDelay = 0.1f;
 
