@@ -46,7 +46,6 @@ public class Gun : MonoBehaviour {
         rb = gunfish.rb;
         RayHitInfo rayHitInfo = new RayHitInfo();
         float angle = NetworkManager.singleton.client.GetRTT() / 1000f * rb.angularVelocity;
-        //NetworkServer.SendToAll(MsgType.
         float x = Mathf.Tan(angle * Mathf.Deg2Rad);
         Vector3 point = barrelPoint.transform.right + barrelPoint.transform.up * x;
         Ray ray = new Ray(barrelPoint.transform.position, point - barrelPoint.transform.position);
