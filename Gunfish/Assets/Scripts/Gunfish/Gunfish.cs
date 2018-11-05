@@ -100,11 +100,11 @@ public class Gunfish : NetworkBehaviour {
 
     //When the Gunfish is started (server and client), assign fish info
     private void Start() {
+        middleRb = transform.GetChild((transform.childCount / 2) - 1).GetComponent<Rigidbody2D>();
+
         if (isServer || hasAuthority) {
             if (!rb)
                 rb = GetComponent<Rigidbody2D>();
-
-            middleRb = transform.GetChild((transform.childCount / 2) - 1).GetComponent<Rigidbody2D>();
 
             if (!gun)
                 gun = GetComponentInChildren<Gun>();
