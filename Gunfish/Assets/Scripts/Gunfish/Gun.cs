@@ -40,8 +40,8 @@ public class Gun : MonoBehaviour {
     }
 
     //We're just treating gun as a single raycaster, but making a multiraycaster should be very easy
-    public RayHitInfo ServerShoot() {
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+    public RayHitInfo ServerShoot(Gunfish gunfish) {
+        Rigidbody2D rb = gunfish.rb;
         RayHitInfo rayHitInfo = new RayHitInfo();
         float angle = NetworkManager.singleton.client.GetRTT()*1000*rb.angularVelocity;
         Quaternion rot = Quaternion.AngleAxis(angle, Vector3.forward);

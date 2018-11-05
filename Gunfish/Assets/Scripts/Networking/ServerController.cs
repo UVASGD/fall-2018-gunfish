@@ -32,7 +32,7 @@ public class ServerController : NetworkBehaviour {
         Gunfish gunfish = NetworkServer.FindLocalObject(msg.netId).GetComponent<Gunfish>();
 
         //Presuming our gun is a single raycaster
-        RayHitInfo rayHitInfo = gunfish.ServerShoot();
+        RayHitInfo rayHitInfo = gunfish.ServerShoot(gunfish);
         NetworkServer.SendToAll(MessageTypes.RAYHIT, new RayHitMsg(rayHitInfo));
 
         //This message handles gunshot audio and muzzle flash
