@@ -28,6 +28,8 @@ public class Gun : MonoBehaviour {
     public GunType gunType = GunType.Ray;
     public ShotType shotType = ShotType.Medium;
 
+    private Rigidbody2D rb;
+
     private void Start() {
         boomSound = GetComponentInChildren<AudioSource>();
         muzzleFlash = GetComponentInChildren<LineRenderer>();
@@ -41,7 +43,7 @@ public class Gun : MonoBehaviour {
 
     //We're just treating gun as a single raycaster, but making a multiraycaster should be very easy
     public RayHitInfo ServerShoot(Gunfish gunfish) {
-        Rigidbody2D rb = gunfish.rb;
+        rb = gunfish.rb;
         RayHitInfo rayHitInfo = new RayHitInfo();
         float angle = NetworkManager.singleton.client.GetRTT()*1000*rb.angularVelocity;
         Quaternion rot = Quaternion.AngleAxis(angle, Vector3.back);
@@ -79,6 +81,11 @@ public class Gun : MonoBehaviour {
         return rayHitInfo;
     }
 
+    [ClientCallback]
+    public void UpdateRB (Rigidbody2D myrb) {
+        rb = myrb;
+    }
+
     //Gunshot audio and visual fx
     public void DisplayShoot()
     {
@@ -90,5 +97,14 @@ public class Gun : MonoBehaviour {
         muzzleFlash.enabled = true;
         yield return flashDuration;
         muzzleFlash.enabled = false;
+    }
+
+    public void Update () {
+        if (!rb) return;
+        float angle = NetworkManager.singleton.client.GetRTT()*1000*rb.angularVelocity;
+        Quaternion rot = Quaternion.AngleAxis(angle, Vector3.back);
+        Ray ray = new Ray(barrelPoint.transform.position, rot * transform.right);
+        //print("Drawing!");
+        Debug.DrawRay(ray.origin, ray.direction * 1000);
     }
 }
