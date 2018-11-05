@@ -11,7 +11,7 @@ public class ServerController : NetworkBehaviour {
 
         config.NetworkDropThreshold = 45;
         config.OverflowDropThreshold = 45;
-        config.AckDelay = 200;
+        config.AckDelay = 33;
         config.AcksType = ConnectionAcksType.Acks128;
         config.MaxSentMessageQueueSize = 300;
 
