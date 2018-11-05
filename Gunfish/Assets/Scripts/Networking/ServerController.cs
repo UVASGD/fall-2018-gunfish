@@ -8,7 +8,13 @@ public class ServerController : NetworkBehaviour {
     public override void OnStartServer () {
         ConnectionConfig config = new ConnectionConfig();
         config.DisconnectTimeout = 5000; //If the player times out for 5 seconds, disconnect them
-        config.MaxSentMessageQueueSize = 256;
+
+        config.NetworkDropThreshold = 45;
+        config.OverflowDropThreshold = 45;
+        config.AckDelay = 200;
+        config.AcksType = ConnectionAcksType.Acks128;
+        config.MaxSentMessageQueueSize = 300;
+
         NetworkServer.RegisterHandler(MessageTypes.GUNSHOT, OnGunshot);
     }
 
