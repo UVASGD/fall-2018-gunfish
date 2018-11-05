@@ -87,12 +87,12 @@ TextMesh:
   m_GameObject: {fileID: 1579978614954062}
   m_Text: 
   m_OffsetZ: 0
-  m_CharacterSize: 1
+  m_CharacterSize: 0.03
   m_LineSpacing: 1
-  m_Anchor: 0
-  m_Alignment: 0
+  m_Anchor: 4
+  m_Alignment: 1
   m_TabSize: 4
-  m_FontSize: 10
+  m_FontSize: 355
   m_FontStyle: 0
   m_RichText: 1
   m_Font: {fileID: 12800000, guid: 730f4e429749448249b8779fbcc1eedb, type: 3}
@@ -121,7 +121,7 @@ PositionConstraint:
   m_Enabled: 1
   m_Weight: 1
   m_TranslationAtRest: {x: 0, y: 0, z: 0}
-  m_TranslationOffset: {x: -1.5, y: 2, z: -1}
+  m_TranslationOffset: {x: 0, y: 2, z: -1}
   m_AffectTranslationX: 1
   m_AffectTranslationY: 1
   m_AffectTranslationZ: 1
