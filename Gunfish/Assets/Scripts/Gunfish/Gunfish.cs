@@ -49,14 +49,13 @@ public class Gunfish : NetworkBehaviour {
     public float jumpForce = 500f;
     public float moveTorque = 100f;
     bool isSwimming;
-
     public ShotType shotType = ShotType.Medium;
 
     [Header("Fish Info")]
     public Rigidbody2D rb;
     public Rigidbody2D middleRb;
     public Gun gun;
-
+  
     [Tooltip("The number of fish pieces not touching the ground. (0 = grounded)")]
     public int groundedCount = 0;
 
@@ -157,7 +156,7 @@ public class Gunfish : NetworkBehaviour {
             }
             CheckCoolDowns();
         }
-
+        // int latency = NetworkManager.singleton.client.GetRTT();
         if (groundedCount < 0) {
             groundedCount = 0;
         }

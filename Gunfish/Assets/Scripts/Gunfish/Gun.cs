@@ -41,10 +41,12 @@ public class Gun : MonoBehaviour {
 
     //We're just treating gun as a single raycaster, but making a multiraycaster should be very easy
     public RayHitInfo ServerShoot() {
-
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
         RayHitInfo rayHitInfo = new RayHitInfo();
-
-        RaycastHit2D rayHit = Physics2D.Raycast(barrelPoint.transform.position, transform.right, shotInfo.distance);
+        float angle = NetworkManager.singleton.client.GetRTT()*1000*rb.angularVelocity;
+        Quaternion rot = Quaternion.AngleAxis(angle, Vector3.forward);
+        Ray ray = new Ray(barrelPoint.transform.position, rot * transform.right);
+        RaycastHit2D rayHit = Physics2D.Raycast(ray.origin, ray.direction,shotInfo.distance);
         if (rayHit) {
             GameObject hit = rayHit.collider.gameObject;
 
