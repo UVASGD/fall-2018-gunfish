@@ -45,7 +45,7 @@ public class Gun : MonoBehaviour {
     public RayHitInfo ServerShoot(Gunfish gunfish) {
         rb = gunfish.rb;
         RayHitInfo rayHitInfo = new RayHitInfo();
-        float angle = NetworkManager.singleton.client.GetRTT()*1000*rb.angularVelocity * Time.deltaTime;
+        float angle = NetworkManager.singleton.client.GetRTT() / 1000f *rb.angularVelocity * Time.deltaTime;
         Quaternion rot = Quaternion.AngleAxis(angle, Vector3.back);
         Ray ray = new Ray(barrelPoint.transform.position, rot * transform.right);
         RaycastHit2D rayHit = Physics2D.Raycast(ray.origin, ray.direction,shotInfo.distance);
