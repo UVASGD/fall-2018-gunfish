@@ -13,7 +13,7 @@ public class ServerController : NetworkBehaviour {
         config.OverflowDropThreshold = 45;
         config.AckDelay = 200;
         config.AcksType = ConnectionAcksType.Acks128;
-        config.MaxSentMessageQueueSize = 300;
+        config.MaxSentMessageQueueSize = 50;
 
         NetworkServer.RegisterHandler(MessageTypes.GUNSHOT, OnGunshot);
     }
