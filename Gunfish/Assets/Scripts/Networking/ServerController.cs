@@ -15,6 +15,8 @@ public class ServerController : NetworkBehaviour {
         config.AcksType = ConnectionAcksType.Acks128;
         config.MaxSentMessageQueueSize = 300;
 
+        NetworkManager.singleton.maxDelay = 0.2f;
+
         NetworkServer.RegisterHandler(MessageTypes.GUNSHOT, OnGunshot);
     }
 
