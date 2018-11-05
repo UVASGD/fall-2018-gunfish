@@ -67,7 +67,7 @@ public class Gunfish : NetworkBehaviour {
     [Header("Nameplate")]
     public GameObject nameplatePrefab;
     NamePlate nameplate;
-    [SyncVar(hook ="SetName")] public string gameName;
+    public string gameName;
     #endregion
 
     public void ApplyVariableDefaults() {
