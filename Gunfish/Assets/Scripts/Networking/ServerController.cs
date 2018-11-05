@@ -16,8 +16,7 @@ public class ServerController : NetworkBehaviour {
         config.MaxSentMessageQueueSize = 5000;
         config.MaxCombinedReliableMessageCount = 30;
         config.MaxCombinedReliableMessageSize = 200;
-
-        NetworkManager.singleton.maxDelay = 0.1f;
+        
 
         NetworkServer.RegisterHandler(MessageTypes.GUNSHOT, OnGunshot);
     }
