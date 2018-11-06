@@ -1,0 +1,26 @@
+fileFormatVersion: 2
+guid: afa19aded53ee46cb9fc0b6648b3c6f7
+timeCreated: 1522682291
+licenseType: Free
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Copasetic NF
+  fontNames:
+  - Copasetic NF
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 5b1a81124ff774ad4aa7f9ef939c8e30, type: 3}
+  - {fileID: 12800000, guid: 730f4e429749448249b8779fbcc1eedb, type: 3}
+  - {fileID: 12800000, guid: 2ffac34d31cac4a01a20a847d8c01b6d, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

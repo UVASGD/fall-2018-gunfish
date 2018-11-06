@@ -36,3 +36,4 @@ sysinfo.txt
 *.apk
 *.unitypackage
 Gunfish/ProjectSettings/ProjectVersion\.txt
+Gunfish/Assets/StreamingAssets/

@@ -27,6 +27,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using UnityEngine.Networking;
+using Smooth;
 
 public class GunfishGeneratorWindow : EditorWindow {
 
@@ -46,7 +47,7 @@ public class GunfishGeneratorWindow : EditorWindow {
     static int selectedGunIndex;
 
     static string prefabPath = "Assets/Resources/Prefabs/Gunfish/";
-    static string sheetPath = "Assets/Resources/Spritesheets/";
+    static string sheetPath = "Assets/Art/Spritesheets/";
 
     static bool putInScene;
 
@@ -179,28 +180,29 @@ public class GunfishGeneratorWindow : EditorWindow {
         material = new Material(Shader.Find("Unlit/Transparent"));
         material.SetTexture("_MainTex", texture);
 
-        AssetDatabase.CreateAsset(material, "Assets/Resources/Materials/" + fishName + ".mat");
+        AssetDatabase.CreateAsset(material, "Assets/Art/Materials/" + fishName + ".mat");
     }
 
     private void CreateGunfish () {
         GameObject[] fishPieces = new GameObject[numberOfDivisions];
-        GameObject parent = new GameObject(fishName);
-        //fishPieces[0] = new GameObject(fishName);
+        fishPieces[0] = new GameObject(fishName);
 
         float fishWidth = texture.width / gunfishSprite.pixelsPerUnit;
         float fishHeight = texture.height / gunfishSprite.pixelsPerUnit;
 
-        LineRenderer lineFish = parent.AddComponent<LineRenderer>();
+        LineRenderer lineFish = fishPieces[0].AddComponent<LineRenderer>();
         lineFish.positionCount = numberOfDivisions;
         lineFish.startWidth = fishHeight;
         lineFish.endWidth = fishHeight;
         lineFish.alignment = LineAlignment.TransformZ;
         lineFish.material = material;
 
-        parent.AddComponent<NetworkIdentity>();
+        fishPieces[0].AddComponent<NetworkIdentity>();
 
         for (int i = 0; i < numberOfDivisions; i++) {
-            fishPieces [i] = new GameObject ("Fish[" + i.ToString () + "]");
+            if (i > 0) {
+                fishPieces [i] = new GameObject ("Fish[" + i.ToString () + "]");
+            }
             fishPieces[i].layer = LayerMask.NameToLayer("Player");
 
             //Line Renderer
@@ -231,16 +233,15 @@ public class GunfishGeneratorWindow : EditorWindow {
             int textureEndY = height - 1;
             int textureOffset = Mathf.RoundToInt(textureSpacing / 2);
 
-
             for (int y = 0; y < height; y++) {
-                if (texture.GetPixel(textureX + textureOffset, y).a > Mathf.Epsilon) {
+                if (texture.GetPixel(textureX + textureOffset, y).a > Mathf.Epsilon) { //Ignore invisible pixels
                     textureStartY = y;
                     break;
                 }
             }
 
             for (int y = height - 1; y >= 0; y--) {
-                if (texture.GetPixel(textureX + textureOffset, y).a > Mathf.Epsilon) {
+                if (texture.GetPixel(textureX + textureOffset, y).a > Mathf.Epsilon) { //Ignore invisible pixels
                     textureEndY = y;
                     break;
                 }
@@ -289,6 +290,8 @@ public class GunfishGeneratorWindow : EditorWindow {
                 fishPieces [i].transform.SetParent (fishPieces[0].transform);
                 //fishPieces [i].transform.localScale = new Vector3 (1.5f, 1f, 1f);
                 /****************************************************************/
+            } else {
+                
             }
         }
 
@@ -309,6 +312,37 @@ public class GunfishGeneratorWindow : EditorWindow {
         /****************************************************************/
 
         fishPieces[0].transform.eulerAngles = new Vector3(0f, 0f, 180f); //Flip fish around cause it upside down from LineRenderer
+
+
+        //Networking
+        /****************************************************************/
+        for (int i = 0; i < numberOfDivisions; i++) {
+            SmoothSync smoothSync = fishPieces[0].AddComponent<SmoothSync>();
+            smoothSync.childObjectToSync = fishPieces[i];
+            smoothSync.whenToUpdateTransform = SmoothSync.WhenToUpdateTransform.Update;
+            smoothSync.sendRate = 15;
+            smoothSync.timeCorrectionSpeed = 0.01f;
+            smoothSync.positionLerpSpeed = 0.85f;
+            smoothSync.rotationLerpSpeed = 0.85f;
+            smoothSync.scaleLerpSpeed = 0.85f;
+            smoothSync.networkChannel = 1;
+
+            //Variables to sync
+            smoothSync.syncPosition = SyncMode.XY;
+            smoothSync.syncRotation = SyncMode.Z;
+            smoothSync.syncScale = SyncMode.NONE;
+            smoothSync.syncVelocity = SyncMode.NONE;
+            smoothSync.syncAngularVelocity = SyncMode.NONE;
+
+            //Extrapolation
+            smoothSync.extrapolationMode = SmoothSync.ExtrapolationMode.Limited;
+            smoothSync.useExtrapolationTimeLimit = true;
+            smoothSync.extrapolationTimeLimit = 5f;
+            smoothSync.useExtrapolationDistanceLimit = false;
+            smoothSync.extrapolationDistanceLimit = 20f;
+        }
+        /****************************************************************/
+
         //Create prefab of Scene instance and destroy the instance
         PrefabUtility.CreatePrefab(prefabPath + fishName + ".prefab", fishPieces[0]);
 
