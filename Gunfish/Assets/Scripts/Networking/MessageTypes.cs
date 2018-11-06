@@ -19,4 +19,5 @@ public class MessageTypes {
 
     //Race Messages
     public static short PLAYERFINISH = 400;
+    public static short REQUESTTIME = 401;
 }
