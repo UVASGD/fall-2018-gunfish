@@ -66,11 +66,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35a346298f297f4428a93f1607758eec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelsPerRace: 5
   maps: []
   mapIndex: 0
   fishFinished: []
   fishCount: 0
   gameActive: 0
+  secondsToWaitInLobby: 10
+  secondsRemaining: 0
 --- !u!114 &114609202069617210
 MonoBehaviour:
   m_ObjectHideFlags: 1
