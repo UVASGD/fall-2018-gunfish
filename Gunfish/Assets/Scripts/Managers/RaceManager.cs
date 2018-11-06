@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
+using System.IO;
 
 public enum GameState { Start, Running, NextLevel, End }
 
@@ -10,6 +11,8 @@ public enum GameState { Start, Running, NextLevel, End }
 public class RaceManager : NetworkBehaviour {
 
     public static RaceManager instance;
+
+    public int levelsPerRace = 5;
 
     public List<string> maps = new List<string>();
     public int mapIndex = 0;
@@ -20,7 +23,9 @@ public class RaceManager : NetworkBehaviour {
     public bool gameActive;
 
     public int secondsToWaitInLobby = 10;
-    [SyncVar] public int secondsRemaining;
+    public int secondsRemaining;
+
+    private AssetBundle bundle;
 
     // Use this for initialization
     void Awake () {
@@ -35,6 +40,7 @@ public class RaceManager : NetworkBehaviour {
         fishCount = 0;
 
         gameActive = false;
+        secondsRemaining = secondsToWaitInLobby;
 
         EventManager.StartListening(EventType.InitGame, OnStart);
         EventManager.StartListening(EventType.NextLevel, LoadNextLevel);
@@ -83,7 +89,16 @@ public class RaceManager : NetworkBehaviour {
 
         //print("Selecting");
 
-        Object[] scenes = Resources.LoadAll("Scenes/Race/");
+        //Object[] scenes = Resources.LoadAll("Scenes/Race/");
+        //AssetBundle bundle = AssetBundle.LoadFromFile("Assets/AssetBundles/racelevels");
+        print("Data path: " + Application.streamingAssetsPath);
+        if (!bundle) {
+            bundle = AssetBundle.LoadFromFile(Path.Combine(Application.streamingAssetsPath, "racelevels"));
+        }
+        string[] scenes = bundle.GetAllScenePaths();
+        //AssetBundle.UnloadAllAssetBundles(true);
+        //bundle.Unload(false);
+
         int[] indices = new int[scenes.Length];
 
         for (int i = 0; i < indices.Length; i++) {
@@ -91,13 +106,14 @@ public class RaceManager : NetworkBehaviour {
         }
 
         //Randomize the index list and add the maps to the map list
-        for (int i = 0; i < Mathf.Min(5, indices.Length); i++) {
+        for (int i = 0; i < Mathf.Min(levelsPerRace, indices.Length); i++) {
             int temp = indices[i];
             int otherIndex = Random.Range(i, indices.Length);
             indices[i] = indices[otherIndex];
             indices[otherIndex] = temp;
-            maps.Add(scenes[indices[i]].name);
+            maps.Add( System.IO.Path.GetFileNameWithoutExtension(scenes[indices[i]]) );
         }
+        //bundle.Unload(false);
     }
 
     public void PlayerFinish (Gunfish gunfish) {
@@ -128,8 +144,10 @@ public class RaceManager : NetworkBehaviour {
 
         if (mapIndex == maps.Count) {
             gameActive = false;
+            //AssetBundle.UnloadAllAssetBundles(true);
             SelectMaps();
             //Invoke("SetReady", secondsUntilStartGame);
+            //bundle.Unload(true);
             StartCoroutine(StartTimer());
             EventManager.TriggerEvent(EventType.EndGame);
             return;
