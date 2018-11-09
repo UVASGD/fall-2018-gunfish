@@ -343,7 +343,7 @@ MonoBehaviour:
   m_AutoCreatePlayer: 1
   m_PlayerSpawnMethod: 1
   m_OfflineScene: Menu
-  m_OnlineScene: RaceLobby
+  m_OnlineScene: Level_X_Hop
   m_SpawnPrefabs:
   - {fileID: 1490314977096660, guid: 07c2d8436af1feb488368b59d04aa340, type: 2}
   m_CustomConfig: 0
