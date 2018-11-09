@@ -13,10 +13,8 @@ public class GunfishEditor : Editor {
     Gunfish fish;
 
     public override void OnInspectorGUI () {
-
-        return;
-
         base.OnInspectorGUI ();
+        return;
 
         fish = (Gunfish)target;
 
