@@ -62,6 +62,14 @@ public class Gun : MonoBehaviour {
                 rayHitInfo.hitType = HitType.Wood;
             }
 
+            else if (hit.CompareTag("Object")) {
+                rayHitInfo.color = hit.gameObject.GetComponent<SpriteRenderer>().color;
+                rayHitInfo.hitType = HitType.Wood;
+                if (hit.GetComponent<Rigidbody2D>()) {
+                    hit.GetComponent<Rigidbody2D>().AddForce(-rayHit.normal * shotInfo.force);
+                }
+            }
+
             rayHitInfo.normal = rayHit.normal;
             rayHitInfo.end = rayHit.point;           
         }
