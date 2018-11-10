@@ -41,14 +41,15 @@ public class CustomNetworkManager : NetworkManager
 
         NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
 
-        StartCoroutine(SetRpc(playerName));
+        StartCoroutine(SetRpc(player, playerName));
 
         ConnectionManager.instance.AddGunfish(player.GetComponent<Gunfish>());
 
         spawnNum++;
     }
 
-    public IEnumerator SetRpc (string playerName) {
+    public IEnumerator SetRpc (GameObject player, string playerName) {
+        yield return new WaitForSeconds(5f);
         player.GetComponent<Gunfish>().RpcSetName(playerName);
     }
 
