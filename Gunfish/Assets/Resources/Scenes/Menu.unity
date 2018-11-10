@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -343,7 +343,7 @@ MonoBehaviour:
   m_AutoCreatePlayer: 1
   m_PlayerSpawnMethod: 1
   m_OfflineScene: Menu
-  m_OnlineScene: RaceLobby
+  m_OnlineScene: Level_3_Slick
   m_SpawnPrefabs:
   - {fileID: 1490314977096660, guid: 07c2d8436af1feb488368b59d04aa340, type: 2}
   - {fileID: 1114052074551784, guid: 69136fed32a4ba849a306f94ab4faf4b, type: 2}
