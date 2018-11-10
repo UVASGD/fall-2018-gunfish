@@ -279,15 +279,15 @@ public class Gunfish : NetworkBehaviour {
 
     public void Hit(Vector2 direction, ShotType shotType) {
         Knockback(direction, shotType);
-        Stun();
+        Stun(Misc.ShotDict[shotType].stunTime);
         //Check gamemode, if race, then call Stun(), else call Damage()
     }
 
-    public void Stun() {
+    public void Stun(float stunTime) {
         //Oh no you got stunned
         if (float.IsNaN(currentStunCD))
             isBlocked++;
-        currentStunCD = Misc.stunTime;
+        currentStunCD = stunTime;
     }
 
     public void DisplayShoot() {
@@ -301,9 +301,9 @@ public class Gunfish : NetworkBehaviour {
             foreach (Rigidbody2D sliceRb in sliceBodies) {
                 sliceRb.gravityScale = 0;
             }
-        }
 
-        isSwimming++;
+            isSwimming = 1;
+        }
     }
 
     void Thrust() {
@@ -318,9 +318,9 @@ public class Gunfish : NetworkBehaviour {
             foreach (Rigidbody2D sliceRb in sliceBodies) {
                 sliceRb.gravityScale = 1;
             }
-        }
 
-        isSwimming--;
+            isSwimming = 0;
+        }
     }
 
     public void SetName(string newName) {
