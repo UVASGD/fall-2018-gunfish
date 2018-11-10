@@ -24,7 +24,6 @@ GameObject:
   - component: {fileID: 212523946168387760}
   - component: {fileID: 114108665286910278}
   - component: {fileID: 114197553935839184}
-  - component: {fileID: 114990793389130138}
   m_Layer: 0
   m_Name: AnExplosiveDeviceAlsoKnownAsABomb
   m_TagString: Untagged
@@ -101,17 +100,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 37d04569f81e2054583118c70aac9cfd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &114990793389130138
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1509074614928370}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51585420232e1b240bf5168db0b43907, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!212 &212523946168387760
