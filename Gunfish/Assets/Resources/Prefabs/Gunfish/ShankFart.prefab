@@ -1620,7 +1620,7 @@ MonoBehaviour:
   swimTorque: 175
   jumpForce: 500
   moveTorque: 100
-  shotType: 2
+  shotType: 1
   rb: {fileID: 50414041496366846}
   middleRb: {fileID: 0}
   gun: {fileID: 114457275562701432}

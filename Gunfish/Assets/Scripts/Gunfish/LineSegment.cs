@@ -25,7 +25,7 @@ public class LineSegment : MonoBehaviour {
 	}
 
     private void OnCollisionEnter2D (Collision2D collision) {
-        if (collision.collider.tag == "Ground") {
+        if (collision.collider.tag == "Ground" || collision.collider.tag == "Object") {
             //if (grounded == false) {
                 if (gunfish != null) {
                     gunfish.groundedCount++;
@@ -36,7 +36,7 @@ public class LineSegment : MonoBehaviour {
     }
 
     private void OnCollisionExit2D (Collision2D collision) {
-        if (collision.collider.tag == "Ground") {
+        if (collision.collider.tag == "Ground" || collision.collider.tag == "Object") {
             //if (grounded == true) {
                 if (gunfish != null) {
                     gunfish.groundedCount--;
