@@ -239,8 +239,10 @@ public class Gunfish : NetworkBehaviour {
     //be called from the server, after calculating what force
     //and torque should be applied from the server as well.
     public void Move(Vector2 force, float torque) {
-        flopSource.clip = (flops.Length > 0 ? flops[Random.Range(0, flops.Length)] : null);
-        flopSource.Play();
+        if (flopSource) {
+            flopSource.clip = (flops.Length > 0 ? flops[Random.Range(0, flops.Length)] : null);
+            flopSource.Play();
+        }
 
         middleRb.AddForce(force);
         middleRb.AddTorque(torque);
