@@ -1,0 +1,868 @@
+{ "frames": {
+   "OceanBGGif 0.ase": {
+    "frame": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 140
+   },
+   "OceanBGGif 1.ase": {
+    "frame": { "x": 445, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 150
+   },
+   "OceanBGGif 2.ase": {
+    "frame": { "x": 890, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 140
+   },
+   "OceanBGGif 3.ase": {
+    "frame": { "x": 1335, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 140
+   },
+   "OceanBGGif 4.ase": {
+    "frame": { "x": 1780, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 140
+   },
+   "OceanBGGif 5.ase": {
+    "frame": { "x": 2225, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 150
+   },
+   "OceanBGGif 6.ase": {
+    "frame": { "x": 2670, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 140
+   },
+   "OceanBGGif 7.ase": {
+    "frame": { "x": 3115, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 140
+   },
+   "OceanBGGif 8.ase": {
+    "frame": { "x": 3560, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 150
+   },
+   "OceanBGGif 9.ase": {
+    "frame": { "x": 4005, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 140
+   },
+   "OceanBGGif 10.ase": {
+    "frame": { "x": 4450, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 140
+   },
+   "OceanBGGif 11.ase": {
+    "frame": { "x": 4895, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 140
+   },
+   "OceanBGGif 12.ase": {
+    "frame": { "x": 5340, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 150
+   },
+   "OceanBGGif 13.ase": {
+    "frame": { "x": 5785, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 140
+   },
+   "OceanBGGif 14.ase": {
+    "frame": { "x": 6230, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 140
+   },
+   "OceanBGGif 15.ase": {
+    "frame": { "x": 6675, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 150
+   },
+   "OceanBGGif 16.ase": {
+    "frame": { "x": 7120, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 140
+   },
+   "OceanBGGif 17.ase": {
+    "frame": { "x": 7565, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 140
+   },
+   "OceanBGGif 18.ase": {
+    "frame": { "x": 8010, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 140
+   },
+   "OceanBGGif 19.ase": {
+    "frame": { "x": 8455, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 150
+   },
+   "OceanBGGif 20.ase": {
+    "frame": { "x": 8900, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 140
+   },
+   "OceanBGGif 21.ase": {
+    "frame": { "x": 9345, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 140
+   },
+   "OceanBGGif 22.ase": {
+    "frame": { "x": 9790, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 150
+   },
+   "OceanBGGif 23.ase": {
+    "frame": { "x": 10235, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 140
+   },
+   "OceanBGGif 24.ase": {
+    "frame": { "x": 10680, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 140
+   },
+   "OceanBGGif 25.ase": {
+    "frame": { "x": 11125, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 140
+   },
+   "OceanBGGif 26.ase": {
+    "frame": { "x": 11570, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 150
+   },
+   "OceanBGGif 27.ase": {
+    "frame": { "x": 12015, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 140
+   },
+   "OceanBGGif 28.ase": {
+    "frame": { "x": 12460, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 140
+   },
+   "OceanBGGif 29.ase": {
+    "frame": { "x": 12905, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 150
+   },
+   "OceanBGGif 30.ase": {
+    "frame": { "x": 13350, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 140
+   },
+   "OceanBGGif 31.ase": {
+    "frame": { "x": 13795, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 140
+   },
+   "OceanBGGif 32.ase": {
+    "frame": { "x": 14240, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 140
+   },
+   "OceanBGGif 33.ase": {
+    "frame": { "x": 14685, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 150
+   },
+   "OceanBGGif 34.ase": {
+    "frame": { "x": 15130, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 140
+   },
+   "OceanBGGif 35.ase": {
+    "frame": { "x": 15575, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 140
+   },
+   "OceanBGGif 36.ase": {
+    "frame": { "x": 16020, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 150
+   },
+   "OceanBGGif 37.ase": {
+    "frame": { "x": 16465, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 140
+   },
+   "OceanBGGif 38.ase": {
+    "frame": { "x": 16910, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 140
+   },
+   "OceanBGGif 39.ase": {
+    "frame": { "x": 17355, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 140
+   },
+   "OceanBGGif 40.ase": {
+    "frame": { "x": 17800, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 150
+   },
+   "OceanBGGif 41.ase": {
+    "frame": { "x": 18245, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 140
+   },
+   "OceanBGGif 42.ase": {
+    "frame": { "x": 18690, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 140
+   },
+   "OceanBGGif 43.ase": {
+    "frame": { "x": 19135, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 150
+   },
+   "OceanBGGif 44.ase": {
+    "frame": { "x": 19580, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 140
+   },
+   "OceanBGGif 45.ase": {
+    "frame": { "x": 20025, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 140
+   },
+   "OceanBGGif 46.ase": {
+    "frame": { "x": 20470, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 140
+   },
+   "OceanBGGif 47.ase": {
+    "frame": { "x": 20915, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 150
+   },
+   "OceanBGGif 48.ase": {
+    "frame": { "x": 21360, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 140
+   },
+   "OceanBGGif 49.ase": {
+    "frame": { "x": 21805, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 140
+   },
+   "OceanBGGif 50.ase": {
+    "frame": { "x": 22250, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 150
+   },
+   "OceanBGGif 51.ase": {
+    "frame": { "x": 22695, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 140
+   },
+   "OceanBGGif 52.ase": {
+    "frame": { "x": 23140, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 140
+   },
+   "OceanBGGif 53.ase": {
+    "frame": { "x": 23585, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 140
+   },
+   "OceanBGGif 54.ase": {
+    "frame": { "x": 24030, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 150
+   },
+   "OceanBGGif 55.ase": {
+    "frame": { "x": 24475, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 140
+   },
+   "OceanBGGif 56.ase": {
+    "frame": { "x": 24920, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 140
+   },
+   "OceanBGGif 57.ase": {
+    "frame": { "x": 25365, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 150
+   },
+   "OceanBGGif 58.ase": {
+    "frame": { "x": 25810, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 140
+   },
+   "OceanBGGif 59.ase": {
+    "frame": { "x": 26255, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 140
+   },
+   "OceanBGGif 60.ase": {
+    "frame": { "x": 26700, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 140
+   },
+   "OceanBGGif 61.ase": {
+    "frame": { "x": 27145, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 150
+   },
+   "OceanBGGif 62.ase": {
+    "frame": { "x": 27590, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 140
+   },
+   "OceanBGGif 63.ase": {
+    "frame": { "x": 28035, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 140
+   },
+   "OceanBGGif 64.ase": {
+    "frame": { "x": 28480, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 150
+   },
+   "OceanBGGif 65.ase": {
+    "frame": { "x": 28925, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 140
+   },
+   "OceanBGGif 66.ase": {
+    "frame": { "x": 29370, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 140
+   },
+   "OceanBGGif 67.ase": {
+    "frame": { "x": 29815, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 140
+   },
+   "OceanBGGif 68.ase": {
+    "frame": { "x": 30260, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 150
+   },
+   "OceanBGGif 69.ase": {
+    "frame": { "x": 30705, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 140
+   },
+   "OceanBGGif 70.ase": {
+    "frame": { "x": 31150, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 140
+   },
+   "OceanBGGif 71.ase": {
+    "frame": { "x": 31595, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 150
+   },
+   "OceanBGGif 72.ase": {
+    "frame": { "x": 32040, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 140
+   },
+   "OceanBGGif 73.ase": {
+    "frame": { "x": 32485, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 140
+   },
+   "OceanBGGif 74.ase": {
+    "frame": { "x": 32930, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 140
+   },
+   "OceanBGGif 75.ase": {
+    "frame": { "x": 33375, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 150
+   },
+   "OceanBGGif 76.ase": {
+    "frame": { "x": 33820, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 140
+   },
+   "OceanBGGif 77.ase": {
+    "frame": { "x": 34265, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 140
+   },
+   "OceanBGGif 78.ase": {
+    "frame": { "x": 34710, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 150
+   },
+   "OceanBGGif 79.ase": {
+    "frame": { "x": 35155, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 140
+   },
+   "OceanBGGif 80.ase": {
+    "frame": { "x": 35600, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 140
+   },
+   "OceanBGGif 81.ase": {
+    "frame": { "x": 36045, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 140
+   },
+   "OceanBGGif 82.ase": {
+    "frame": { "x": 36490, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 150
+   },
+   "OceanBGGif 83.ase": {
+    "frame": { "x": 36935, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 140
+   },
+   "OceanBGGif 84.ase": {
+    "frame": { "x": 37380, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 140
+   },
+   "OceanBGGif 85.ase": {
+    "frame": { "x": 37825, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 150
+   },
+   "OceanBGGif 86.ase": {
+    "frame": { "x": 38270, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 140
+   },
+   "OceanBGGif 87.ase": {
+    "frame": { "x": 38715, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 140
+   },
+   "OceanBGGif 88.ase": {
+    "frame": { "x": 39160, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 140
+   },
+   "OceanBGGif 89.ase": {
+    "frame": { "x": 39605, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 150
+   },
+   "OceanBGGif 90.ase": {
+    "frame": { "x": 40050, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 140
+   },
+   "OceanBGGif 91.ase": {
+    "frame": { "x": 40495, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 140
+   },
+   "OceanBGGif 92.ase": {
+    "frame": { "x": 40940, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 150
+   },
+   "OceanBGGif 93.ase": {
+    "frame": { "x": 41385, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 140
+   },
+   "OceanBGGif 94.ase": {
+    "frame": { "x": 41830, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 140
+   },
+   "OceanBGGif 95.ase": {
+    "frame": { "x": 42275, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 140
+   },
+   "OceanBGGif 96.ase": {
+    "frame": { "x": 42720, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 150
+   },
+   "OceanBGGif 97.ase": {
+    "frame": { "x": 43165, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 140
+   },
+   "OceanBGGif 98.ase": {
+    "frame": { "x": 43610, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 140
+   },
+   "OceanBGGif 99.ase": {
+    "frame": { "x": 44055, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 150
+   },
+   "OceanBGGif 100.ase": {
+    "frame": { "x": 44500, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 140
+   },
+   "OceanBGGif 101.ase": {
+    "frame": { "x": 44945, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 140
+   },
+   "OceanBGGif 102.ase": {
+    "frame": { "x": 45390, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 140
+   },
+   "OceanBGGif 103.ase": {
+    "frame": { "x": 45835, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 150
+   },
+   "OceanBGGif 104.ase": {
+    "frame": { "x": 46280, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 140
+   },
+   "OceanBGGif 105.ase": {
+    "frame": { "x": 46725, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 140
+   },
+   "OceanBGGif 106.ase": {
+    "frame": { "x": 47170, "y": 0, "w": 445, "h": 250 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 445, "h": 250 },
+    "sourceSize": { "w": 445, "h": 250 },
+    "duration": 140
+   }
+ },
+ "meta": {
+  "app": "http://www.aseprite.org/",
+  "version": "1.1.13",
+  "format": "I8",
+  "size": { "w": 47615, "h": 250 },
+  "scale": "1",
+  "frameTags": [
+  ]
+ }
+}
