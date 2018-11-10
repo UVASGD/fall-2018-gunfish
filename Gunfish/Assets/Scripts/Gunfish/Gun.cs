@@ -90,10 +90,10 @@ public class Gun : MonoBehaviour {
         return rayHitInfo;
     }
 
-    [ClientCallback]
-    public void UpdateRB (Rigidbody2D myrb) {
-        rb = myrb;
-    }
+//    [ClientCallback]
+//    public void UpdateRB (Rigidbody2D myrb) {
+//        rb = myrb;
+//    }
 
     //Gunshot audio and visual fx
     public void DisplayShoot()

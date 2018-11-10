@@ -22,6 +22,8 @@ GameObject:
   - component: {fileID: 250120256347656336}
   - component: {fileID: 58523773835458016}
   - component: {fileID: 212523946168387760}
+  - component: {fileID: 114108665286910278}
+  - component: {fileID: 114197553935839184}
   m_Layer: 0
   m_Name: AnExplosiveDeviceAlsoKnownAsABomb
   m_TagString: Untagged
@@ -56,7 +58,50 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 40
+  m_Radius: 15
+--- !u!114 &114108665286910278
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1509074614928370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 253
+    i1: 55
+    i2: 171
+    i3: 67
+    i4: 109
+    i5: 175
+    i6: 24
+    i7: 180
+    i8: 138
+    i9: 232
+    i10: 97
+    i11: 141
+    i12: 83
+    i13: 244
+    i14: 111
+    i15: 206
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
+--- !u!114 &114197553935839184
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1509074614928370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37d04569f81e2054583118c70aac9cfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212523946168387760
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -114,9 +159,9 @@ PointEffector2D:
   m_ColliderMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_ForceMagnitude: 100
+  m_ForceMagnitude: 500
   m_ForceVariation: 0
-  m_DistanceScale: 1.92
+  m_DistanceScale: 4.34
   m_ForceSource: 0
   m_ForceTarget: 0
   m_ForceMode: 0
