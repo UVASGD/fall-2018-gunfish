@@ -100,7 +100,7 @@ GameObject:
   - component: {fileID: 114688825264330130}
   m_Layer: 8
   m_Name: SunFish
-  m_TagString: Untagged
+  m_TagString: Gunfish
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -233,7 +233,7 @@ Transform:
   m_GameObject: {fileID: 1489070563695716}
   m_LocalRotation: {x: 0, y: 0, z: 1, w: -0.00000004371139}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 1}
   m_Children:
   - {fileID: 4437627100200940}
   - {fileID: 4785179194923254}
@@ -299,7 +299,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.25
+  m_Mass: 0.5
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -677,12 +677,14 @@ MonoBehaviour:
   moveTorque: 100
   shotType: 0
   auto: 0
+  autoTorqueMulti: 0.01
   rb: {fileID: 0}
   middleRb: {fileID: 0}
   gun: {fileID: 0}
   groundedCount: 0
   flops: []
-  nameplatePrefab: {fileID: 0}
+  nameplatePrefab: {fileID: 1579978614954062, guid: 57558fa80fe1c11438d7f31377a2df12,
+    type: 2}
   gameName: 
 --- !u!114 &114555956225229892
 MonoBehaviour:

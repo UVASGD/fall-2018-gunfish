@@ -36,7 +36,7 @@ GameObject:
   - component: {fileID: 4998516810174946}
   - component: {fileID: 114469076914436508}
   m_Layer: 0
-  m_Name: Gun 1
+  m_Name: M249
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -269,7 +269,7 @@ MonoBehaviour:
   boomSound: {fileID: 82129596402213910}
   muzzleFlash: {fileID: 0}
   gunType: 0
-  shotType: 1
+  shotType: 3
 --- !u!120 &120387843829111572
 LineRenderer:
   m_ObjectHideFlags: 1
@@ -307,7 +307,7 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: 5, y: 0, z: 1}
+  - {x: 5, y: 0, z: 0}
   m_Parameters:
     serializedVersion: 2
     widthMultiplier: 1.5
@@ -402,7 +402,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 6.8, y: 3.4}
+  m_Size: {x: 7.95, y: 3.34}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

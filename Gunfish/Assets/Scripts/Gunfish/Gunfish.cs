@@ -52,6 +52,7 @@ public class Gunfish : NetworkBehaviour {
 
     public ShotType shotType = ShotType.Medium;
     public bool auto = false;
+    public float autoTorqueMulti = 0.01f;
 
     [Header("Fish Info")]
     public Rigidbody2D rb;
@@ -262,7 +263,9 @@ public class Gunfish : NetworkBehaviour {
     //component of a child GameObject, and applies a force. If
     //there is no Gun attached, simply will not fire.
     public void Shoot() {
-        rb.AddForceAtPosition(transform.right * gun.shotInfo.force, transform.position);
+        float shotForce = gun.shotInfo.force;
+        rb.AddForceAtPosition(transform.right * shotForce, transform.position);
+        if (auto) rb.AddTorque(shotForce*autoTorqueMulti*(Random.Range(0.4f, 0.1f)));
 
         currentFireCD = maxFireCD;
 

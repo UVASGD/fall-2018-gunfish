@@ -10,8 +10,8 @@ public static class Misc {
     //public static float stunTime = .5f;
     public static Dictionary<ShotType, ShotInfo> ShotDict = new Dictionary<ShotType, ShotInfo>() {
         {ShotType.Medium, new ShotInfo(400f, 1f, 50f, 1000f, 0.06f, 0.5f)},
-        {ShotType.Heavy, new ShotInfo(200f, 0.21053158f, 35f, 200f, 0.06f, 0.1f)}, 
-        {ShotType.Small, new ShotInfo(100f, 0.18f, 25f, 200f, 0.06f, 0.1f)}
+        {ShotType.Heavy, new ShotInfo(250f, 0.21053158f, 35f, 200f, 0.06f, 0.1f)}, 
+        {ShotType.Small, new ShotInfo(100f, 0.06f, 25f, 200f, 0.06f, 0.1f)}
     };
 }
 
