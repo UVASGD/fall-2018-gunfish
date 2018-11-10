@@ -1148,6 +1148,8 @@ MonoBehaviour:
   jumpForce: 500
   moveTorque: 100
   shotType: 1
+  auto: 0
+  autoTorqueMulti: 0.01
   rb: {fileID: 50373754089092558}
   middleRb: {fileID: 0}
   gun: {fileID: 114864520270690408}
