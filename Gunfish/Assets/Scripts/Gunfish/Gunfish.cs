@@ -51,6 +51,8 @@ public class Gunfish : NetworkBehaviour {
     int isSwimming = 0;
 
     public ShotType shotType = ShotType.Medium;
+    public bool auto = false;
+    public float autoTorqueMulti = 0.01f;
 
     [Header("Fish Info")]
     public Rigidbody2D rb;
@@ -193,7 +195,8 @@ public class Gunfish : NetworkBehaviour {
     //or not an input message should be sent to the server.
     public void ClientInputHandler() {
         float x = Input.GetAxisRaw("Horizontal");
-        bool shoot = Input.GetButtonDown("Fire1");
+        bool shoot = auto ? Input.GetButton("Fire1") : Input.GetButtonDown("Fire1");
+        // ternary operator ?: if (auto) =statement1 else =statement2
 
         bool apply = (x != 0f || shoot);
 
@@ -262,7 +265,9 @@ public class Gunfish : NetworkBehaviour {
     //component of a child GameObject, and applies a force. If
     //there is no Gun attached, simply will not fire.
     public void Shoot() {
-        rb.AddForceAtPosition(transform.right * gun.shotInfo.force, transform.position);
+        float shotForce = gun.shotInfo.force;
+        rb.AddForceAtPosition(transform.right * shotForce, transform.position);
+        if (auto) rb.AddTorque(shotForce*autoTorqueMulti*(Random.Range(0.4f, 0.1f)));
 
         currentFireCD = maxFireCD;
 

@@ -1768,17 +1768,26 @@ MonoBehaviour:
   maxJumpCD: 1
   currentAirborneJumpCD: 0
   maxAirborneJumpCD: 0.4
+  currentSwimCD: 0
+  maxSwimCD: 0.25
   fire: 0
   currentFireCD: 0
   maxFireCD: 1
   isBlocked: 0
-  thrustTime: 0.75
+  thrustForce: 200
+  swimTorque: 175
+  jumpForce: 500
+  moveTorque: 100
   shotType: 1
+  auto: 0
+  autoTorqueMulti: 0.01
   rb: {fileID: 50768839381947424}
   middleRb: {fileID: 0}
   gun: {fileID: 114280357430119944}
   groundedCount: 0
   flops: []
+  nameplatePrefab: {fileID: 0}
+  gameName: 
 --- !u!114 &114788609519075908
 MonoBehaviour:
   m_ObjectHideFlags: 1
