@@ -38,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1708326288477108}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.7993816, y: 2.7241113, z: -0.24457029}
+  m_LocalPosition: {x: -7.09, y: 1.54, z: -0.24457029}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -51,7 +51,7 @@ Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1708326288477108}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -78,7 +78,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1.37
 --- !u!114 &114018498624697514
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -143,18 +143,18 @@ MonoBehaviour:
   scaleLerpSpeed: 0.85
   timeCorrectionSpeed: 0.01
   snapTimeThreshold: 5
-  syncPosition: 0
-  syncRotation: 0
-  syncScale: 0
-  syncVelocity: 0
-  syncAngularVelocity: 0
+  syncPosition: 1
+  syncRotation: 6
+  syncScale: 7
+  syncVelocity: 7
+  syncAngularVelocity: 7
   isPositionCompressed: 0
   isRotationCompressed: 0
   isScaleCompressed: 0
   isVelocityCompressed: 0
   isAngularVelocityCompressed: 0
   whenToUpdateTransform: 0
-  sendRate: 30
+  sendRate: 15
   networkChannel: 1
   childObjectToSync: {fileID: 0}
 --- !u!212 &212975077280838186
