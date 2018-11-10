@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - Gunfish
+  - Object
   layers:
   - Default
   - TransparentFX
@@ -42,4 +43,16 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 2532626973
+    locked: 0
+  - name: BackgroundObj
+    uniqueID: 3685136353
+    locked: 0
+  - name: Player
+    uniqueID: 1326974923
+    locked: 0
+  - name: ForegroundObj
+    uniqueID: 4171545757
     locked: 0
