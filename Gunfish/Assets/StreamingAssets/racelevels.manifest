@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 3322833777
+CRC: 451810312
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 2e1ce7f9822acd45934c4d1bb98e003a
+    Hash: 90e66d8ddfd6b48cc591180228eddada
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 2ade24604a67b5799a9b48cb4c7490b3
+    Hash: 2a74b6b3a52b552e664a1c9ead805c60
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -63,10 +63,19 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 258
   Script: {instanceID: 0}
+- Class: 328
+  Script: {instanceID: 0}
+- Class: 329
+  Script: {instanceID: 0}
 Assets:
 - Assets/Resources/Scenes/Race/Level_5_Water.unity
 - Assets/Resources/Scenes/Race/Level_6_Funnel.unity
 - Assets/Resources/Scenes/Race/Level_3_Slick.unity
 - Assets/Resources/Scenes/Race/Level_2_Pipes.unity
+- Assets/Resources/Scenes/Race/Level_7_Ramp.unity
 - Assets/Resources/Scenes/Race/Level_1_Bubbles.unity
+- Assets/Resources/Scenes/Race/Level_8_Hop.unity
+- Assets/Resources/Scenes/Race/Level_11_Swim.unity
+- Assets/Resources/Scenes/Race/Level_10_Test.unity
+- Assets/Resources/Scenes/Race/Level_9_Ladders.unity
 Dependencies: []

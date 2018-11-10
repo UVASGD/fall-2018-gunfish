@@ -11,16 +11,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Resources/Scenes/RaceLobby.unity
     guid: 63d9ad946082f38489e71c347eb27bd9
-  - enabled: 1
-    path: Assets/Resources/Scenes/Race/Level_X_Hop.unity
-    guid: eb63c6c91b6a90a47b404ad915372ff6
-  - enabled: 0
-    path: Assets/Resources/Scenes/Race/Level_9_Ladders.unity
-    guid: f2e56b5f8f033c14a999c2bc6590aa9d
-  - enabled: 1
-    path: Assets/Resources/Scenes/Race/Level_10_Test.unity
-    guid: 3853e0ae7c2d5074c9a94184ef7d09b3
-  - enabled: 0
-    path: Assets/Resources/Scenes/Race/Level_11_Swim.unity
-    guid: 095ccfe9b6bd9364a965f01ef4bafcb4
   m_configObjects: {}

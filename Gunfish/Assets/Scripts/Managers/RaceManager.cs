@@ -87,6 +87,7 @@ public class RaceManager : NetworkBehaviour {
             bundle = AssetBundle.LoadFromFile(Path.Combine(Application.streamingAssetsPath, "racelevels"));
         }
         string[] scenes = bundle.GetAllScenePaths();
+        //print("Scene Length: " +
 
         int[] indices = new int[scenes.Length];
 
@@ -95,6 +96,7 @@ public class RaceManager : NetworkBehaviour {
         }
 
         //Randomize the index list and add the maps to the map list
+        print("Indices: " + indices.Length);
         for (int i = 0; i < Mathf.Min(levelsPerRace, indices.Length); i++) {
             int temp = indices[i];
             int otherIndex = Random.Range(i, indices.Length);
