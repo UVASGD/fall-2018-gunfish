@@ -49,7 +49,8 @@ public class CustomNetworkManager : NetworkManager
     }
 
     public IEnumerator SetRpc (GameObject player, string playerName) {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForEndOfFrame();
         player.GetComponent<Gunfish>().RpcSetName(playerName);
     }
 
