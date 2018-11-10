@@ -39,8 +39,8 @@ public class CustomNetworkManager : NetworkManager
             print("Nope!");
         }
 
-        player.GetComponent<Gunfish>().SetName(playerName);
         NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
+        player.GetComponent<Gunfish>().RpcSetName(playerName);
 
         ConnectionManager.instance.AddGunfish(player.GetComponent<Gunfish>());
 

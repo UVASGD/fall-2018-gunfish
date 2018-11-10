@@ -330,7 +330,8 @@ public class Gunfish : NetworkBehaviour {
         }
     }
 
-    public void SetName(string newName) {
+    [ClientRpc]
+    public void RpcSetName(string newName) {
         gameName = newName;
         if (nameplate) {
             nameplate.SetName(gameName);
