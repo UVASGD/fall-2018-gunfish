@@ -40,11 +40,16 @@ public class CustomNetworkManager : NetworkManager
         }
 
         NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
-        player.GetComponent<Gunfish>().RpcSetName(playerName);
+
+        StartCoroutine(SetRpc(playerName));
 
         ConnectionManager.instance.AddGunfish(player.GetComponent<Gunfish>());
 
         spawnNum++;
+    }
+
+    public IEnumerator SetRpc (string playerName) {
+        player.GetComponent<Gunfish>().RpcSetName(playerName);
     }
 
     public override void OnServerRemovePlayer (NetworkConnection conn, UnityEngine.Networking.PlayerController player) {
