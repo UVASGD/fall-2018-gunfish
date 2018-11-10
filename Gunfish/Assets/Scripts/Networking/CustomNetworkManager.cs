@@ -76,4 +76,47 @@ public class CustomNetworkManager : NetworkManager
     public override void OnServerSceneChanged (string sceneName) {
         base.OnServerSceneChanged (sceneName);
     }
+
+
+
+
+
+    //UI
+    /***************************************************/
+
+    /// <summary>
+    /// A wrapper for NetworkManager's StartHost method. 
+    /// </summary>
+    public void StartHost_Button()
+    {
+        base.StartHost();
+    }
+
+    public void StartClient_Button()
+    {
+        base.StartClient();
+    }
+
+    public void UpdateAddress()
+    {
+        networkAddress = FindMainMenu().GetComponent<MainMenuManager>().Addr;
+    }
+
+    public void UpdatePort()
+    {
+        string port = FindMainMenu().GetComponent<MainMenuManager>().Port;
+        int res;
+        bool success = int.TryParse(port, out res);
+        if(success)
+            networkPort = res;
+        else
+        {
+            Debug.Log("Failed to set port");
+        }
+    }
+
+    public GameObject FindMainMenu()
+    {
+        return GameObject.Find("mainmenu");
+    }
 }
