@@ -1,0 +1,72 @@
+ManifestFileVersion: 0
+CRC: 3322833777
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 2e1ce7f9822acd45934c4d1bb98e003a
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 2ade24604a67b5799a9b48cb4c7490b3
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 20
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 58
+  Script: {instanceID: 0}
+- Class: 61
+  Script: {instanceID: 0}
+- Class: 62
+  Script: {instanceID: 0}
+- Class: 81
+  Script: {instanceID: 0}
+- Class: 89
+  Script: {instanceID: 0}
+- Class: 104
+  Script: {instanceID: 0}
+- Class: 108
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+- Class: 114
+  Script: {fileID: -1050975500, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: e6c1fca75456f924eb21048c519051af, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 9c65a00bd245f45638de9b4305ee9796, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 38b28c0cd3247ba44bce35ce9e39a612, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 010efebcd30e14ad8b145cea51126614, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 5d8238cc53530b64fbb7828c3d3bb591, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 124
+  Script: {instanceID: 0}
+- Class: 157
+  Script: {instanceID: 0}
+- Class: 212
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+- Class: 251
+  Script: {instanceID: 0}
+- Class: 258
+  Script: {instanceID: 0}
+Assets:
+- Assets/Resources/Scenes/Race/Level_5_Water.unity
+- Assets/Resources/Scenes/Race/Level_6_Funnel.unity
+- Assets/Resources/Scenes/Race/Level_3_Slick.unity
+- Assets/Resources/Scenes/Race/Level_2_Pipes.unity
+- Assets/Resources/Scenes/Race/Level_1_Bubbles.unity
+Dependencies: []
