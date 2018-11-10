@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 60404198221646694}
   - component: {fileID: 114123374000595436}
   - component: {fileID: 114815370093088100}
+  - component: {fileID: 114618570755330794}
   m_Layer: 0
   m_Name: AnchorObject
   m_TagString: Ground
@@ -243,6 +244,17 @@ MonoBehaviour:
   maxDropDistance: 100
   raiseSpeed: 4
   waitTime: 3
+--- !u!114 &114618570755330794
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1615116921497578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51585420232e1b240bf5168db0b43907, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114765213761207516
 MonoBehaviour:
   m_ObjectHideFlags: 1

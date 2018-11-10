@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 235256041785192516}
   - component: {fileID: 114621990356727864}
   - component: {fileID: 60458097696568008}
+  - component: {fileID: 114450162628608756}
   m_Layer: 0
   m_Name: ShipWheel
   m_TagString: Ground
@@ -81,7 +82,7 @@ Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1231750262066688}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -249,6 +250,17 @@ PolygonCollider2D:
       - {x: -0.37, y: 0.56}
       - {x: -0.13, y: 0.65}
       - {x: -0.089999996, y: 0.26999998}
+--- !u!114 &114450162628608756
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1231750262066688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51585420232e1b240bf5168db0b43907, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114621990356727864
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -285,7 +297,7 @@ MonoBehaviour:
   syncRotation: 6
   syncScale: 7
   syncVelocity: 7
-  syncAngularVelocity: 7
+  syncAngularVelocity: 6
   isPositionCompressed: 0
   isRotationCompressed: 0
   isScaleCompressed: 0
