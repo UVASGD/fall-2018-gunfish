@@ -12,11 +12,13 @@ public class AnchorObstacle : NetworkBehaviour {
     public float waitTime;
     private float waitTill;
 
-    private short stage; //0 = Falling, 1 = Waiting, 2 = Rising
+    private short stage; //0 = Falling, 1 = Waiting, 2 = Rising, 3 = Waiting to Fall
     
 	void Start () {
         originalPos = transform.position;
-	}
+        stage = 3;
+        waitTill = Time.time + waitTime;
+    }
 	
 	// Update is called once per frame
     [ServerCallback]
@@ -35,6 +37,7 @@ public class AnchorObstacle : NetworkBehaviour {
         if(stage == 1)
         {
             GetComponent<Rigidbody2D>().gravityScale = 0;
+            GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             if(Time.time > waitTill)
             {
                 CycleStage();
@@ -47,6 +50,17 @@ public class AnchorObstacle : NetworkBehaviour {
             if (Vector3.Distance(transform.position, originalPos) < 1f)
             {
                 CycleStage();
+                waitTill = Time.time + waitTime;
+            }
+        }
+
+        if(stage == 3)
+        {
+            GetComponent<Rigidbody2D>().gravityScale = 0;
+            GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            if (Time.time > waitTill)
+            {
+                CycleStage();
             }
         }
         //LineRenderer(originalPos, transform.position)
@@ -56,7 +70,7 @@ public class AnchorObstacle : NetworkBehaviour {
     private void CycleStage()
     {
         stage++;
-        if(stage > 2) stage = 0;
+        if(stage > 3) stage = 0;
     }
 
     private void OnCollisionEnter2D(Collision2D other)
