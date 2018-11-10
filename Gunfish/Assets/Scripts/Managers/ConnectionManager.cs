@@ -9,14 +9,9 @@ public class ConnectionManager : NetworkBehaviour {
 
     public static ConnectionManager instance;
 
-    //public List<NetworkConnection> netConns;
-    //public List<Gunfish> gunfish;
-
     public Dictionary<Gunfish, bool> readyFish;
     public int readyCount;
     public int notReadyCount;
-
-    //private Mutex readyMutex;
 
     // Use this for initialization
     void Awake () {
@@ -35,7 +30,7 @@ public class ConnectionManager : NetworkBehaviour {
 
     public void AddGunfish (Gunfish fish) {
         readyFish.Add(fish, false);
-        //print("Add gunfish not ready ++");
+        //fish.SetName(
         notReadyCount++;
         RaceManager.instance.TrySwapLevel();
     }

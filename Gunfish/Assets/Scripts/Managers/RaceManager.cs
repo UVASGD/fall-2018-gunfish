@@ -28,6 +28,8 @@ public class RaceManager : NetworkBehaviour {
     private AssetBundle bundle;
 
     public Dictionary<NetworkConnection, int> pointTable;
+    public Dictionary<NetworkConnection, string> nameTable;
+    public Dictionary<NetworkConnection, GameObject> fishTable;
 
     // Use this for initialization
     void Awake () {
@@ -46,6 +48,8 @@ public class RaceManager : NetworkBehaviour {
         secondsRemaining = secondsToWaitInLobby;
 
         pointTable = new Dictionary<NetworkConnection, int>();
+        nameTable = new Dictionary<NetworkConnection, string>();
+        fishTable = new Dictionary<NetworkConnection, GameObject>();
 
         EventManager.StartListening(EventType.InitGame, OnStart);
         EventManager.StartListening(EventType.NextLevel, LoadNextLevel);
@@ -139,7 +143,7 @@ public class RaceManager : NetworkBehaviour {
 
         string pointsText = "";
         foreach (NetworkConnection conn in pointTable.Keys) {
-            pointsText += ("Player " + conn.connectionId.ToString() + " points: " + pointTable[conn].ToString());
+            pointsText += ("Player " + conn.connectionId.ToString() + " points: " + pointTable[conn].ToString() + "\t");
         }
         print(pointsText);
 

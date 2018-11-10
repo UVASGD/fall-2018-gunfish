@@ -332,7 +332,11 @@ public class Gunfish : NetworkBehaviour {
 
     public void SetName(string newName) {
         gameName = newName;
-        nameplate.SetName(gameName);
+        if (nameplate) {
+            nameplate.SetName(gameName);
+        } else {
+            print("Nameplate is null!");
+        }
     }
 
     //SERVER CALLBACKS
