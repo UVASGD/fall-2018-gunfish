@@ -56,7 +56,7 @@ public class Gunfish : NetworkBehaviour {
     public Rigidbody2D rb;
     public Rigidbody2D middleRb;
     public Gun gun;
-
+  
     [Tooltip("The number of fish pieces not touching the ground. (0 = grounded)")]
     public int groundedCount = 0;
 
@@ -157,7 +157,7 @@ public class Gunfish : NetworkBehaviour {
             }
             CheckCoolDowns();
         }
-
+        // int latency = NetworkManager.singleton.client.GetRTT();
         if (groundedCount < 0) {
             groundedCount = 0;
         }
@@ -330,8 +330,8 @@ public class Gunfish : NetworkBehaviour {
 
     //SERVER CALLBACKS
     [ServerCallback]
-    public RayHitInfo ServerShoot() {
-        return gun.ServerShoot();
+    public RayHitInfo ServerShoot(Gunfish gunfish) {
+        return gun.ServerShoot(gunfish);
     }
 
 }
