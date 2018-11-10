@@ -996,7 +996,7 @@ MonoBehaviour:
   isVelocityCompressed: 0
   isAngularVelocityCompressed: 0
   whenToUpdateTransform: 0
-  sendRate: 20
+  sendRate: 10
   networkChannel: 1
   childObjectToSync: {fileID: 1118271601610288}
 --- !u!114 &114140514684468832
@@ -1042,7 +1042,7 @@ MonoBehaviour:
   isVelocityCompressed: 0
   isAngularVelocityCompressed: 0
   whenToUpdateTransform: 0
-  sendRate: 20
+  sendRate: 10
   networkChannel: 1
   childObjectToSync: {fileID: 1225765976645630}
 --- !u!114 &114163848813408166
@@ -1088,7 +1088,7 @@ MonoBehaviour:
   isVelocityCompressed: 0
   isAngularVelocityCompressed: 0
   whenToUpdateTransform: 0
-  sendRate: 20
+  sendRate: 10
   networkChannel: 1
   childObjectToSync: {fileID: 1300514411941736}
 --- !u!114 &114168870509249864
@@ -1179,7 +1179,7 @@ MonoBehaviour:
   isVelocityCompressed: 0
   isAngularVelocityCompressed: 0
   whenToUpdateTransform: 0
-  sendRate: 20
+  sendRate: 10
   networkChannel: 1
   childObjectToSync: {fileID: 1959807428811642}
 --- !u!114 &114229748587406794
@@ -1255,7 +1255,7 @@ MonoBehaviour:
   isVelocityCompressed: 0
   isAngularVelocityCompressed: 0
   whenToUpdateTransform: 0
-  sendRate: 20
+  sendRate: 10
   networkChannel: 1
   childObjectToSync: {fileID: 1868636849527286}
 --- !u!114 &114310107338161074
@@ -1316,7 +1316,7 @@ MonoBehaviour:
   isVelocityCompressed: 0
   isAngularVelocityCompressed: 0
   whenToUpdateTransform: 0
-  sendRate: 20
+  sendRate: 10
   networkChannel: 1
   childObjectToSync: {fileID: 1719977526996474}
 --- !u!114 &114453551831148570
@@ -1413,7 +1413,7 @@ MonoBehaviour:
   isVelocityCompressed: 0
   isAngularVelocityCompressed: 0
   whenToUpdateTransform: 0
-  sendRate: 20
+  sendRate: 10
   networkChannel: 1
   childObjectToSync: {fileID: 1284162509353440}
 --- !u!114 &114563450634022960
@@ -1459,7 +1459,7 @@ MonoBehaviour:
   isVelocityCompressed: 0
   isAngularVelocityCompressed: 0
   whenToUpdateTransform: 0
-  sendRate: 20
+  sendRate: 10
   networkChannel: 1
   childObjectToSync: {fileID: 0}
 --- !u!114 &114579779649984082
@@ -1505,7 +1505,7 @@ MonoBehaviour:
   isVelocityCompressed: 0
   isAngularVelocityCompressed: 0
   whenToUpdateTransform: 0
-  sendRate: 20
+  sendRate: 10
   networkChannel: 1
   childObjectToSync: {fileID: 1745363014515450}
 --- !u!114 &114608932630316684
@@ -1596,7 +1596,7 @@ MonoBehaviour:
   isVelocityCompressed: 0
   isAngularVelocityCompressed: 0
   whenToUpdateTransform: 0
-  sendRate: 20
+  sendRate: 10
   networkChannel: 1
   childObjectToSync: {fileID: 1314868733086626}
 --- !u!114 &114818805124077636
