@@ -27,6 +27,10 @@ public class RaceManager : NetworkBehaviour {
 
     private AssetBundle bundle;
 
+    public Dictionary<NetworkConnection, int> pointTable;
+    public Dictionary<NetworkConnection, string> nameTable;
+    public Dictionary<NetworkConnection, GameObject> fishTable;
+
     // Use this for initialization
     void Awake () {
         if (instance == null) {
@@ -42,6 +46,10 @@ public class RaceManager : NetworkBehaviour {
 
         gameActive = false;
         secondsRemaining = secondsToWaitInLobby;
+
+        pointTable = new Dictionary<NetworkConnection, int>();
+        nameTable = new Dictionary<NetworkConnection, string>();
+        fishTable = new Dictionary<NetworkConnection, GameObject>();
 
         EventManager.StartListening(EventType.InitGame, OnStart);
         EventManager.StartListening(EventType.NextLevel, LoadNextLevel);
@@ -96,7 +104,7 @@ public class RaceManager : NetworkBehaviour {
         }
 
         //Randomize the index list and add the maps to the map list
-        print("Indices: " + indices.Length);
+        //print("Indices: " + indices.Length);
         for (int i = 0; i < Mathf.Min(levelsPerRace, indices.Length); i++) {
             int temp = indices[i];
             int otherIndex = Random.Range(i, indices.Length);
@@ -106,7 +114,13 @@ public class RaceManager : NetworkBehaviour {
         }
     }
 
-    public void PlayerFinish (Gunfish gunfish) {
+    public void PlayerFinish (Gunfish gunfish, int points = 0) {
+        if (!pointTable.ContainsKey(gunfish.connectionToClient)) {
+            pointTable.Add(gunfish.connectionToClient, points);
+        } else {
+            pointTable[gunfish.connectionToClient] += points;
+        }
+
         fishFinished.Add(gunfish);
         ConnectionManager.instance.SetReady(gunfish, true);
         TrySwapLevel();
@@ -122,10 +136,16 @@ public class RaceManager : NetworkBehaviour {
     }
 
     void LoadNextLevel() {
-        print("");
+        //print("");
         fishFinished.Clear();
 
         ConnectionManager.instance.Clear();
+
+        string pointsText = "";
+        foreach (NetworkConnection conn in pointTable.Keys) {
+            pointsText += ("Player " + conn.connectionId.ToString() + " points: " + pointTable[conn].ToString() + "\t");
+        }
+        print(pointsText);
 
         if (mapIndex == maps.Count) {
             gameActive = false;
