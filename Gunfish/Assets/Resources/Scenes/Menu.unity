@@ -388,7 +388,7 @@ MonoBehaviour:
     m_MaxTimerTimeout: 12000
     m_MinNetSimulatorTimeout: 1
     m_MaxNetSimulatorTimeout: 12000
-  m_Channels: 0500000000000000
+  m_Channels: 
   m_UseWebSockets: 0
   m_UseSimulator: 0
   m_SimulatedLatency: 1
@@ -424,7 +424,6 @@ GameObject:
   - component: {fileID: 930626155}
   - component: {fileID: 930626154}
   - component: {fileID: 930626153}
-  - component: {fileID: 930626156}
   m_Layer: 0
   m_Name: MusicManager
   m_TagString: Untagged

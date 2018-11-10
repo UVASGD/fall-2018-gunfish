@@ -4,18 +4,12 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEditor;
 
-
-//NOT CURRENTLY IMPLEMENTED
-//Extension to Gunfish Inspector. For now, will just create SyncVars when creating a new Gunfish
 [CustomEditor(typeof(Gunfish))]
 public class GunfishEditor : Editor {
 
     Gunfish fish;
 
     public override void OnInspectorGUI () {
-
-        return;
-
         base.OnInspectorGUI ();
 
         fish = (Gunfish)target;
