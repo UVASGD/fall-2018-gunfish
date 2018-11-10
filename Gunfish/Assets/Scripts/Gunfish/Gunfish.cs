@@ -51,6 +51,7 @@ public class Gunfish : NetworkBehaviour {
     int isSwimming = 0;
 
     public ShotType shotType = ShotType.Medium;
+    public bool auto = false;
 
     [Header("Fish Info")]
     public Rigidbody2D rb;
@@ -193,7 +194,8 @@ public class Gunfish : NetworkBehaviour {
     //or not an input message should be sent to the server.
     public void ClientInputHandler() {
         float x = Input.GetAxisRaw("Horizontal");
-        bool shoot = Input.GetButtonDown("Fire1");
+        bool shoot = auto ? Input.GetButton("Fire1") : Input.GetButtonDown("Fire1");
+        // ternary operator ?: if (auto) =statement1 else =statement2
 
         bool apply = (x != 0f || shoot);
 
