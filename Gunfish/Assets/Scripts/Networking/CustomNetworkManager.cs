@@ -7,13 +7,21 @@ public class CustomNetworkManager : NetworkManager
     public List<GameObject> fishList;
     private NetworkStartPosition[] spawnPoints;
     private int spawnNum;
-    //public List<NetworkConnection> networkConnections;
-    //public List<NetworkInstanceId> netIds;
+
+    public static Dictionary<NetworkConnection, int> pointTable;
 
     public override void OnStartServer() {
-        //base.OnStartServer();
         fishList = new List<GameObject>(GunfishList.Get());
         spawnNum = 0;
+
+        pointTable = new Dictionary<NetworkConnection, int>();
+    }
+
+    public override void OnClientConnect (NetworkConnection conn) {
+        base.OnClientConnect (conn);
+
+        pointTable.Add(conn, 0);
+        //print("I AM HERE");
     }
 
     public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId) {
