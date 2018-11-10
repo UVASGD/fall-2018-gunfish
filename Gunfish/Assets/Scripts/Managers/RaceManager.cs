@@ -127,7 +127,7 @@ public class RaceManager : NetworkBehaviour {
     }
 
     public void TrySwapLevel () {
-        if (ConnectionManager.instance.readyCount == ConnectionManager.instance.readyFish.Count && ConnectionManager.instance.readyFish.Count > (gameActive ? 0 : 0)) {
+        if (ConnectionManager.instance.readyCount == Mathf.Max(1, ConnectionManager.instance.readyFish.Count - 1) && ConnectionManager.instance.readyFish.Count > (gameActive ? 0 : 0)) {
             fishFinished.Clear();
             ConnectionManager.instance.SetAllFishReady(false);
 
@@ -148,6 +148,12 @@ public class RaceManager : NetworkBehaviour {
         print(pointsText);
 
         if (mapIndex == maps.Count) {
+            List<NetworkConnection> keys = new List<NetworkConnection>(pointTable.Keys);
+
+            foreach (NetworkConnection fish in keys) {
+                pointTable[fish] = 0;
+            }
+
             gameActive = false;
             SelectMaps();
             EventManager.TriggerEvent(EventType.EndGame);
@@ -159,7 +165,6 @@ public class RaceManager : NetworkBehaviour {
     }
 
     void OnEnd() {
-        Debug.Log("!!!!!!! WOW YOU EXIST !!!!!!!");
         NetworkManager.singleton.ServerChangeScene("RaceLobby");
     }
 

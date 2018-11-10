@@ -34,9 +34,11 @@ public class CustomNetworkManager : NetworkManager
         GameObject player = (GameObject)Instantiate(fishList[Random.Range(0,fishList.Count)], targetPosition, Quaternion.identity);
         string playerName = "Player " + (conn.connectionId + 1);
         if (RaceManager.instance && RaceManager.instance.pointTable.ContainsKey(conn)) {
-            playerName += "\nPoints: " + RaceManager.instance.pointTable[conn];
+            if (RaceManager.instance.pointTable[conn] > 0) {
+                playerName += "\nPoints: " + RaceManager.instance.pointTable[conn];
+            }
         } else {
-            print("Nope!");
+            //print("Nope!");
         }
 
         NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);

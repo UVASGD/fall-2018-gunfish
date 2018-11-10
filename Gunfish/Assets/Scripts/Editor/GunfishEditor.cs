@@ -14,16 +14,16 @@ public class GunfishEditor : Editor {
 
     public override void OnInspectorGUI () {
         base.OnInspectorGUI ();
-        return;
+        //return;
 
-        fish = (Gunfish)target;
+        //fish = (Gunfish)target;
 
-        if (GUILayout.Button("Update Network Transforms")) {
-            NetworkTransformUtility.UpdateTransforms(fish.gameObject);
-        }
+        //if (GUILayout.Button("Update Network Transforms")) {
+        //    NetworkTransformUtility.UpdateTransforms(fish.gameObject);
+        //}
 
-        if (GUILayout.Button("Remove Network Transforms")) {
-            NetworkTransformUtility.RemoveTransforms(fish.gameObject);
-        }
+        //if (GUILayout.Button("Remove Network Transforms")) {
+        //    NetworkTransformUtility.RemoveTransforms(fish.gameObject);
+        //}
     }
 }
