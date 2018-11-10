@@ -1352,7 +1352,7 @@ MonoBehaviour:
   flops: []
   nameplatePrefab: {fileID: 1579978614954062, guid: 57558fa80fe1c11438d7f31377a2df12,
     type: 2}
-  gameName: Salmon
+  gameName: "\u30AA\u30BF\u30AF\u306E\u9B5A"
 --- !u!114 &114453960882895180
 MonoBehaviour:
   m_ObjectHideFlags: 1
