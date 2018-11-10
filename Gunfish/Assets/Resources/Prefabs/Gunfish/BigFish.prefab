@@ -1462,8 +1462,8 @@ MonoBehaviour:
   currentFireCD: 0
   maxFireCD: 1
   isBlocked: 0
-  thrustForce: 200
-  swimTorque: 10
+  thrustForce: 16
+  swimTorque: 170
   jumpForce: 500
   moveTorque: 100
   shotType: 3
