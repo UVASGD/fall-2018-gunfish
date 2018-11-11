@@ -127,7 +127,8 @@ public class RaceManager : NetworkBehaviour {
     }
 
     public void TrySwapLevel () {
-        if (ConnectionManager.instance.readyCount == Mathf.Max(1, ConnectionManager.instance.readyFish.Count - 1) && ConnectionManager.instance.readyFish.Count > (gameActive ? 0 : 0)) {
+        print("Starting!");
+        if (ConnectionManager.instance.readyCount == ConnectionManager.instance.readyFish.Count && ConnectionManager.instance.readyFish.Count > (gameActive ? 0 : 0)) {
             fishFinished.Clear();
             ConnectionManager.instance.SetAllFishReady(false);
 
