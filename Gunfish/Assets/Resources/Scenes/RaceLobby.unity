@@ -512,12 +512,12 @@ Prefab:
     - target: {fileID: 114453832795016880, guid: aff48dcfa50fd469fa0a744765d06dcb,
         type: 2}
       propertyPath: secondsToWaitInLobby
-      value: 10
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 114453832795016880, guid: aff48dcfa50fd469fa0a744765d06dcb,
         type: 2}
       propertyPath: levelsPerRace
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aff48dcfa50fd469fa0a744765d06dcb, type: 2}

@@ -1204,8 +1204,9 @@ MonoBehaviour:
   gun: {fileID: 0}
   groundedCount: 0
   flops: []
-  nameplatePrefab: {fileID: 0}
-  gameName: 
+  nameplatePrefab: {fileID: 1579978614954062, guid: 57558fa80fe1c11438d7f31377a2df12,
+    type: 2}
+  gameName: Player
 --- !u!114 &114138373407444468
 MonoBehaviour:
   m_ObjectHideFlags: 1
