@@ -48,6 +48,7 @@ public class GunfishGeneratorWindow : EditorWindow {
 
     static string prefabPath = "Assets/Resources/Prefabs/Gunfish/";
     static string sheetPath = "Assets/Art/Spritesheets/";
+    static string materialsPath = "Assets/Materials/";
 
     static bool putInScene;
 
@@ -106,9 +107,9 @@ public class GunfishGeneratorWindow : EditorWindow {
                 PlayerPrefs.SetInt("Scene", (putInScene ? 1 : 0));
                     Generate();
 
-                    if (window) {
-                        window.Close();
-                    }
+                    //if (window) {
+                    //    window.Close();
+                    //}
                 }
             }
             GUILayout.Space(10f);
@@ -180,7 +181,7 @@ public class GunfishGeneratorWindow : EditorWindow {
         material = new Material(Shader.Find("Unlit/Transparent"));
         material.SetTexture("_MainTex", texture);
 
-        AssetDatabase.CreateAsset(material, "Assets/Art/Materials/" + fishName + ".mat");
+        AssetDatabase.CreateAsset(material, materialsPath + fishName + ".mat");
     }
 
     private void CreateGunfish () {
