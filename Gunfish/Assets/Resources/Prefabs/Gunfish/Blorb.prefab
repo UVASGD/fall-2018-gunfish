@@ -2194,7 +2194,7 @@ MonoBehaviour:
   whenToUpdateTransform: 0
   sendRate: 15
   networkChannel: 1
-  childObjectToSync: {fileID: 1814385067734580}
+  childObjectToSync: {fileID: 0}
 --- !u!114 &114313319715824492
 MonoBehaviour:
   m_ObjectHideFlags: 1
