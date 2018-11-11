@@ -360,7 +360,7 @@ MonoBehaviour:
   - {fileID: 1489070563695716, guid: 073a8da3079909747b7bdc398dce050f, type: 2}
   - {fileID: 1480329160475598, guid: 4eca19a0ecb920148a8cdea3c97e9889, type: 2}
   - {fileID: 1561315145583120, guid: 9ed7d216b25ed964b98d3e7542dbcb36, type: 2}
-  - {fileID: 1207845398067244, guid: 6470435a00b1e0a4686a33271e184ef1, type: 2}
+  - {fileID: 0}
   - {fileID: 1746450308669820, guid: 5a741222cce2f9e40a8bb9ceae1f970c, type: 2}
   m_CustomConfig: 0
   m_MaxConnections: 4
@@ -417,7 +417,8 @@ MonoBehaviour:
   matchSize: 4
   isNetworkActive: 0
   matchMaker: {fileID: 0}
-  fishList: []
+  fishList:
+  - {fileID: 1814385067734580, guid: 6470435a00b1e0a4686a33271e184ef1, type: 2}
 --- !u!114 &871604498
 MonoBehaviour:
   m_ObjectHideFlags: 0
