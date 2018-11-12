@@ -9,7 +9,7 @@ public class CustomNetworkManager : NetworkManager
     private int spawnNum;
 
     public override void OnStartServer() {
-        //fishList = new List<GameObject>(GunfishList.Get());
+        fishList = new List<GameObject>(GunfishList.Get());
         spawnNum = 0;
 
         //pointTable = new Dictionary<NetworkConnection, int>();

@@ -417,8 +417,7 @@ MonoBehaviour:
   matchSize: 4
   isNetworkActive: 0
   matchMaker: {fileID: 0}
-  fishList:
-  - {fileID: 1561315145583120, guid: 9ed7d216b25ed964b98d3e7542dbcb36, type: 2}
+  fishList: []
 --- !u!114 &871604498
 MonoBehaviour:
   m_ObjectHideFlags: 0
