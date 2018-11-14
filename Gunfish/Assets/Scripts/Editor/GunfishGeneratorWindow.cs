@@ -46,14 +46,26 @@ public class GunfishGeneratorWindow : EditorWindow {
     static List<string> gunNameList;
     static int selectedGunIndex;
 
-    static string prefabPath = "Assets/Resources/Prefabs/Gunfish/";
-    static string sheetPath = "Assets/Art/Spritesheets/";
-    static string materialsPath = "Assets/Materials/";
+    private const string MAIN_TITLE = "Gunfish Generator";
+
+    // Editor Preferences
+    private const string REG_NAME = "Gunfish.";
+    public const string prefabPath = REG_NAME + "prefabPath";
+    public const string sheetPath = REG_NAME + "sheetPath";
+    public const string materialsPath = REG_NAME + "materialsPath";
 
     static bool putInScene;
 
     [MenuItem("Gunfish/Create New Gunfish %#f")]
     private static void Gunfish () {
+        if (string.IsNullOrEmpty(PlayerPrefs.GetString(prefabPath)))
+            PlayerPrefs.SetString(prefabPath, "Assets/Resources/Prefabs/Gunfish/");
+        if (string.IsNullOrEmpty(PlayerPrefs.GetString(sheetPath)))
+            PlayerPrefs.SetString(sheetPath, "Assets/Resources/Sprites/Spritesheets/");
+        if (string.IsNullOrEmpty(PlayerPrefs.GetString(materialsPath)))
+            PlayerPrefs.SetString(materialsPath, "Assets/Resources/Materials/Fish/");
+
+
         window = EditorWindow.GetWindow<GunfishGeneratorWindow>("Create Gunfish");
         window.minSize = new Vector2(220f, 140f);
         window.maxSize = new Vector2(2000f, 2000f);
@@ -90,7 +102,81 @@ public class GunfishGeneratorWindow : EditorWindow {
         return valid;
     }
 
+    /// <summary>
+    /// GUI for our beautiful header :)
+    /// </summary>
+    void HeaderGUI() {
+        GUILayout.Space(16);
+
+        GUIStyle style = new GUIStyle() {
+            alignment = TextAnchor.LowerCenter,
+            fontSize = 18,
+            fontStyle = FontStyle.Bold
+        };
+        style.normal.textColor = Color.white;
+        style.richText = true;
+        Rect rect = GUIRect(0, 18);
+
+        GUIStyle shadowStyle = new GUIStyle(style) {
+            richText = false
+        };
+
+        EditorGUI.DropShadowLabel(rect, MAIN_TITLE, shadowStyle);
+        GUI.Label(rect, MAIN_TITLE, style);
+
+        GUILayout.Space(15);
+    }
+
+    private void FileLocGUI() {
+
+        EditorGUILayout.BeginHorizontal();
+        PlayerPrefs.SetString(prefabPath, EditorGUILayout.TextField("Prefab Location: ",
+                    PlayerPrefs.GetString(prefabPath), GUILayout.Width(-50), GUILayout.ExpandWidth(true)));
+        if (GUI.Button(GUIRect(30, 18), "...", EditorStyles.miniButtonMid)) {
+            string temp = EditorUtility.OpenFolderPanel("Prefab Location",
+                PlayerPrefs.GetString(prefabPath), "");
+            if (!string.IsNullOrEmpty(temp)) {
+                string key = temp.Contains("/") ? "/" : "\\";
+                if (!temp.EndsWith(key)) temp += key;
+                PlayerPrefs.SetString(prefabPath, temp);
+            }
+        }
+        GUILayout.EndHorizontal();
+
+        EditorGUILayout.BeginHorizontal();
+        PlayerPrefs.SetString(sheetPath, EditorGUILayout.TextField("Spritesheet Location: ",
+                    PlayerPrefs.GetString(sheetPath), GUILayout.Width(-50), GUILayout.ExpandWidth(true)));
+        if (GUI.Button(GUIRect(30, 18), "...", EditorStyles.miniButtonMid)) {
+            string temp = EditorUtility.OpenFolderPanel("Spritesheet Location",
+                PlayerPrefs.GetString(sheetPath), "");
+            if (!string.IsNullOrEmpty(temp)) {
+                string key = temp.Contains("/") ? "/" : "\\";
+                if (!temp.EndsWith(key)) temp += key;
+                PlayerPrefs.SetString(sheetPath, temp);
+            }
+        }
+        GUILayout.EndHorizontal();
+
+        EditorGUILayout.BeginHorizontal();
+        PlayerPrefs.SetString(materialsPath, EditorGUILayout.TextField("Materials Location: ",
+                    PlayerPrefs.GetString(materialsPath), GUILayout.Width(-50), GUILayout.ExpandWidth(true)));
+        if (GUI.Button(GUIRect(30, 18), "...", EditorStyles.miniButtonMid)) {
+            string temp = EditorUtility.OpenFolderPanel("Materials Location",
+                PlayerPrefs.GetString(materialsPath), "");
+            if (!string.IsNullOrEmpty(temp)) {
+                string key = temp.Contains("/") ? "/" : "\\";
+                if (!temp.EndsWith(key)) temp += key;
+                PlayerPrefs.SetString(materialsPath, temp);
+            }
+        }
+        GUILayout.EndHorizontal();
+        GUILayout.Space(16);
+    }
+
     private void OnGUI () {
+        HeaderGUI();
+        FileLocGUI();
+
         fishName = EditorGUILayout.TextField("Name", fishName);
         texture = (Texture2D)EditorGUILayout.ObjectField("Sprite", texture, typeof(Texture2D), false);
         numberOfDivisions = EditorGUILayout.IntField("Number of Divisions", numberOfDivisions);
@@ -351,4 +437,11 @@ public class GunfishGeneratorWindow : EditorWindow {
             DestroyImmediate(fishPieces[0]);
         }
     }
+
+    public static Rect GUIRect(float width, float height) {
+        return GUILayoutUtility.GetRect(width, height,
+            GUILayout.ExpandWidth(width <= 0),
+            GUILayout.ExpandHeight(height <= 0));
+    }
+
 }
