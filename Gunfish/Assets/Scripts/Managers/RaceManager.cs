@@ -19,6 +19,7 @@ public class RaceManager : NetworkBehaviour {
 
     public List<Gunfish> fishFinished = new List<Gunfish>();
     public int fishCount;
+    public int MaxPointsEarned = -1;
 
     public bool gameActive;
 
@@ -30,6 +31,8 @@ public class RaceManager : NetworkBehaviour {
     public Dictionary<NetworkConnection, int> pointTable;
     public Dictionary<NetworkConnection, string> nameTable;
     public Dictionary<NetworkConnection, GameObject> fishTable;
+
+    public GameObject CrownPrefab;
 
     // Use this for initialization
     void Awake () {
@@ -128,10 +131,12 @@ public class RaceManager : NetworkBehaviour {
 
     public void TrySwapLevel () {
         print("Starting!");
-        if (ConnectionManager.instance.readyCount == ConnectionManager.instance.readyFish.Count && ConnectionManager.instance.readyFish.Count > (gameActive ? 0 : 0)) {
+        if (ConnectionManager.instance.readyCount == ConnectionManager.instance.readyFish.Count
+            && ConnectionManager.instance.readyFish.Count > (gameActive ? 0 : 0)) {
             fishFinished.Clear();
             ConnectionManager.instance.SetAllFishReady(false);
 
+            MaxPointsEarned = MaxPoints();
             LoadNextLevel();
         }
     }
@@ -163,6 +168,13 @@ public class RaceManager : NetworkBehaviour {
             gameActive = true;
         }
         NetworkManager.singleton.ServerChangeScene(maps[mapIndex++]);
+    }
+
+    int MaxPoints() {
+        int max = -1;
+        foreach(NetworkConnection conn in pointTable.Keys)
+            max = pointTable[conn] > max ? pointTable[conn] : max;
+        return max;
     }
 
     void OnEnd() {
