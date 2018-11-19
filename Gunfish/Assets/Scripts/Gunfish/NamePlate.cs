@@ -9,6 +9,7 @@ public class NamePlate : MonoBehaviour {
 
     public PositionConstraint pc;
 
+
     public void SetName(string gameName) {
         text.text = gameName;
     }

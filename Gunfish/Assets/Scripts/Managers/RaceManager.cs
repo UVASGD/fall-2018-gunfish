@@ -27,12 +27,17 @@ public class RaceManager : NetworkBehaviour {
 
     private AssetBundle bundle;
 
+    public Dictionary<NetworkConnection, int> pointTable;
+    public Dictionary<NetworkConnection, string> nameTable;
+    public Dictionary<NetworkConnection, GameObject> fishTable;
+
     // Use this for initialization
     void Awake () {
-        if (instance == null)
+        if (instance == null) {
             instance = this;
-        else
-            Destroy(gameObject);
+        } else {
+            Destroy(this);
+        }
 
         DontDestroyOnLoad(this);
 
@@ -42,13 +47,18 @@ public class RaceManager : NetworkBehaviour {
         gameActive = false;
         secondsRemaining = secondsToWaitInLobby;
 
+        pointTable = new Dictionary<NetworkConnection, int>();
+        nameTable = new Dictionary<NetworkConnection, string>();
+        fishTable = new Dictionary<NetworkConnection, GameObject>();
+
         EventManager.StartListening(EventType.InitGame, OnStart);
         EventManager.StartListening(EventType.NextLevel, LoadNextLevel);
         EventManager.StartListening(EventType.EndGame, OnEnd);
     }
 
-    private void Start () {
-        //Invoke("SetReady", secondsUntilStartGame);
+    public void InvokeStartTimer () {
+        NetworkServer.SendToAll(MessageTypes.REQUESTTIME, new RequestTimeMsg(secondsToWaitInLobby));
+        StopCoroutine(StartTimer());
         StartCoroutine(StartTimer());
     }
 
@@ -57,17 +67,11 @@ public class RaceManager : NetworkBehaviour {
         SelectMaps();
 
         while (secondsRemaining > -1) {
+            NetworkServer.SendToAll(MessageTypes.REQUESTTIME, new RequestTimeMsg(secondsRemaining));
             yield return new WaitForSeconds(1f);
             secondsRemaining--;
         }
         SetReady();
-    }
-
-    private void Update () {
-        //if (ConnectionManager.instance.readyCount >= 1) {
-        //    ConnectionManager.instance.SetAllFishReady(false);
-        //    LoadNextLevel();
-        //}
     }
 
     void SetReady () {
@@ -87,17 +91,11 @@ public class RaceManager : NetworkBehaviour {
         maps.Clear();
         mapIndex = 0;
 
-        //print("Selecting");
-
-        //Object[] scenes = Resources.LoadAll("Scenes/Race/");
-        //AssetBundle bundle = AssetBundle.LoadFromFile("Assets/AssetBundles/racelevels");
-        print("Data path: " + Application.streamingAssetsPath);
         if (!bundle) {
             bundle = AssetBundle.LoadFromFile(Path.Combine(Application.streamingAssetsPath, "racelevels"));
         }
         string[] scenes = bundle.GetAllScenePaths();
-        //AssetBundle.UnloadAllAssetBundles(true);
-        //bundle.Unload(false);
+        //print("Scene Length: " +
 
         int[] indices = new int[scenes.Length];
 
@@ -106,6 +104,7 @@ public class RaceManager : NetworkBehaviour {
         }
 
         //Randomize the index list and add the maps to the map list
+        //print("Indices: " + indices.Length);
         for (int i = 0; i < Mathf.Min(levelsPerRace, indices.Length); i++) {
             int temp = indices[i];
             int otherIndex = Random.Range(i, indices.Length);
@@ -113,19 +112,23 @@ public class RaceManager : NetworkBehaviour {
             indices[otherIndex] = temp;
             maps.Add( System.IO.Path.GetFileNameWithoutExtension(scenes[indices[i]]) );
         }
-        //bundle.Unload(false);
     }
 
-    public void PlayerFinish (Gunfish gunfish) {
+    public void PlayerFinish (Gunfish gunfish, int points = 0) {
+        if (!pointTable.ContainsKey(gunfish.connectionToClient)) {
+            pointTable.Add(gunfish.connectionToClient, points);
+        } else {
+            pointTable[gunfish.connectionToClient] += points;
+        }
+
         fishFinished.Add(gunfish);
         ConnectionManager.instance.SetReady(gunfish, true);
         TrySwapLevel();
     }
 
     public void TrySwapLevel () {
-        
+        print("Starting!");
         if (ConnectionManager.instance.readyCount == ConnectionManager.instance.readyFish.Count && ConnectionManager.instance.readyFish.Count > (gameActive ? 0 : 0)) {
-            //print("Time to go to next level!");
             fishFinished.Clear();
             ConnectionManager.instance.SetAllFishReady(false);
 
@@ -134,21 +137,26 @@ public class RaceManager : NetworkBehaviour {
     }
 
     void LoadNextLevel() {
-        //print("Loading level " + (mapIndex + 1) + "...");
-        //print("Map index: " + (mapIndex + 1) + ", Count: " + maps.Count); 
-        print("");
+        //print("");
         fishFinished.Clear();
 
         ConnectionManager.instance.Clear();
-        //ConnectionManager.instance.SetAllFishReady(false);
+
+        string pointsText = "";
+        foreach (NetworkConnection conn in pointTable.Keys) {
+            pointsText += ("Player " + conn.connectionId.ToString() + " points: " + pointTable[conn].ToString() + "\t");
+        }
+        print(pointsText);
 
         if (mapIndex == maps.Count) {
+            List<NetworkConnection> keys = new List<NetworkConnection>(pointTable.Keys);
+
+            foreach (NetworkConnection fish in keys) {
+                pointTable[fish] = 0;
+            }
+
             gameActive = false;
-            //AssetBundle.UnloadAllAssetBundles(true);
             SelectMaps();
-            //Invoke("SetReady", secondsUntilStartGame);
-            //bundle.Unload(true);
-            StartCoroutine(StartTimer());
             EventManager.TriggerEvent(EventType.EndGame);
             return;
         } else {
@@ -158,7 +166,6 @@ public class RaceManager : NetworkBehaviour {
     }
 
     void OnEnd() {
-        Debug.Log("!!!!!!! WOW YOU EXIST !!!!!!!");
         NetworkManager.singleton.ServerChangeScene("RaceLobby");
     }
 

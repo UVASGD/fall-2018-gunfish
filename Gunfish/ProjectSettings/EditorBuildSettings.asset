@@ -8,7 +8,40 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Resources/Scenes/Menu.unity
     guid: 54e94aef980a64acd87312f7ae9c271f
+  - enabled: 0
+    path: Assets/Resources/Scenes/MenuUI.unity
+    guid: bb57955e76cd24f1d9b3665d57199cc6
   - enabled: 1
     path: Assets/Resources/Scenes/RaceLobby.unity
     guid: 63d9ad946082f38489e71c347eb27bd9
+  - enabled: 1
+    path: Assets/Resources/Scenes/Race/Level_1_Bubbles.unity
+    guid: f935e7a9fed80444aa37ced1a09f4aad
+  - enabled: 1
+    path: Assets/Resources/Scenes/Race/Level_2_Pipes.unity
+    guid: ac9eda53f8c394a99b91e0f13607172d
+  - enabled: 1
+    path: Assets/Resources/Scenes/Race/Level_3_Slick.unity
+    guid: b5c0e5f262ddf1c43aeb150e23be37cb
+  - enabled: 1
+    path: Assets/Resources/Scenes/Race/Level_5_Water.unity
+    guid: 1382af203727c4440ba69b73a71ae8b2
+  - enabled: 1
+    path: Assets/Resources/Scenes/Race/Level_6_Funnel.unity
+    guid: 388302802a2a64557b56ce2e4913009d
+  - enabled: 1
+    path: Assets/Resources/Scenes/Race/Level_7_Ramp.unity
+    guid: 70ef50577c4e1b549a346c2023afff7c
+  - enabled: 1
+    path: Assets/Resources/Scenes/Race/Level_8_Hop.unity
+    guid: eb63c6c91b6a90a47b404ad915372ff6
+  - enabled: 1
+    path: Assets/Resources/Scenes/Race/Level_9_Ladders.unity
+    guid: f2e56b5f8f033c14a999c2bc6590aa9d
+  - enabled: 1
+    path: Assets/Resources/Scenes/Race/Level_10_Test.unity
+    guid: 3853e0ae7c2d5074c9a94184ef7d09b3
+  - enabled: 1
+    path: Assets/Resources/Scenes/Race/Level_11_Swim.unity
+    guid: 095ccfe9b6bd9364a965f01ef4bafcb4
   m_configObjects: {}
