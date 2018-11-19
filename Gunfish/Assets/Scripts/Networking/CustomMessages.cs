@@ -78,3 +78,13 @@ public class PlayerFinishMsg : MessageBase {
         gunfish = fish;
     }
 }
+
+public class RequestTimeMsg : MessageBase {
+    public int time;
+
+    public RequestTimeMsg() { }
+
+    public RequestTimeMsg(int time) {
+        this.time = time;
+    }
+}
