@@ -64,6 +64,8 @@ public class CustomNetworkManager : NetworkManager
             Transform crownLoc = fish.transform.FindDeepChild("CrownLocation");
 
             crown.transform.SetParent(crownLoc);
+            crown.transform.localPosition = Vector3.zero;
+            crown.transform.localRotation = Quaternion.Euler(0, 0, -180);
         }
     }
 
