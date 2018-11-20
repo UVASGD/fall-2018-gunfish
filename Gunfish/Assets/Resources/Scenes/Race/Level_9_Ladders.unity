@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
+  m_IndirectSpecularColor: {r: 0.4465934, g: 0.49642956, b: 0.57482487, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -228,11 +228,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4106194911591828, guid: 338b54b7c9f0a604f88e3322612a755b, type: 2}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0.37886572
       objectReference: {fileID: 0}
     - target: {fileID: 4106194911591828, guid: 338b54b7c9f0a604f88e3322612a755b, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.9254517
       objectReference: {fileID: 0}
     - target: {fileID: 4106194911591828, guid: 338b54b7c9f0a604f88e3322612a755b, type: 2}
       propertyPath: m_RootOrder
@@ -249,6 +249,10 @@ Prefab:
     - target: {fileID: 4106194911591828, guid: 338b54b7c9f0a604f88e3322612a755b, type: 2}
       propertyPath: m_LocalScale.x
       value: 8.737088
+      objectReference: {fileID: 0}
+    - target: {fileID: 4106194911591828, guid: 338b54b7c9f0a604f88e3322612a755b, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 44.527
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 338b54b7c9f0a604f88e3322612a755b, type: 2}
@@ -1363,11 +1367,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4106194911591828, guid: 338b54b7c9f0a604f88e3322612a755b, type: 2}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: -0.0759249
       objectReference: {fileID: 0}
     - target: {fileID: 4106194911591828, guid: 338b54b7c9f0a604f88e3322612a755b, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.9971135
       objectReference: {fileID: 0}
     - target: {fileID: 4106194911591828, guid: 338b54b7c9f0a604f88e3322612a755b, type: 2}
       propertyPath: m_RootOrder
@@ -1384,6 +1388,10 @@ Prefab:
     - target: {fileID: 4106194911591828, guid: 338b54b7c9f0a604f88e3322612a755b, type: 2}
       propertyPath: m_LocalScale.x
       value: 4.036535
+      objectReference: {fileID: 0}
+    - target: {fileID: 4106194911591828, guid: 338b54b7c9f0a604f88e3322612a755b, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -8.709001
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 338b54b7c9f0a604f88e3322612a755b, type: 2}
