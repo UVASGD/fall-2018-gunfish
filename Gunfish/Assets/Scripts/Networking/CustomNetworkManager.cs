@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class CustomNetworkManager : NetworkManager  
 {
     public List<GameObject> fishList;
+    
     private NetworkStartPosition[] spawnPoints;
     private int spawnNum;
 
@@ -36,6 +37,9 @@ public class CustomNetworkManager : NetworkManager
         if (RaceManager.instance && RaceManager.instance.pointTable.ContainsKey(conn)) {
             if (RaceManager.instance.pointTable[conn] > 0) {
                 playerName += "\nPoints: " + RaceManager.instance.pointTable[conn];
+                if(RaceManager.instance.pointTable[conn] >= RaceManager.instance.MaxPointsEarned) {
+                    SpawnCrown(player);
+                }
             }
         } else {
             //print("Nope!");
@@ -48,6 +52,21 @@ public class CustomNetworkManager : NetworkManager
         ConnectionManager.instance.AddGunfish(player.GetComponent<Gunfish>());
 
         spawnNum++;
+    }
+
+    /// <summary>
+    /// Spawn a crayon on a winning fish
+    /// </summary>
+    /// <param name="fish"></param>
+    void SpawnCrown(GameObject fish) {
+        if (RaceManager.instance.CrownPrefab != null) {
+            GameObject crown = Instantiate(RaceManager.instance.CrownPrefab);
+            Transform crownLoc = fish.transform.FindDeepChild("CrownLocation");
+
+            crown.transform.SetParent(crownLoc);
+            crown.transform.localPosition = Vector3.zero;
+            crown.transform.localRotation = Quaternion.Euler(0, 0, -180);
+        }
     }
 
     public IEnumerator SetRpc (GameObject player, string playerName) {
