@@ -30,7 +30,7 @@ public class RaceManager : NetworkBehaviour {
 
     public Dictionary<NetworkConnection, int> pointTable;
     public Dictionary<NetworkConnection, string> nameTable;
-    public Dictionary<NetworkConnection, GameObject> fishTable;
+    public Dictionary<NetworkConnection, int> fishTable;
 
     public GameObject CrownPrefab;
 
@@ -52,7 +52,7 @@ public class RaceManager : NetworkBehaviour {
 
         pointTable = new Dictionary<NetworkConnection, int>();
         nameTable = new Dictionary<NetworkConnection, string>();
-        fishTable = new Dictionary<NetworkConnection, GameObject>();
+        fishTable = new Dictionary<NetworkConnection, int>();
 
         EventManager.StartListening(EventType.InitGame, OnStart);
         EventManager.StartListening(EventType.NextLevel, LoadNextLevel);
@@ -156,8 +156,14 @@ public class RaceManager : NetworkBehaviour {
         if (mapIndex == maps.Count) {
             List<NetworkConnection> keys = new List<NetworkConnection>(pointTable.Keys);
 
+            int max = MaxPoints();
+
             foreach (NetworkConnection fish in keys) {
-                pointTable[fish] = 0;
+                if (pointTable[fish] == max) {
+                    pointTable[fish] = -1;
+                } else {
+                    pointTable[fish] = 0;
+                }
             }
 
             gameActive = false;

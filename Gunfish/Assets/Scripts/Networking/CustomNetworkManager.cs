@@ -7,32 +7,28 @@ public class CustomNetworkManager : NetworkManager
     public List<GameObject> fishList;
     
     private NetworkStartPosition[] spawnPoints;
-    private int spawnNum;
+    public int spawnNum;
 
     public override void OnStartServer() {
         fishList = new List<GameObject>(GunfishList.Get());
         spawnNum = 0;
-
-        //pointTable = new Dictionary<NetworkConnection, int>();
-    }
-
-    public override void OnClientConnect (NetworkConnection conn) {
-        base.OnClientConnect (conn);
-
-        //pointTable.Add(conn, 0);
-        //print("I AM HERE");
     }
 
     public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId) {
-        //base.OnServerAddPlayer(conn, playerControllerId);
         spawnPoints = FindObjectsOfType<NetworkStartPosition>(); //Get list of all spawn points in the scene
 
         //If there aren't any spawn points in the scene, spawn players at the origin
         Vector3 targetPosition = (spawnPoints.Length > 0 ? spawnPoints[(spawnNum) % spawnPoints.Length].transform.position : Vector3.zero);
 
         //Assign the players a random fish when they join
-        //TODO: Replace random with fish selection
-        GameObject player = (GameObject)Instantiate(fishList[Random.Range(0,fishList.Count)], targetPosition, Quaternion.identity);
+        int index = Random.Range(0, fishList.Count);
+        if (RaceManager.instance.fishTable.ContainsKey(conn)) {
+            index = RaceManager.instance.fishTable[conn];
+        } else {
+            RaceManager.instance.fishTable.Add(conn, index);
+        }
+
+        GameObject player = (GameObject)Instantiate(fishList[index], targetPosition, Quaternion.identity);
         string playerName = "Player " + (conn.connectionId + 1);
         if (RaceManager.instance && RaceManager.instance.pointTable.ContainsKey(conn)) {
             if (RaceManager.instance.pointTable[conn] > 0) {
@@ -40,17 +36,15 @@ public class CustomNetworkManager : NetworkManager
                 if(RaceManager.instance.pointTable[conn] >= RaceManager.instance.MaxPointsEarned) {
                     SpawnCrown(player);
                 }
+            } else {
+                SpawnCrown(player);
+                RaceManager.instance.pointTable[conn] = 0;
             }
-        } else {
-            //print("Nope!");
         }
 
         NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
-
         StartCoroutine(SetRpc(player, playerName));
-
         ConnectionManager.instance.AddGunfish(player.GetComponent<Gunfish>());
-
         spawnNum++;
     }
 
@@ -69,10 +63,13 @@ public class CustomNetworkManager : NetworkManager
         }
     }
 
+    //NOTE: This is simply a race condition. Replace this with something not stupid
     public IEnumerator SetRpc (GameObject player, string playerName) {
         yield return new WaitForEndOfFrame();
         yield return new WaitForEndOfFrame();
-        player.GetComponent<Gunfish>().RpcSetName(playerName);
+        if (player.GetComponent<Gunfish>()) {
+            player.GetComponent<Gunfish>().RpcSetName(playerName);
+        }
     }
 
     public override void OnServerRemovePlayer (NetworkConnection conn, UnityEngine.Networking.PlayerController player) {
@@ -81,18 +78,6 @@ public class CustomNetworkManager : NetworkManager
         //print("Removing player");
         RaceManager.instance.TrySwapLevel();
     }
-
-    //IEnumerator TriggerStartEvent () {
-    //    int seconds = 10;
-
-    //    while (seconds > 0) {
-    //        print(seconds);
-    //        yield return new WaitForSeconds(1f);
-    //        seconds--;
-    //    }
-
-    //    EventManager.TriggerEvent(EventType.NextLevel);
-    //}
 
     public override void OnServerSceneChanged (string sceneName) {
         base.OnServerSceneChanged (sceneName);

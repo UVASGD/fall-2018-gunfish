@@ -695,7 +695,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.4, y: 0.70741844}
+  m_Size: {x: 0.3, y: 0.70741844}
   m_EdgeRadius: 0
 --- !u!61 &61366093061666310
 BoxCollider2D:
@@ -745,7 +745,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.4, y: 1.2997646}
+  m_Size: {x: 0.3, y: 1.2997646}
   m_EdgeRadius: 0
 --- !u!61 &61480932549855154
 BoxCollider2D:
@@ -770,7 +770,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.4, y: 1.4974675}
+  m_Size: {x: 0.3, y: 1.4974675}
   m_EdgeRadius: 0
 --- !u!61 &61503018015340756
 BoxCollider2D:
@@ -795,7 +795,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.4, y: 1.1572032}
+  m_Size: {x: 0.3, y: 1.1572032}
   m_EdgeRadius: 0
 --- !u!61 &61583790381062888
 BoxCollider2D:
@@ -820,7 +820,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.4, y: 0.5}
+  m_Size: {x: 0.3, y: 0.5}
   m_EdgeRadius: 0
 --- !u!61 &61800604882019354
 BoxCollider2D:
@@ -845,7 +845,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.4, y: 1.480299}
+  m_Size: {x: 0.3, y: 1.480299}
   m_EdgeRadius: 0
 --- !u!61 &61827368021094970
 BoxCollider2D:
@@ -870,7 +870,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.4, y: 0.5988638}
+  m_Size: {x: 0.3, y: 0.5988638}
   m_EdgeRadius: 0
 --- !u!82 &82896874430544622
 AudioSource:
@@ -1692,8 +1692,8 @@ LineRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1326974923
+  m_SortingLayer: -1
   m_SortingOrder: 0
   m_Positions:
   - {x: 7.2, y: 0.5, z: 0}
@@ -1891,8 +1891,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1326974923
+  m_SortingLayer: -1
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: fc3eb6e23eced4918904e2f2ec507bed, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
