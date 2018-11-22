@@ -89,3 +89,13 @@ public class RequestTimeMsg : MessageBase {
         this.time = time;
     }
 }
+
+public class RequestEndTextMsg : MessageBase {
+    public string text;
+
+    public RequestEndTextMsg () { }
+
+    public RequestEndTextMsg (string text) {
+        this.text = text;
+    }
+}

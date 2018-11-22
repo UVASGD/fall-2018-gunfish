@@ -20,6 +20,7 @@ public class LobbyCountdown : NetworkBehaviour {
 
         RequestTimeMsg msg = netMsg.ReadMessage<RequestTimeMsg>();
         secondsRemaining = msg.time;
-        text.text = (secondsRemaining > 0 ? secondsRemaining.ToString() : "GUNFISH");
+        //text.text = (secondsRemaining > 0 ? secondsRemaining.ToString() : "GUNFISH");
+        text.text = secondsRemaining.ToString();
     }
 }

@@ -55,7 +55,7 @@ public class RaceManager : NetworkBehaviour {
         fishTable = new Dictionary<NetworkConnection, int>();
 
         EventManager.StartListening(EventType.InitGame, OnStart);
-        EventManager.StartListening(EventType.NextLevel, LoadNextLevel);
+        //EventManager.StartListening(EventType.NextLevel, LoadNextLevel);
         EventManager.StartListening(EventType.EndGame, OnEnd);
     }
 
@@ -137,12 +137,17 @@ public class RaceManager : NetworkBehaviour {
             ConnectionManager.instance.SetAllFishReady(false);
 
             MaxPointsEarned = MaxPoints();
-            LoadNextLevel();
+            StartCoroutine(LoadNextLevel());
         }
     }
 
-    void LoadNextLevel() {
-        //print("");
+    IEnumerator LoadNextLevel() {
+
+        //if (SceneManager.GetActiveScene().buildIndex > 2) {
+            NetworkServer.SendToAll(MessageTypes.REQUESTENDTEXT, new RequestEndTextMsg());
+            yield return new WaitForSeconds(2f);
+        //}
+
         fishFinished.Clear();
 
         ConnectionManager.instance.Clear();
@@ -169,11 +174,10 @@ public class RaceManager : NetworkBehaviour {
             gameActive = false;
             SelectMaps();
             EventManager.TriggerEvent(EventType.EndGame);
-            return;
         } else {
             gameActive = true;
+            NetworkManager.singleton.ServerChangeScene(maps[mapIndex++]);
         }
-        NetworkManager.singleton.ServerChangeScene(maps[mapIndex++]);
     }
 
     int MaxPoints() {

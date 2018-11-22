@@ -30,7 +30,7 @@ public class ConnectionManager : NetworkBehaviour {
 
     public void AddGunfish (Gunfish fish) {
         readyFish.Add(fish, false);
-        //fish.SetName(
+        fish.Stun(3f);
         notReadyCount++;
         RaceManager.instance.TrySwapLevel();
     }
