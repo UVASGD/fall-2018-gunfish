@@ -50,6 +50,9 @@ TagManager:
   - name: Player
     uniqueID: 1326974923
     locked: 0
+  - name: Interactibles
+    uniqueID: 1609808981
+    locked: 0
   - name: Water
     uniqueID: 2401347501
     locked: 0
