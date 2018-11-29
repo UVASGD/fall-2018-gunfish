@@ -130,7 +130,7 @@ public class RaceManager : NetworkBehaviour {
     }
 
     public void TrySwapLevel () {
-        print("Starting!");
+        //print("Starting!");
         if (ConnectionManager.instance.readyCount == ConnectionManager.instance.readyFish.Count
             && ConnectionManager.instance.readyFish.Count > (gameActive ? 0 : 0)) {
             fishFinished.Clear();
@@ -143,10 +143,12 @@ public class RaceManager : NetworkBehaviour {
 
     IEnumerator LoadNextLevel() {
 
-        //if (SceneManager.GetActiveScene().buildIndex > 2) {
+        if (!SceneManager.GetActiveScene().name.Contains("Lobby")) {
             NetworkServer.SendToAll(MessageTypes.REQUESTENDTEXT, new RequestEndTextMsg());
             yield return new WaitForSeconds(2f);
-        //}
+        } else {
+            print("Build index: " + SceneManager.GetActiveScene().buildIndex);
+        }
 
         fishFinished.Clear();
 
@@ -156,7 +158,7 @@ public class RaceManager : NetworkBehaviour {
         foreach (NetworkConnection conn in pointTable.Keys) {
             pointsText += ("Player " + conn.connectionId.ToString() + " points: " + pointTable[conn].ToString() + "\t");
         }
-        print(pointsText);
+        //print(pointsText);
 
         if (mapIndex == maps.Count) {
             List<NetworkConnection> keys = new List<NetworkConnection>(pointTable.Keys);

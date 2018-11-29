@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
-using System.Threading;
+using UnityEngine.SceneManagement;
 
 //SERVER ONLY
 public class ConnectionManager : NetworkBehaviour {
@@ -30,7 +30,9 @@ public class ConnectionManager : NetworkBehaviour {
 
     public void AddGunfish (Gunfish fish) {
         readyFish.Add(fish, false);
-        fish.Stun(3f);
+        if (!SceneManager.GetActiveScene().name.Contains("Lobby")) {
+            fish.Stun(3f);
+        }
         notReadyCount++;
         RaceManager.instance.TrySwapLevel();
     }

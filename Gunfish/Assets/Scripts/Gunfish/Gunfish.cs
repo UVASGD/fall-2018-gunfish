@@ -203,7 +203,7 @@ public class Gunfish : NetworkBehaviour {
 
         //Change your fish (Lobby only)
         if (Input.GetKeyDown(KeyCode.N) && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name.Contains("Lobby")) {
-            print("Scene Name: " + UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+            //print("Scene Name: " + UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
             List<GameObject> fishList = new List<GameObject>(GunfishList.Get());
             GetComponent<Collider2D>().enabled = false;
 
@@ -215,7 +215,7 @@ public class Gunfish : NetworkBehaviour {
             }
 
             GameObject newFish = Instantiate(fishList[index], transform.position, transform.rotation) as GameObject;
-            newFish.GetComponent<Renderer>().enabled = false;
+            newFish.GetComponent<LineRenderer>().enabled = false;
             newFish.GetComponent<Gunfish>().gameName = gameName;
 
             Rigidbody2D myRb = GetComponent<Rigidbody2D>();
@@ -230,7 +230,7 @@ public class Gunfish : NetworkBehaviour {
             NetworkServer.Destroy(nameplate.gameObject);
             NetworkServer.Destroy(gameObject);
 
-            newFish.GetComponent<Renderer>().enabled = true;
+            newFish.GetComponent<LineRenderer>().enabled = true;
         }
     }
 

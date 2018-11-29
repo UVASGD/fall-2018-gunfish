@@ -9,7 +9,7 @@ public class EndLevelText : NetworkBehaviour {
 
     public void Awake () {
         NetworkManager.singleton.client.RegisterHandler(MessageTypes.REQUESTENDTEXT, DisplayEndText);
-        print("Registered!");
+        //print("Registered!");
     }
 
     public void DisplayEndText (NetworkMessage netMsg) {
