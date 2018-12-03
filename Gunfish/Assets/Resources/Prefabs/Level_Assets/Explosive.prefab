@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 114108665286910278}
   - component: {fileID: 114197553935839184}
   m_Layer: 0
-  m_Name: AnExplosiveDeviceAlsoKnownAsABomb
+  m_Name: Explosive
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
