@@ -28,7 +28,7 @@ public class RaceManager : NetworkBehaviour {
 
     private AssetBundle bundle;
 
-    [SyncVar] public Dictionary<NetworkConnection, int> pointTable;
+    public Dictionary<NetworkConnection, int> pointTable;
     public Dictionary<NetworkConnection, string> nameTable;
     public Dictionary<NetworkConnection, int> fishTable;
 
