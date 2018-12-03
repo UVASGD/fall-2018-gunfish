@@ -336,6 +336,7 @@ public class Gunfish : NetworkBehaviour {
             Rigidbody2D[] sliceBodies = GetComponentsInChildren<Rigidbody2D>();
             foreach (Rigidbody2D sliceRb in sliceBodies) {
                 sliceRb.gravityScale = 0;
+                sliceRb.angularDrag = 10;
             }
 
             isSwimming = 1;
@@ -353,8 +354,9 @@ public class Gunfish : NetworkBehaviour {
             Rigidbody2D[] sliceBodies = GetComponentsInChildren<Rigidbody2D>();
             foreach (Rigidbody2D sliceRb in sliceBodies) {
                 sliceRb.gravityScale = 1;
+                sliceRb.angularDrag = 0.05f;
             }
-
+            
             isSwimming = 0;
         }
     }
