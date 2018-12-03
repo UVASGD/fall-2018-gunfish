@@ -30,6 +30,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1148174933239774
+GameObject:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4494921398672800}
+  m_Layer: 8
+  m_Name: CrownLocation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1158336559045824
 GameObject:
   m_ObjectHideFlags: 1
@@ -306,7 +321,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1490314977096660}
   m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 3.1, y: -3.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4695403737873514}
@@ -321,6 +336,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
+--- !u!4 &4494921398672800
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1148174933239774}
+  m_LocalRotation: {x: -0, y: -0, z: 0.34362575, w: 0.9391067}
+  m_LocalPosition: {x: -0.176, y: 0.224, z: 0}
+  m_LocalScale: {x: 1.4455805, y: 1.4455805, z: 1.44558}
+  m_Children: []
+  m_Father: {fileID: 4695403737873514}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 40.196003}
 --- !u!4 &4569349384714596
 Transform:
   m_ObjectHideFlags: 1
@@ -369,7 +397,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 4494921398672800}
   m_Father: {fileID: 4469515217390982}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -996,7 +1025,7 @@ MonoBehaviour:
   isVelocityCompressed: 0
   isAngularVelocityCompressed: 0
   whenToUpdateTransform: 0
-  sendRate: 20
+  sendRate: 10
   networkChannel: 1
   childObjectToSync: {fileID: 1118271601610288}
 --- !u!114 &114140514684468832
@@ -1042,7 +1071,7 @@ MonoBehaviour:
   isVelocityCompressed: 0
   isAngularVelocityCompressed: 0
   whenToUpdateTransform: 0
-  sendRate: 20
+  sendRate: 10
   networkChannel: 1
   childObjectToSync: {fileID: 1225765976645630}
 --- !u!114 &114163848813408166
@@ -1088,7 +1117,7 @@ MonoBehaviour:
   isVelocityCompressed: 0
   isAngularVelocityCompressed: 0
   whenToUpdateTransform: 0
-  sendRate: 20
+  sendRate: 10
   networkChannel: 1
   childObjectToSync: {fileID: 1300514411941736}
 --- !u!114 &114168870509249864
@@ -1104,33 +1133,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shotTrailColor:
     serializedVersion: 2
-    key0: {r: 1, g: 1, b: 1, a: 1}
-    key1: {r: 1, g: 1, b: 1, a: 1}
-    key2: {r: 0, g: 0, b: 0, a: 0}
+    key0: {r: 0.8962264, g: 0.5913909, b: 0.29169634, a: 0.4509804}
+    key1: {r: 1, g: 0.79503536, b: 0.25, a: 0.9372549}
+    key2: {r: 1, g: 0.9506445, b: 0.8160377, a: 1}
     key3: {r: 0, g: 0, b: 0, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
     key5: {r: 0, g: 0, b: 0, a: 0}
     key6: {r: 0, g: 0, b: 0, a: 0}
     key7: {r: 0, g: 0, b: 0, a: 0}
     ctime0: 0
-    ctime1: 65535
-    ctime2: 0
+    ctime1: 57671
+    ctime2: 65535
     ctime3: 0
     ctime4: 0
     ctime5: 0
     ctime6: 0
     ctime7: 0
     atime0: 0
-    atime1: 65535
-    atime2: 0
+    atime1: 32960
+    atime2: 65535
     atime3: 0
     atime4: 0
     atime5: 0
     atime6: 0
     atime7: 0
     m_Mode: 0
-    m_NumColorKeys: 2
-    m_NumAlphaKeys: 2
+    m_NumColorKeys: 3
+    m_NumAlphaKeys: 3
   barrelPoint: {fileID: 1158336559045824}
   boomSound: {fileID: 82066077080012356}
   muzzleFlash: {fileID: 0}
@@ -1179,7 +1208,7 @@ MonoBehaviour:
   isVelocityCompressed: 0
   isAngularVelocityCompressed: 0
   whenToUpdateTransform: 0
-  sendRate: 20
+  sendRate: 10
   networkChannel: 1
   childObjectToSync: {fileID: 1959807428811642}
 --- !u!114 &114229748587406794
@@ -1255,7 +1284,7 @@ MonoBehaviour:
   isVelocityCompressed: 0
   isAngularVelocityCompressed: 0
   whenToUpdateTransform: 0
-  sendRate: 20
+  sendRate: 10
   networkChannel: 1
   childObjectToSync: {fileID: 1868636849527286}
 --- !u!114 &114310107338161074
@@ -1316,7 +1345,7 @@ MonoBehaviour:
   isVelocityCompressed: 0
   isAngularVelocityCompressed: 0
   whenToUpdateTransform: 0
-  sendRate: 20
+  sendRate: 10
   networkChannel: 1
   childObjectToSync: {fileID: 1719977526996474}
 --- !u!114 &114453551831148570
@@ -1345,6 +1374,8 @@ MonoBehaviour:
   jumpForce: 500
   moveTorque: 100
   shotType: 1
+  auto: 0
+  autoTorqueMulti: 0.01
   rb: {fileID: 50610766910080520}
   middleRb: {fileID: 0}
   gun: {fileID: 114168870509249864}
@@ -1352,7 +1383,7 @@ MonoBehaviour:
   flops: []
   nameplatePrefab: {fileID: 1579978614954062, guid: 57558fa80fe1c11438d7f31377a2df12,
     type: 2}
-  gameName: Salmon
+  gameName: Player
 --- !u!114 &114453960882895180
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1411,7 +1442,7 @@ MonoBehaviour:
   isVelocityCompressed: 0
   isAngularVelocityCompressed: 0
   whenToUpdateTransform: 0
-  sendRate: 20
+  sendRate: 10
   networkChannel: 1
   childObjectToSync: {fileID: 1284162509353440}
 --- !u!114 &114563450634022960
@@ -1457,7 +1488,7 @@ MonoBehaviour:
   isVelocityCompressed: 0
   isAngularVelocityCompressed: 0
   whenToUpdateTransform: 0
-  sendRate: 20
+  sendRate: 10
   networkChannel: 1
   childObjectToSync: {fileID: 0}
 --- !u!114 &114579779649984082
@@ -1503,7 +1534,7 @@ MonoBehaviour:
   isVelocityCompressed: 0
   isAngularVelocityCompressed: 0
   whenToUpdateTransform: 0
-  sendRate: 20
+  sendRate: 10
   networkChannel: 1
   childObjectToSync: {fileID: 1745363014515450}
 --- !u!114 &114608932630316684
@@ -1594,7 +1625,7 @@ MonoBehaviour:
   isVelocityCompressed: 0
   isAngularVelocityCompressed: 0
   whenToUpdateTransform: 0
-  sendRate: 20
+  sendRate: 10
   networkChannel: 1
   childObjectToSync: {fileID: 1314868733086626}
 --- !u!114 &114818805124077636
@@ -1753,18 +1784,18 @@ LineRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1326974923
+  m_SortingLayer: -1
   m_SortingOrder: 0
   m_Positions:
-  - {x: 0, y: 0, z: 0}
-  - {x: -0.4, y: 0, z: 0}
-  - {x: -0.8, y: 0, z: 0}
-  - {x: -1.2, y: 0, z: 0}
-  - {x: -1.6, y: 0, z: 0}
-  - {x: -2, y: 0, z: 0}
-  - {x: -2.4, y: 0, z: 0}
-  - {x: -2.8, y: 0, z: 0}
+  - {x: 3.1, y: -3.6, z: 0}
+  - {x: 2.6999998, y: -3.6, z: 0}
+  - {x: 2.3, y: -3.6, z: 0}
+  - {x: 1.8999999, y: -3.6, z: 0}
+  - {x: 1.4999999, y: -3.6, z: 0}
+  - {x: 1.0999999, y: -3.6, z: 0}
+  - {x: 0.6999998, y: -3.6, z: 0}
+  - {x: 0.29999995, y: -3.6, z: 0}
   m_Parameters:
     serializedVersion: 2
     widthMultiplier: 1
@@ -1860,8 +1891,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1326974923
+  m_SortingLayer: -1
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: fc3eb6e23eced4918904e2f2ec507bed, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1888,7 +1919,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: -0.15001002, y: 0}
-  m_ConnectedAnchor: {x: 0.24998999, y: -0.000000034969112}
+  m_ConnectedAnchor: {x: 0.24998999, y: -0.000000021854818}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -1911,7 +1942,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: -0.15001002, y: 0}
-  m_ConnectedAnchor: {x: 0.24998999, y: -0.000000034969112}
+  m_ConnectedAnchor: {x: 0.24998999, y: -0.000000021854818}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -1934,7 +1965,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: -0.15001002, y: 0}
-  m_ConnectedAnchor: {x: 0.24999005, y: -0.000000034969116}
+  m_ConnectedAnchor: {x: 0.24998999, y: -0.000000021854818}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -1957,7 +1988,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: -0.15001002, y: 0}
-  m_ConnectedAnchor: {x: 0.24998999, y: -0.000000034969112}
+  m_ConnectedAnchor: {x: 0.2499901, y: -0.000000021854829}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -1980,7 +2011,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: -0.15001002, y: 0}
-  m_ConnectedAnchor: {x: -0.15001002, y: 0}
+  m_ConnectedAnchor: {x: -0.15001011, y: 0.0000000131143}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -2003,7 +2034,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: -0.15001002, y: 0}
-  m_ConnectedAnchor: {x: 0.24998999, y: -0.000000034969112}
+  m_ConnectedAnchor: {x: 0.24998999, y: -0.000000021854818}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -2026,7 +2057,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: -0.15001002, y: 0}
-  m_ConnectedAnchor: {x: 0.24998975, y: -0.00000003496909}
+  m_ConnectedAnchor: {x: 0.24998984, y: -0.000000021854806}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -2049,7 +2080,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: -0.15001002, y: 0}
-  m_ConnectedAnchor: {x: 0.24998996, y: -0.00000003496911}
+  m_ConnectedAnchor: {x: 0.24998975, y: -0.000000021854797}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0

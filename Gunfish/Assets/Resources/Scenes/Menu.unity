@@ -346,6 +346,22 @@ MonoBehaviour:
   m_OnlineScene: RaceLobby
   m_SpawnPrefabs:
   - {fileID: 1490314977096660, guid: 07c2d8436af1feb488368b59d04aa340, type: 2}
+  - {fileID: 1114052074551784, guid: 69136fed32a4ba849a306f94ab4faf4b, type: 2}
+  - {fileID: 1606534920169250, guid: de4d3a187bd18c3468ac85deaf583fed, type: 2}
+  - {fileID: 1071464822931214, guid: fe37b3db816d6854eb8c07a0300c02e6, type: 2}
+  - {fileID: 1462407842409104, guid: 9b31e19249083a542a88a7b37127bffb, type: 2}
+  - {fileID: 1308736849942146, guid: 6c74a7c15da0b294696685d523539f0b, type: 2}
+  - {fileID: 1316125453779436, guid: 4ad3365fb9fdac2428a941adecaf2535, type: 2}
+  - {fileID: 1876753967453162, guid: efdef5ca7aa2025429d82b97d72b41d7, type: 2}
+  - {fileID: 1446248044250930, guid: 46296842c09597f488029b8037a892d5, type: 2}
+  - {fileID: 1287816214013502, guid: 00f88c34df084b94b8c1c9011bf00d0d, type: 2}
+  - {fileID: 1091520853851060, guid: 054dafbc5e6ae0e449970ef0fdb4bb53, type: 2}
+  - {fileID: 1649185052188540, guid: 9cafa62c920cc6741ab9d600432c66c4, type: 2}
+  - {fileID: 1489070563695716, guid: 073a8da3079909747b7bdc398dce050f, type: 2}
+  - {fileID: 1480329160475598, guid: 4eca19a0ecb920148a8cdea3c97e9889, type: 2}
+  - {fileID: 1561315145583120, guid: 9ed7d216b25ed964b98d3e7542dbcb36, type: 2}
+  - {fileID: 1814385067734580, guid: 6470435a00b1e0a4686a33271e184ef1, type: 2}
+  - {fileID: 1746450308669820, guid: 5a741222cce2f9e40a8bb9ceae1f970c, type: 2}
   m_CustomConfig: 0
   m_MaxConnections: 4
   m_ConnectionConfig:
@@ -401,8 +417,8 @@ MonoBehaviour:
   matchSize: 4
   isNetworkActive: 0
   matchMaker: {fileID: 0}
-  fishList:
-  - {fileID: 1490314977096660, guid: 07c2d8436af1feb488368b59d04aa340, type: 2}
+  fishList: []
+  spawnNum: 0
 --- !u!114 &871604498
 MonoBehaviour:
   m_ObjectHideFlags: 0

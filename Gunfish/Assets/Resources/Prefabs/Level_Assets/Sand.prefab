@@ -23,7 +23,11 @@ GameObject:
   - component: {fileID: 212019912927096338}
   m_Layer: 0
   m_Name: Sand
+<<<<<<< HEAD
   m_TagString: Object
+=======
+  m_TagString: Untagged
+>>>>>>> master
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

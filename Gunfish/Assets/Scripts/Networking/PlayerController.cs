@@ -5,10 +5,18 @@ using UnityEngine.Networking;
 
 public class PlayerController : NetworkBehaviour {
 
+    public static PlayerController instance;
+
     public static Gunfish ownedGunfish;
     public static GameObject namePlate;
 
     private void Start () {
+        if (!instance) {
+            instance = this;
+        } else {
+            Destroy(gameObject);
+        }
+
         DontDestroyOnLoad(gameObject);
 
         //Debug.Log("ConnId: " + connectionToServer.connectionId);
@@ -24,7 +32,20 @@ public class PlayerController : NetworkBehaviour {
                 ownedGunfish = fish;
             }
         }
+
+        if (isClient) {
+            MusicManager.instance.PlayMusic();
+        }
     }
+
+    //private void Update () {
+    //    if (!isLocalPlayer) return;
+
+    //    if (Input.GetKeyDown(KeyCode.N)) {
+    //        print("Doing the thing");
+    //        NetworkManager.singleton.client.Send(MessageTypes.CHANGEFISHMSG, new ChangeFishMsg(ownedGunfish.connectionToClient, 0));
+    //    }
+    //}
 
     #region MESSAGE HANDLERS
 
