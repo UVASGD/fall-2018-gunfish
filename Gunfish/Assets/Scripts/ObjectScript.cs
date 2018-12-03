@@ -12,7 +12,8 @@ public class ObjectScript : NetworkBehaviour {
         }
         else
         {
-            GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
+            //Testing
+            GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
         }
 	}
 	
