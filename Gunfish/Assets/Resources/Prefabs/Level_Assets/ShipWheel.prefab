@@ -22,9 +22,9 @@ GameObject:
   - component: {fileID: 114714487856951304}
   - component: {fileID: 50080991047533052}
   - component: {fileID: 235256041785192516}
-  - component: {fileID: 114621990356727864}
   - component: {fileID: 60458097696568008}
   - component: {fileID: 114450162628608756}
+  - component: {fileID: 114755311948446800}
   m_Layer: 0
   m_Name: ShipWheel
   m_TagString: Untagged
@@ -261,52 +261,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51585420232e1b240bf5168db0b43907, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114621990356727864
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1231750262066688}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9de747ec6d608d4b984ba2628a309b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interpolationBackTime: 0.1
-  extrapolationMode: 1
-  useExtrapolationTimeLimit: 1
-  extrapolationTimeLimit: 5
-  useExtrapolationDistanceLimit: 0
-  extrapolationDistanceLimit: 20
-  sendPositionThreshold: 0
-  sendRotationThreshold: 0
-  sendScaleThreshold: 0
-  sendVelocityThreshold: 0
-  sendAngularVelocityThreshold: 0
-  receivedPositionThreshold: 0
-  receivedRotationThreshold: 0
-  snapPositionThreshold: 0
-  snapRotationThreshold: 0
-  snapScaleThreshold: 0
-  positionLerpSpeed: 0.85
-  rotationLerpSpeed: 0.85
-  scaleLerpSpeed: 0.85
-  timeCorrectionSpeed: 0.01
-  snapTimeThreshold: 5
-  syncPosition: 7
-  syncRotation: 6
-  syncScale: 7
-  syncVelocity: 7
-  syncAngularVelocity: 6
-  isPositionCompressed: 0
-  isRotationCompressed: 0
-  isScaleCompressed: 0
-  isVelocityCompressed: 0
-  isAngularVelocityCompressed: 0
-  whenToUpdateTransform: 0
-  sendRate: 15
-  networkChannel: 1
-  childObjectToSync: {fileID: 0}
 --- !u!114 &114714487856951304
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -339,6 +293,27 @@ MonoBehaviour:
     i15: 188
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
+--- !u!114 &114755311948446800
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1231750262066688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TransformSyncMode: 1
+  m_SendInterval: 0.033333335
+  m_SyncRotationAxis: 3
+  m_RotationSyncCompression: 0
+  m_SyncSpin: 1
+  m_MovementTheshold: 0.001
+  m_VelocityThreshold: 0.0001
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 1
+  m_InterpolateMovement: 1
 --- !u!212 &212812396369408844
 SpriteRenderer:
   m_ObjectHideFlags: 1

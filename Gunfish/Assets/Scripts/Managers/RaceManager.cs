@@ -55,7 +55,7 @@ public class RaceManager : NetworkBehaviour {
         fishTable = new Dictionary<NetworkConnection, int>();
 
         EventManager.StartListening(EventType.InitGame, OnStart);
-        EventManager.StartListening(EventType.NextLevel, LoadNextLevel);
+        //EventManager.StartListening(EventType.NextLevel, LoadNextLevel);
         EventManager.StartListening(EventType.EndGame, OnEnd);
     }
 
@@ -130,19 +130,26 @@ public class RaceManager : NetworkBehaviour {
     }
 
     public void TrySwapLevel () {
-        print("Starting!");
+        //print("Starting!");
         if (ConnectionManager.instance.readyCount == ConnectionManager.instance.readyFish.Count
             && ConnectionManager.instance.readyFish.Count > (gameActive ? 0 : 0)) {
             fishFinished.Clear();
             ConnectionManager.instance.SetAllFishReady(false);
 
             MaxPointsEarned = MaxPoints();
-            LoadNextLevel();
+            StartCoroutine(LoadNextLevel());
         }
     }
 
-    void LoadNextLevel() {
-        //print("");
+    IEnumerator LoadNextLevel() {
+
+        if (!SceneManager.GetActiveScene().name.Contains("Lobby")) {
+            NetworkServer.SendToAll(MessageTypes.REQUESTENDTEXT, new RequestEndTextMsg());
+            yield return new WaitForSeconds(2f);
+        } else {
+            print("Build index: " + SceneManager.GetActiveScene().buildIndex);
+        }
+
         fishFinished.Clear();
 
         ConnectionManager.instance.Clear();
@@ -151,7 +158,7 @@ public class RaceManager : NetworkBehaviour {
         foreach (NetworkConnection conn in pointTable.Keys) {
             pointsText += ("Player " + conn.connectionId.ToString() + " points: " + pointTable[conn].ToString() + "\t");
         }
-        print(pointsText);
+        //print(pointsText);
 
         if (mapIndex == maps.Count) {
             List<NetworkConnection> keys = new List<NetworkConnection>(pointTable.Keys);
@@ -169,11 +176,10 @@ public class RaceManager : NetworkBehaviour {
             gameActive = false;
             SelectMaps();
             EventManager.TriggerEvent(EventType.EndGame);
-            return;
         } else {
             gameActive = true;
+            NetworkManager.singleton.ServerChangeScene(maps[mapIndex++]);
         }
-        NetworkManager.singleton.ServerChangeScene(maps[mapIndex++]);
     }
 
     int MaxPoints() {
