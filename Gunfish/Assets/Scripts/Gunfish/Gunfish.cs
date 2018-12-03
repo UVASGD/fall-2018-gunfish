@@ -51,6 +51,8 @@ public class Gunfish : NetworkBehaviour {
     int isSwimming = 0;
 
     public ShotType shotType = ShotType.Medium;
+    public bool auto = false;
+    public float autoTorqueMulti = 0.01f;
 
     [Header("Fish Info")]
     public Rigidbody2D rb;
@@ -76,9 +78,6 @@ public class Gunfish : NetworkBehaviour {
 
     //Initialize Camera and audio sources for every local player
     public override void OnStartLocalPlayer() {
-
-        MusicManager.instance.PlayMusic();
-
         Camera.main.GetComponent<Camera2DFollow>().target = transform;
 
         //Setup the local audio handlers
@@ -193,12 +192,45 @@ public class Gunfish : NetworkBehaviour {
     //or not an input message should be sent to the server.
     public void ClientInputHandler() {
         float x = Input.GetAxisRaw("Horizontal");
-        bool shoot = Input.GetButtonDown("Fire1");
+        bool shoot = auto ? Input.GetButton("Fire1") : Input.GetButtonDown("Fire1");
+        // ternary operator ?: if (auto) =statement1 else =statement2
 
         bool apply = (x != 0f || shoot);
 
         if (apply) {
             ApplyMovement(x, shoot);
+        }
+
+        //Change your fish (Lobby only)
+        if (Input.GetKeyDown(KeyCode.N) && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name.Contains("Lobby")) {
+            print("Scene Name: " + UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+            List<GameObject> fishList = new List<GameObject>(GunfishList.Get());
+            GetComponent<Collider2D>().enabled = false;
+
+            int index = Random.Range(0, fishList.Count);
+
+            if (RaceManager.instance.fishTable.ContainsKey(connectionToClient)) {
+                index = (RaceManager.instance.fishTable[connectionToClient] + 1) % fishList.Count;
+                RaceManager.instance.fishTable[connectionToClient] = index;
+            }
+
+            GameObject newFish = Instantiate(fishList[index], transform.position, transform.rotation) as GameObject;
+            newFish.GetComponent<Renderer>().enabled = false;
+            newFish.GetComponent<Gunfish>().gameName = gameName;
+
+            Rigidbody2D myRb = GetComponent<Rigidbody2D>();
+            Rigidbody2D otherRb = newFish.GetComponent<Rigidbody2D>();
+
+            otherRb.position = myRb.position;
+            otherRb.rotation = myRb.rotation;
+            otherRb.velocity = myRb.velocity;
+            otherRb.angularVelocity = myRb.angularVelocity;
+
+            NetworkServer.ReplacePlayerForConnection(connectionToClient, newFish, playerControllerId);
+            NetworkServer.Destroy(nameplate.gameObject);
+            NetworkServer.Destroy(gameObject);
+
+            newFish.GetComponent<Renderer>().enabled = true;
         }
     }
 
@@ -239,8 +271,10 @@ public class Gunfish : NetworkBehaviour {
     //be called from the server, after calculating what force
     //and torque should be applied from the server as well.
     public void Move(Vector2 force, float torque) {
-        flopSource.clip = (flops.Length > 0 ? flops[Random.Range(0, flops.Length)] : null);
-        flopSource.Play();
+        if (flopSource) {
+            flopSource.clip = (flops.Length > 0 ? flops[Random.Range(0, flops.Length)] : null);
+            flopSource.Play();
+        }
 
         middleRb.AddForce(force);
         middleRb.AddTorque(torque);
@@ -260,7 +294,9 @@ public class Gunfish : NetworkBehaviour {
     //component of a child GameObject, and applies a force. If
     //there is no Gun attached, simply will not fire.
     public void Shoot() {
-        rb.AddForceAtPosition(transform.right * gun.shotInfo.force, transform.position);
+        float shotForce = gun.shotInfo.force;
+        rb.AddForceAtPosition(transform.right * shotForce, transform.position);
+        if (auto) rb.AddTorque(shotForce*autoTorqueMulti*(Random.Range(0.4f, 0.1f)));
 
         currentFireCD = maxFireCD;
 
@@ -323,9 +359,14 @@ public class Gunfish : NetworkBehaviour {
         }
     }
 
-    public void SetName(string newName) {
+    [ClientRpc]
+    public void RpcSetName(string newName) {
         gameName = newName;
-        nameplate.SetName(gameName);
+        if (nameplate) {
+            nameplate.SetName(gameName);
+        } else {
+            print("Nameplate is null!");
+        }
     }
 
     //SERVER CALLBACKS

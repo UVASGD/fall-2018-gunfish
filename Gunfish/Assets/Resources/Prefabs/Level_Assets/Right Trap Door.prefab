@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 114878017464441664}
   - component: {fileID: 61845788894072804}
   - component: {fileID: 114511326195656618}
+  - component: {fileID: 114009960252681610}
   m_Layer: 0
   m_Name: Right Trap Door
   m_TagString: Ground
@@ -39,7 +40,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1973640155922484}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.25097752, y: -0.9852524, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.284428, y: 0.019, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -53,10 +54,10 @@ Rigidbody2D:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1973640155922484}
   m_BodyType: 0
-  m_Simulated: 0
+  m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.5
+  m_Mass: 0.002
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -90,6 +91,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 23.6, y: 23.6}
   m_EdgeRadius: 0
+--- !u!114 &114009960252681610
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1973640155922484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51585420232e1b240bf5168db0b43907, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114511326195656618
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -200,8 +212,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1609808981
+  m_SortingLayer: -2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 41b894d766c5e44a8890e8ab41068af1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -231,7 +243,7 @@ HingeJoint2D:
   m_ConnectedAnchor: {x: 3.587318, y: -0.9852524}
   m_UseMotor: 1
   m_Motor:
-    m_MotorSpeed: 0
+    m_MotorSpeed: 100
     m_MaximumMotorForce: 10000
   m_UseLimits: 1
   m_AngleLimits:

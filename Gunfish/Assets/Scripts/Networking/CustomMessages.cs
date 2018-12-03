@@ -15,6 +15,7 @@ public class DebugLogMsg : MessageBase {
     }
 }
 
+
 //GameObject
 /*****************************************/
 public class GunfishMsg : MessageBase {

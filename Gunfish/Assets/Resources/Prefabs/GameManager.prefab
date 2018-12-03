@@ -66,11 +66,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35a346298f297f4428a93f1607758eec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelsPerRace: 5
   maps: []
   mapIndex: 0
   fishFinished: []
   fishCount: 0
+  MaxPointsEarned: -1
   gameActive: 0
+  secondsToWaitInLobby: 30
+  secondsRemaining: 0
+  CrownPrefab: {fileID: 1914011965595548, guid: e0e0ee678df8c174585a175d77bd7daa,
+    type: 2}
 --- !u!114 &114609202069617210
 MonoBehaviour:
   m_ObjectHideFlags: 1
