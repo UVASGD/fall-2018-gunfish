@@ -6,5 +6,9 @@ PhysicsMaterial2D:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Sand
+<<<<<<< HEAD:Gunfish/Assets/Physics/Sand.physicsMaterial2D
+  friction: 2
+=======
   friction: 0.4
+>>>>>>> master:Gunfish/Assets/Resources/Physics/Sand.physicsMaterial2D
   bounciness: 0
