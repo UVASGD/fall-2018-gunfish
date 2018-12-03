@@ -47,4 +47,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Resources/Scenes/Race/Level_12_Fishchinko.unity
     guid: a3f4d1fb39d1ea14aa9422bc5615f817
+  - enabled: 1
+    path: Assets/Resources/Scenes/Race/Level_13_Choke.unity
+    guid: 0e1b276f84fe3d1409d967aa75d00f9c
+  - enabled: 1
+    path: Assets/Resources/Scenes/Race/Level_14_WHEEL(WIP).unity
+    guid: 2c0d88d316f6d124089b194349588373
   m_configObjects: {}
