@@ -44,4 +44,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Resources/Scenes/Race/Level_11_Swim.unity
     guid: 095ccfe9b6bd9364a965f01ef4bafcb4
+  - enabled: 1
+    path: Assets/Resources/Scenes/Race/Level_12_Fishchinko.unity
+    guid: a3f4d1fb39d1ea14aa9422bc5615f817
   m_configObjects: {}

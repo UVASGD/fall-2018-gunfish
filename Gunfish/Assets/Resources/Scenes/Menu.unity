@@ -418,6 +418,7 @@ MonoBehaviour:
   isNetworkActive: 0
   matchMaker: {fileID: 0}
   fishList: []
+  spawnNum: 0
 --- !u!114 &871604498
 MonoBehaviour:
   m_ObjectHideFlags: 0

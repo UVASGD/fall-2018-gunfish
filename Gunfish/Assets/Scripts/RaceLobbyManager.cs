@@ -16,9 +16,4 @@ public class RaceLobbyManager : MonoBehaviour {
 
         RaceManager.instance.InvokeStartTimer();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }

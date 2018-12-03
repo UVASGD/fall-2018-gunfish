@@ -78,9 +78,6 @@ public class Gunfish : NetworkBehaviour {
 
     //Initialize Camera and audio sources for every local player
     public override void OnStartLocalPlayer() {
-
-        MusicManager.instance.PlayMusic();
-
         Camera.main.GetComponent<Camera2DFollow>().target = transform;
 
         //Setup the local audio handlers
@@ -202,6 +199,38 @@ public class Gunfish : NetworkBehaviour {
 
         if (apply) {
             ApplyMovement(x, shoot);
+        }
+
+        //Change your fish (Lobby only)
+        if (Input.GetKeyDown(KeyCode.N) && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name.Contains("Lobby")) {
+            print("Scene Name: " + UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+            List<GameObject> fishList = new List<GameObject>(GunfishList.Get());
+            GetComponent<Collider2D>().enabled = false;
+
+            int index = Random.Range(0, fishList.Count);
+
+            if (RaceManager.instance.fishTable.ContainsKey(connectionToClient)) {
+                index = (RaceManager.instance.fishTable[connectionToClient] + 1) % fishList.Count;
+                RaceManager.instance.fishTable[connectionToClient] = index;
+            }
+
+            GameObject newFish = Instantiate(fishList[index], transform.position, transform.rotation) as GameObject;
+            newFish.GetComponent<Renderer>().enabled = false;
+            newFish.GetComponent<Gunfish>().gameName = gameName;
+
+            Rigidbody2D myRb = GetComponent<Rigidbody2D>();
+            Rigidbody2D otherRb = newFish.GetComponent<Rigidbody2D>();
+
+            otherRb.position = myRb.position;
+            otherRb.rotation = myRb.rotation;
+            otherRb.velocity = myRb.velocity;
+            otherRb.angularVelocity = myRb.angularVelocity;
+
+            NetworkServer.ReplacePlayerForConnection(connectionToClient, newFish, playerControllerId);
+            NetworkServer.Destroy(nameplate.gameObject);
+            NetworkServer.Destroy(gameObject);
+
+            newFish.GetComponent<Renderer>().enabled = true;
         }
     }
 
