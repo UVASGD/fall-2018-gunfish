@@ -45,7 +45,8 @@ public class CustomNetworkManager : NetworkManager
         }
 
         NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
-        StartCoroutine(SetRpc(player, playerName, RaceManager.instance.pointTable[conn] >= RaceManager.instance.MaxPointsEarned));
+        bool crowned = RaceManager.instance.pointTable.ContainsKey(conn) ? RaceManager.instance.pointTable[conn] >= RaceManager.instance.MaxPointsEarned : false;
+        StartCoroutine(SetRpc(player, playerName, crowned));
         ConnectionManager.instance.AddGunfish(player.GetComponent<Gunfish>());
         spawnNum++;
     }
