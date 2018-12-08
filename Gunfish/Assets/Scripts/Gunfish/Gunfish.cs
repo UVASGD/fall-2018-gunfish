@@ -11,7 +11,7 @@
 //Gunfish, you can simply change the public/serialized variables in
 //the Inspector window.
 //
-//TODO:
+                                                                                                    //TODO:
 //This script utilizes SmoothSync to function. Many methods are
 //called on the client, but linked properly to the server and other
 //clients inherently from the SmoothSyncs.
@@ -70,6 +70,10 @@ public class Gunfish : NetworkBehaviour {
     public GameObject nameplatePrefab;
     NamePlate nameplate;
     public string gameName;
+
+    [Header("Score")]
+    [SyncVar(hook ="OnCrowned")]
+    public bool crowned = false;
     #endregion
 
     public void ApplyVariableDefaults() {
@@ -202,35 +206,61 @@ public class Gunfish : NetworkBehaviour {
         }
 
         //Change your fish (Lobby only)
-        if (Input.GetKeyDown(KeyCode.N) && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name.Contains("Lobby")) {
-            //print("Scene Name: " + UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
-            List<GameObject> fishList = new List<GameObject>(GunfishList.Get());
-            GetComponent<Collider2D>().enabled = false;
+        if (Input.GetKeyDown(KeyCode.M) && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name.Contains("Lobby")) {
+            //call server
+            NetworkManager.singleton.client.Send(MessageTypes.CHANGEFEEESH, new GunfishMsg(netId));
+        }
+    }
 
-            int index = Random.Range(0, fishList.Count);
+    public void ChangeFeesh() {
+        //print("Scene Name: " + UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+        List<GameObject> fishList = new List<GameObject>(GunfishList.Get());
+        GetComponent<Collider2D>().enabled = false;
 
-            if (RaceManager.instance.fishTable.ContainsKey(connectionToClient)) {
-                index = (RaceManager.instance.fishTable[connectionToClient] + 1) % fishList.Count;
-                RaceManager.instance.fishTable[connectionToClient] = index;
-            }
+        int index = Random.Range(0, fishList.Count); // initial number when you connect to server for first time
 
-            GameObject newFish = Instantiate(fishList[index], transform.position, transform.rotation) as GameObject;
-            newFish.GetComponent<LineRenderer>().enabled = false;
-            newFish.GetComponent<Gunfish>().gameName = gameName;
+        if (RaceManager.instance.fishTable.ContainsKey(connectionToClient))
+        {
+            index = (RaceManager.instance.fishTable[connectionToClient] + 1) % fishList.Count;
+        }
 
-            Rigidbody2D myRb = GetComponent<Rigidbody2D>();
-            Rigidbody2D otherRb = newFish.GetComponent<Rigidbody2D>();
+        ChangeFeesh(index);
+    }
 
-            otherRb.position = myRb.position;
-            otherRb.rotation = myRb.rotation;
-            otherRb.velocity = myRb.velocity;
-            otherRb.angularVelocity = myRb.angularVelocity;
+    public void ClientChangeFeesh (int index) {
+        NetworkManager.singleton.client.Send(MessageTypes.CHANGEFEEESH, new GunfishSelectMsg(netId, index));
+    }
 
-            NetworkServer.ReplacePlayerForConnection(connectionToClient, newFish, playerControllerId);
-            NetworkServer.Destroy(nameplate.gameObject);
-            NetworkServer.Destroy(gameObject);
+    public void ChangeFeesh(int index) {
+        List<GameObject> fishList = new List<GameObject>(GunfishList.Get());
+        print("s:" + fishList.Count);
+        GameObject newFish = Instantiate(fishList[index], transform.position, transform.rotation) as GameObject;
+        newFish.GetComponent<LineRenderer>().enabled = false;
+        newFish.GetComponent<Gunfish>().gameName = gameName;
 
-            newFish.GetComponent<LineRenderer>().enabled = true;
+        Rigidbody2D myRb = GetComponent<Rigidbody2D>();
+        Rigidbody2D otherRb = newFish.GetComponent<Rigidbody2D>();
+
+        if (RaceManager.instance.fishTable.ContainsKey(connectionToClient))
+        {
+            RaceManager.instance.fishTable[connectionToClient] = index;
+        }
+
+        otherRb.position = myRb.position;
+        otherRb.rotation = myRb.rotation;
+        otherRb.velocity = myRb.velocity;
+        otherRb.angularVelocity = myRb.angularVelocity;
+
+        NetworkServer.ReplacePlayerForConnection(connectionToClient, newFish, playerControllerId);
+        NetworkServer.Destroy(gameObject);
+
+        newFish.GetComponent<LineRenderer>().enabled = true;
+    }
+
+    public override void OnNetworkDestroy()
+    {
+        if (nameplate) {
+            Destroy(nameplate.gameObject);
         }
     }
 
@@ -364,11 +394,17 @@ public class Gunfish : NetworkBehaviour {
     [ClientRpc]
     public void RpcSetName(string newName) {
         gameName = newName;
+        Stun(3f);
         if (nameplate) {
             nameplate.SetName(gameName);
         } else {
             print("Nameplate is null!");
         }
+    }
+
+    public void OnCrowned(bool crown) {
+        crowned = crown;
+        Crowner.SpawnCrown(gameObject);
     }
 
     //SERVER CALLBACKS

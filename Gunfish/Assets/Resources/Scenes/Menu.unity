@@ -783,10 +783,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 1717880503574112, guid: 0716a406704d8fc4e892fed544afed78, type: 2}
-      propertyPath: m_Name
-      value: EffectsManager
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0716a406704d8fc4e892fed544afed78, type: 2}
   m_IsPrefabAsset: 0

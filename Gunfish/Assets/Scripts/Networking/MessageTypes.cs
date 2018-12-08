@@ -11,6 +11,7 @@ public class MessageTypes {
     //GameObject (200-299)
     //public static short NETIDMSG = 200;
     public static short SPAWNMSG = 200;
+    public static short CHANGEFEEESH = 210;
 
     //Gun Messages
     public static short RAYHIT = 300;
@@ -21,4 +22,7 @@ public class MessageTypes {
     public static short PLAYERFINISH = 400;
     public static short REQUESTTIME = 401;
     public static short REQUESTENDTEXT = 402;
+    public static short SPAWNCROWN = 403;
+    //public static short SYNCSCORE = 403;
+
 }

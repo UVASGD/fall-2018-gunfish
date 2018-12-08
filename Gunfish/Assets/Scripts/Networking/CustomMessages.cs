@@ -28,6 +28,18 @@ public class GunfishMsg : MessageBase {
     }
 }
 
+public class GunfishSelectMsg : MessageBase {
+    public NetworkInstanceId netId;
+    public int index;
+
+    public GunfishSelectMsg() { }
+
+    public GunfishSelectMsg(NetworkInstanceId netId, int index) {
+        this.netId = netId;
+        this.index = index;
+    }
+}
+
 public class SpawnMsg : MessageBase
 {
     public string path;
@@ -99,3 +111,19 @@ public class RequestEndTextMsg : MessageBase {
         this.text = text;
     }
 }
+
+/*
+public class SyncScoreMsg : MessageBase
+{
+    public NetworkConnection networkConnection;
+    public int points;
+
+    public SyncScoreMsg() { }
+
+    public SyncScoreMsg(NetworkConnection netConnection, int point)
+    {
+        this.networkConnection = netConnection;
+        this.points = point;
+    }
+}
+*/

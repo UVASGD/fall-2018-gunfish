@@ -27,6 +27,8 @@ public class PlayerController : NetworkBehaviour {
         NetworkManager.singleton.client.RegisterHandler(MessageTypes.MULTIRAYHIT, OnMultiRayHit);
         NetworkManager.singleton.client.RegisterHandler(MessageTypes.GUNSHOT, OnGunshot);
 
+        NetworkManager.singleton.client.RegisterHandler(MessageTypes.SPAWNCROWN, SpawnCrown);
+
         foreach (Gunfish fish in FindObjectsOfType<Gunfish>()) {
             if (fish.hasAuthority) {
                 ownedGunfish = fish;
@@ -85,6 +87,14 @@ public class PlayerController : NetworkBehaviour {
         DebugLogMsg msg = netMsg.ReadMessage<DebugLogMsg>();
 
         Debug.Log(msg.log);
+    }
+
+    private void SpawnCrown(NetworkMessage netMsg)
+    {
+        GunfishMsg msg = netMsg.ReadMessage<GunfishMsg>();
+
+        Crowner.SpawnCrown(ClientScene.FindLocalObject(msg.netId));
+        print("Find Local: "+ClientScene.FindLocalObject(msg.netId));
     }
     #endregion
 }

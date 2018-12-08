@@ -16,6 +16,7 @@ public class ServerController : NetworkBehaviour {
         config.MaxSentMessageQueueSize = 300;
 
         NetworkServer.RegisterHandler(MessageTypes.GUNSHOT, OnGunshot);
+        NetworkServer.RegisterHandler(MessageTypes.CHANGEFEEESH, OnChangeFeesh);
     }
 
     public void SendClientDebugLog (string msg) {
@@ -37,6 +38,18 @@ public class ServerController : NetworkBehaviour {
 
         //This message handles gunshot audio and muzzle flash
         NetworkServer.SendToAll(MessageTypes.GUNSHOT, new GunfishMsg(msg.netId));
+    }
+
+    public void OnChangeFeesh(NetworkMessage netMsg) {
+        GunfishSelectMsg msg = netMsg.ReadMessage<GunfishSelectMsg>();
+
+        Gunfish gunfish = NetworkServer.FindLocalObject(msg.netId).GetComponent<Gunfish>();
+
+        //GunfishSelectMsg gunMsg = new GunfishSelectMsg(msg.netId, gunfish.ChangeFeesh());
+
+        //NetworkServer.SendToAll(MessageTypes.CHANGEFEEESH, msg);
+
+        gunfish.ChangeFeesh(msg.index);
     }
     #endregion
 }
