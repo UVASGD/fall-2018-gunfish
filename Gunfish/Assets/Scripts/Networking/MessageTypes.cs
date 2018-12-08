@@ -21,4 +21,5 @@ public class MessageTypes {
     public static short PLAYERFINISH = 400;
     public static short REQUESTTIME = 401;
     public static short REQUESTENDTEXT = 402;
+    public static short SYNCSCORE = 403;
 }

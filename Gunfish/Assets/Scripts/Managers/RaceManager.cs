@@ -34,6 +34,11 @@ public class RaceManager : NetworkBehaviour {
 
     public GameObject CrownPrefab;
 
+    private void Start()
+    {
+        NetworkManager.singleton.client.RegisterHandler(MessageTypes.SYNCSCORE, SyncScoreClient);
+    }
+
     // Use this for initialization
     void Awake () {
         if (instance == null) {
@@ -193,6 +198,28 @@ public class RaceManager : NetworkBehaviour {
         NetworkManager.singleton.ServerChangeScene("RaceLobby");
     }
 
+    void SyncScores()
+    {
+        List<NetworkConnection> keys = new List<NetworkConnection>(pointTable.Keys);
+        
+        foreach (NetworkConnection fish in keys)
+        {
+            NetworkServer.SendToAll(MessageTypes.SYNCSCORE, new SyncScoreMsg(fish, pointTable[fish]));
+        }
+    }
+
+    void SyncScoreClient(NetworkMessage netMsg)
+    {
+        SyncScoreMsg msg = netMsg.ReadMessage<SyncScoreMsg>();
+        if(pointTable.ContainsKey(msg.networkConnection))
+        {
+            pointTable[msg.networkConnection] = msg.points;
+        }
+        else
+        {
+            pointTable.Add(msg.networkConnection, msg.points);
+        }
+    }
 
 }
 

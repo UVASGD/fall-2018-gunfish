@@ -99,3 +99,17 @@ public class RequestEndTextMsg : MessageBase {
         this.text = text;
     }
 }
+
+public class SyncScoreMsg : MessageBase
+{
+    public NetworkConnection networkConnection;
+    public int points;
+
+    public SyncScoreMsg() { }
+
+    public SyncScoreMsg(NetworkConnection netConnection, int point)
+    {
+        this.networkConnection = netConnection;
+        this.points = point;
+    }
+}
