@@ -89,6 +89,7 @@ public class RaceManager : NetworkBehaviour {
 
     void OnStart() {
         SelectMaps();
+        
     }
 
     void OnRunning() {
@@ -147,6 +148,8 @@ public class RaceManager : NetworkBehaviour {
     }
 
     IEnumerator LoadNextLevel() {
+
+        SyncScores();
 
         if (!SceneManager.GetActiveScene().name.Contains("Lobby")) {
             NetworkServer.SendToAll(MessageTypes.REQUESTENDTEXT, new RequestEndTextMsg());
