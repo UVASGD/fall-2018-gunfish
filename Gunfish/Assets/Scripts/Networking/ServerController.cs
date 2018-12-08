@@ -41,9 +41,13 @@ public class ServerController : NetworkBehaviour {
     }
 
     public void OnChangeFeesh(NetworkMessage netMsg) {
-        GunfishSelectMsg msg = netMsg.ReadMessage<GunfishSelectMsg>();
+        GunfishMsg msg = netMsg.ReadMessage<GunfishMsg>();
 
-        NetworkServer.SendToAll(MessageTypes.CHANGEFEEESH, msg);
+        Gunfish gunfish = NetworkServer.FindLocalObject(msg.netId).GetComponent<Gunfish>();
+
+        GunfishSelectMsg gunMsg = new GunfishSelectMsg(msg.netId, gunfish.ChangeFeesh());
+
+        NetworkServer.SendToAll(MessageTypes.CHANGEFEEESH, gunMsg);
     }
     #endregion
 }

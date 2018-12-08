@@ -208,11 +208,11 @@ public class Gunfish : NetworkBehaviour {
         //Change your fish (Lobby only)
         if (Input.GetKeyDown(KeyCode.M) && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name.Contains("Lobby")) {
             //call server
-            ChangeFeesh();
+            NetworkManager.singleton.client.Send(MessageTypes.CHANGEFEEESH, new GunfishMsg(netId));
         }
     }
 
-    public void ChangeFeesh()
+    public int ChangeFeesh()
     {
         //print("Scene Name: " + UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
         List<GameObject> fishList = new List<GameObject>(GunfishList.Get());
@@ -226,7 +226,7 @@ public class Gunfish : NetworkBehaviour {
             RaceManager.instance.fishTable[connectionToClient] = index;
         }
 
-        NetworkManager.singleton.client.Send(MessageTypes.CHANGEFEEESH, new GunfishSelectMsg(netId, index));
+        return index;   
     }
 
     public void ChangeFeesh(int index)
