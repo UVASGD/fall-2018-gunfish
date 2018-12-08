@@ -45,9 +45,11 @@ public class ServerController : NetworkBehaviour {
 
         Gunfish gunfish = NetworkServer.FindLocalObject(msg.netId).GetComponent<Gunfish>();
 
-        GunfishSelectMsg gunMsg = new GunfishSelectMsg(msg.netId, gunfish.ChangeFeesh());
+        gunfish.ChangeFeesh();
 
-        NetworkServer.SendToAll(MessageTypes.CHANGEFEEESH, gunMsg);
+        //GunfishSelectMsg gunMsg = new GunfishSelectMsg(msg.netId, gunfish.ChangeFeesh());
+
+        //NetworkServer.SendToAll(MessageTypes.CHANGEFEEESH, gunMsg);
     }
     #endregion
 }

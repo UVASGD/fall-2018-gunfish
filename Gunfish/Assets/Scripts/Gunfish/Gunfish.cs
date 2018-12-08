@@ -212,7 +212,7 @@ public class Gunfish : NetworkBehaviour {
         }
     }
 
-    public int ChangeFeesh()
+    public void ChangeFeesh()
     {
         //print("Scene Name: " + UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
         List<GameObject> fishList = new List<GameObject>(GunfishList.Get());
@@ -226,7 +226,7 @@ public class Gunfish : NetworkBehaviour {
             RaceManager.instance.fishTable[connectionToClient] = index;
         }
 
-        return index;   
+        ChangeFeesh(index);
     }
 
     public void ChangeFeesh(int index)

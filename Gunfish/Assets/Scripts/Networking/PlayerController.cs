@@ -28,7 +28,7 @@ public class PlayerController : NetworkBehaviour {
         NetworkManager.singleton.client.RegisterHandler(MessageTypes.GUNSHOT, OnGunshot);
 
         NetworkManager.singleton.client.RegisterHandler(MessageTypes.SPAWNCROWN, SpawnCrown);
-        NetworkManager.singleton.client.RegisterHandler(MessageTypes.CHANGEFEEESH, OnChangeFeesh);
+        //NetworkManager.singleton.client.RegisterHandler(MessageTypes.CHANGEFEEESH, OnChangeFeesh);
 
         foreach (Gunfish fish in FindObjectsOfType<Gunfish>()) {
             if (fish.hasAuthority) {
