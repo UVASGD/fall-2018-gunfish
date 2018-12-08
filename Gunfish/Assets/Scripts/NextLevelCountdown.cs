@@ -8,17 +8,12 @@ public class NextLevelCountdown : NetworkBehaviour {
 
     public static NextLevelCountdown instance;
 
-    static bool registered;
-
     public Text text;
     private int secondsRemaining = 10;
 
 	// Use this for initialization
 	void Awake () {
-        if (!registered) {
-            NetworkManager.singleton.client.RegisterHandler(MessageTypes.REQUESTTIME, OnRequestTime);
-            registered = true;
-        }
+        NetworkManager.singleton.client.RegisterHandler(MessageTypes.REQUESTTIME, OnRequestTime);
     }
 
     private void Start () {
@@ -34,7 +29,7 @@ public class NextLevelCountdown : NetworkBehaviour {
     [ClientCallback]
     void OnRequestTime (NetworkMessage netMsg) {
         if (!text) {
-            if (!GameObject.FindWithTag("Timer")) {
+            if (GameObject.FindWithTag("Timer") == null) {
                 return;
             } else {
                 text = GameObject.FindWithTag("Timer").GetComponent<Text>();
