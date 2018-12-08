@@ -210,6 +210,7 @@ public class RaceManager : NetworkBehaviour {
 
     void SyncScoreClient(NetworkMessage netMsg)
     {
+        print("Client recieving score MSG");
         SyncScoreMsg msg = netMsg.ReadMessage<SyncScoreMsg>();
         if(pointTable.ContainsKey(msg.networkConnection))
         {
