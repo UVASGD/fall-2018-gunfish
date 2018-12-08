@@ -29,16 +29,17 @@ public class CustomNetworkManager : NetworkManager
         }
 
         GameObject player = (GameObject)Instantiate(fishList[index], targetPosition, Quaternion.identity);
+        print("PLAYER: " + player);
         string playerName = "Player " + (conn.connectionId + 1);
         if (RaceManager.instance && RaceManager.instance.pointTable.ContainsKey(conn)) {
             if (RaceManager.instance.pointTable[conn] > 0) {
                 playerName += "\nPoints: " + RaceManager.instance.pointTable[conn];
                 if(RaceManager.instance.pointTable[conn] >= RaceManager.instance.MaxPointsEarned) {
-                    SpawnCrown(player);
+                    //SpawnCrown(player);
                     NetworkServer.SendToAll(MessageTypes.SPAWNCROWN, new GunfishMsg(player.GetComponent<NetworkIdentity>().netId));
                 }
             } else {
-                SpawnCrown(player);
+                //SpawnCrown(player);
                 NetworkServer.SendToAll(MessageTypes.SPAWNCROWN, new GunfishMsg(player.GetComponent<NetworkIdentity>().netId));
                 RaceManager.instance.pointTable[conn] = 0;
             }
