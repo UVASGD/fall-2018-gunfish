@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
 
-public class LobbyCountdown : NetworkBehaviour {
+public class NextLevelCountdown : NetworkBehaviour {
 
     public Text text;
     private int secondsRemaining = 10;
