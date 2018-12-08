@@ -100,6 +100,7 @@ public class RequestEndTextMsg : MessageBase {
     }
 }
 
+/*
 public class SyncScoreMsg : MessageBase
 {
     public NetworkConnection networkConnection;
@@ -113,3 +114,4 @@ public class SyncScoreMsg : MessageBase
         this.points = point;
     }
 }
+*/

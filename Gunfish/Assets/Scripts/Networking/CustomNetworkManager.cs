@@ -52,7 +52,7 @@ public class CustomNetworkManager : NetworkManager
     /// Spawn a crayon on a winning fish
     /// </summary>
     /// <param name="fish"></param>
-    void SpawnCrown(GameObject fish) {
+    public static void SpawnCrown(GameObject fish) {
         if (RaceManager.instance.CrownPrefab != null) {
             GameObject crown = Instantiate(RaceManager.instance.CrownPrefab);
             Transform crownLoc = fish.transform.FindDeepChild("CrownLocation");
@@ -60,6 +60,8 @@ public class CustomNetworkManager : NetworkManager
             crown.transform.SetParent(crownLoc);
             crown.transform.localPosition = Vector3.zero;
             crown.transform.localRotation = Quaternion.Euler(0, 0, -180);
+
+            NetworkServer.SendToAll(MessageTypes.SPAWNCROWN, new GunfishMsg(fish.GetComponent<NetworkIdentity>().netId));
         }
     }
 

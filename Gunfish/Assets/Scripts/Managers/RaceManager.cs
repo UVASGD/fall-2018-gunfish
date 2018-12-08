@@ -36,7 +36,7 @@ public class RaceManager : NetworkBehaviour {
 
     private void Start()
     {
-        NetworkManager.singleton.client.RegisterHandler(MessageTypes.SYNCSCORE, SyncScoreClient);
+        //NetworkManager.singleton.client.RegisterHandler(MessageTypes.SYNCSCORE, SyncScoreClient);
     }
 
     // Use this for initialization
@@ -149,7 +149,7 @@ public class RaceManager : NetworkBehaviour {
 
     IEnumerator LoadNextLevel() {
 
-        SyncScores();
+        //SyncScores();
 
         if (!SceneManager.GetActiveScene().name.Contains("Lobby")) {
             NetworkServer.SendToAll(MessageTypes.REQUESTENDTEXT, new RequestEndTextMsg());
@@ -200,7 +200,7 @@ public class RaceManager : NetworkBehaviour {
     void OnEnd() {
         NetworkManager.singleton.ServerChangeScene("RaceLobby");
     }
-
+    /*
     void SyncScores()
     {
         List<NetworkConnection> keys = new List<NetworkConnection>(pointTable.Keys);
@@ -224,6 +224,7 @@ public class RaceManager : NetworkBehaviour {
             pointTable.Add(msg.networkConnection, msg.points);
         }
     }
+    */
 
 }
 
