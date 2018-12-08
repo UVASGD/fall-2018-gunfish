@@ -34,7 +34,7 @@ public class NextLevelCountdown : NetworkBehaviour {
     [ClientCallback]
     void OnRequestTime (NetworkMessage netMsg) {
         if (!text) {
-            if (!GameObject.FindWithTag("Timer").GetComponent<Text>()) {
+            if (!GameObject.FindWithTag("Timer")) {
                 return;
             } else {
                 text = GameObject.FindWithTag("Timer").GetComponent<Text>();
