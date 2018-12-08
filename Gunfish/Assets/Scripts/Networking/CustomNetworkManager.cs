@@ -35,9 +35,11 @@ public class CustomNetworkManager : NetworkManager
                 playerName += "\nPoints: " + RaceManager.instance.pointTable[conn];
                 if(RaceManager.instance.pointTable[conn] >= RaceManager.instance.MaxPointsEarned) {
                     SpawnCrown(player);
+                    NetworkServer.SendToAll(MessageTypes.SPAWNCROWN, new GunfishMsg(player.GetComponent<NetworkIdentity>().netId));
                 }
             } else {
                 SpawnCrown(player);
+                NetworkServer.SendToAll(MessageTypes.SPAWNCROWN, new GunfishMsg(player.GetComponent<NetworkIdentity>().netId));
                 RaceManager.instance.pointTable[conn] = 0;
             }
         }
@@ -60,8 +62,6 @@ public class CustomNetworkManager : NetworkManager
             crown.transform.SetParent(crownLoc);
             crown.transform.localPosition = Vector3.zero;
             crown.transform.localRotation = Quaternion.Euler(0, 0, -180);
-
-            NetworkServer.SendToAll(MessageTypes.SPAWNCROWN, new GunfishMsg(fish.GetComponent<NetworkIdentity>().netId));
         }
     }
 
