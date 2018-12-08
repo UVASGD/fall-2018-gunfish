@@ -26,7 +26,6 @@ public class NextLevelCountdown : NetworkBehaviour {
         //DontDestroyOnLoad(this);
     }
 
-    [ClientCallback]
     void OnRequestTime (NetworkMessage netMsg) {
         if (!text) {
             if (GameObject.FindWithTag("Timer") == null) {
