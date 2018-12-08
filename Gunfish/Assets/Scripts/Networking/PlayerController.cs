@@ -104,6 +104,7 @@ public class PlayerController : NetworkBehaviour {
         Gunfish gunfish = ClientScene.FindLocalObject(msg.netId).GetComponent<Gunfish>();
 
         gunfish.ChangeFeesh(msg.index);
+        GameObject.Destroy(namePlate);
     }
     #endregion
 }
