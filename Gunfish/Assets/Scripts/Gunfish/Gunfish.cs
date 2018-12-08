@@ -246,10 +246,14 @@ public class Gunfish : NetworkBehaviour {
         otherRb.angularVelocity = myRb.angularVelocity;
 
         NetworkServer.ReplacePlayerForConnection(connectionToClient, newFish, playerControllerId);
-        NetworkServer.Destroy(nameplate.gameObject);
         NetworkServer.Destroy(gameObject);
 
         newFish.GetComponent<LineRenderer>().enabled = true;
+    }
+
+    public override void OnNetworkDestroy()
+    {
+        Destroy(nameplate.gameObject);
     }
 
     //If the movement is non-zero, apply it. Since Gunfish
