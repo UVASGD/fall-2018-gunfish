@@ -73,7 +73,9 @@ MonoBehaviour:
   fishCount: 0
   MaxPointsEarned: -1
   gameActive: 0
-  secondsToWaitInLobby: 30
+  secondsToWaitInLobby: 10
+  secondsToWaitInGame: 120
+  secondsToWaitAfterFirst: 30
   secondsRemaining: 0
   CrownPrefab: {fileID: 1914011965595548, guid: e0e0ee678df8c174585a175d77bd7daa,
     type: 2}

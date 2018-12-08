@@ -14,6 +14,6 @@ public class RaceLobbyManager : MonoBehaviour {
             Destroy(gameObject);
         }
 
-        RaceManager.instance.InvokeStartTimer();
+        RaceManager.instance.InvokeLobbyTimer();
 	}
 }

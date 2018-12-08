@@ -430,11 +430,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 114453832795016880, guid: aff48dcfa50fd469fa0a744765d06dcb,
-        type: 2}
-      propertyPath: secondsToWaitInLobby
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aff48dcfa50fd469fa0a744765d06dcb, type: 2}
   m_IsPrefabAsset: 0
@@ -1543,7 +1538,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1137425574
 MonoBehaviour:
@@ -1662,7 +1657,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1419604039
 GameObject:
@@ -1724,7 +1719,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1431798582
 Prefab:
@@ -2594,11 +2589,11 @@ GameObject:
   - component: {fileID: 2072696634}
   - component: {fileID: 2072696637}
   - component: {fileID: 2072696636}
-  - component: {fileID: 2072696635}
   - component: {fileID: 2072696638}
+  - component: {fileID: 2072696635}
   m_Layer: 5
   m_Name: LobbyTimer
-  m_TagString: Untagged
+  m_TagString: Timer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2629,7 +2624,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2072696633}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e71daa6876254987a5e493af6f6c10b, type: 3}
+  m_Script: {fileID: 11500000, guid: 4577789565bab4eb196aa4048fb1884c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 2072696636}

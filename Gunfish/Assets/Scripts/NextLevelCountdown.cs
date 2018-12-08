@@ -6,6 +6,8 @@ using UnityEngine.Networking;
 
 public class NextLevelCountdown : NetworkBehaviour {
 
+    public static NextLevelCountdown instance;
+
     public Text text;
     private int secondsRemaining = 10;
 
@@ -14,9 +16,24 @@ public class NextLevelCountdown : NetworkBehaviour {
         NetworkManager.singleton.client.RegisterHandler(MessageTypes.REQUESTTIME, OnRequestTime);
     }
 
-    [ClientCallback]
+    private void Start () {
+        //if (!instance) {
+        //    instance = this;
+        //} else {
+        //    Destroy(this);
+        //}
+
+        //DontDestroyOnLoad(this);
+    }
+
     void OnRequestTime (NetworkMessage netMsg) {
-        if (!text) return;
+        if (!text) {
+            if (GameObject.FindWithTag("Timer") == null) {
+                return;
+            } else {
+                text = GameObject.FindWithTag("Timer").GetComponent<Text>();
+            }
+        }
 
         RequestTimeMsg msg = netMsg.ReadMessage<RequestTimeMsg>();
         secondsRemaining = msg.time;

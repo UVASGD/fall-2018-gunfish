@@ -24,6 +24,8 @@ public class RaceManager : NetworkBehaviour {
     public bool gameActive;
 
     public int secondsToWaitInLobby = 10;
+    public int secondsToWaitInGame = 120;
+    public int secondsToWaitAfterFirst = 30;
     public int secondsRemaining;
 
     private AssetBundle bundle;
@@ -59,16 +61,22 @@ public class RaceManager : NetworkBehaviour {
         EventManager.StartListening(EventType.EndGame, OnEnd);
     }
 
-    public void InvokeStartTimer () {
-        NetworkServer.SendToAll(MessageTypes.REQUESTTIME, new RequestTimeMsg(secondsToWaitInLobby));
-        StopCoroutine(StartTimer());
+    public void InvokeLobbyTimer () {
+        //NetworkServer.SendToAll(MessageTypes.REQUESTTIME, new RequestTimeMsg(secondsToWaitInLobby));
+        secondsRemaining = secondsToWaitInLobby;
+        SelectMaps();
+        StopAllCoroutines();
+        StartCoroutine(StartTimer());
+    }
+
+    public void InvokeGameTimer () {
+        //NetworkServer.SendToAll(MessageTypes.REQUESTTIME, new RequestTimeMsg(secondsToWaitInGame));
+        secondsRemaining = secondsToWaitInGame;
+        StopAllCoroutines();
         StartCoroutine(StartTimer());
     }
 
     private IEnumerator StartTimer () {
-        secondsRemaining = secondsToWaitInLobby;
-        SelectMaps();
-
         while (secondsRemaining > -1) {
             NetworkServer.SendToAll(MessageTypes.REQUESTTIME, new RequestTimeMsg(secondsRemaining));
             yield return new WaitForSeconds(1f);
@@ -124,6 +132,10 @@ public class RaceManager : NetworkBehaviour {
             pointTable[gunfish.connectionToClient] += points;
         }
 
+        if (secondsRemaining > secondsToWaitAfterFirst) {
+            secondsRemaining = secondsToWaitAfterFirst;
+        }
+
         fishFinished.Add(gunfish);
         ConnectionManager.instance.SetReady(gunfish, true);
         TrySwapLevel();
@@ -132,18 +144,19 @@ public class RaceManager : NetworkBehaviour {
     public void TrySwapLevel () {
         //print("Starting!");
         if (ConnectionManager.instance.readyCount == ConnectionManager.instance.readyFish.Count
-            && ConnectionManager.instance.readyFish.Count > (gameActive ? 0 : 0)) {
+             && ConnectionManager.instance.readyFish.Count > (gameActive ? 0 : 0)) {
             fishFinished.Clear();
             ConnectionManager.instance.SetAllFishReady(false);
 
             MaxPointsEarned = MaxPoints();
+            StopCoroutine(StartTimer());
             StartCoroutine(LoadNextLevel());
         }
     }
 
     IEnumerator LoadNextLevel() {
 
-        if (!SceneManager.GetActiveScene().name.Contains("Lobby")) {
+        if (gameActive) {
             NetworkServer.SendToAll(MessageTypes.REQUESTENDTEXT, new RequestEndTextMsg());
             yield return new WaitForSeconds(2f);
         } else {
@@ -178,6 +191,7 @@ public class RaceManager : NetworkBehaviour {
             EventManager.TriggerEvent(EventType.EndGame);
         } else {
             gameActive = true;
+            StopCoroutine(StartTimer());
             NetworkManager.singleton.ServerChangeScene(maps[mapIndex++]);
         }
     }
