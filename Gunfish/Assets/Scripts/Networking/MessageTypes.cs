@@ -11,6 +11,7 @@ public class MessageTypes {
     //GameObject (200-299)
     //public static short NETIDMSG = 200;
     public static short SPAWNMSG = 200;
+    public static short CHANGEFEEESH = 210;
 
     //Gun Messages
     public static short RAYHIT = 300;

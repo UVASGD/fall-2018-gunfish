@@ -206,36 +206,50 @@ public class Gunfish : NetworkBehaviour {
         }
 
         //Change your fish (Lobby only)
-        if (Input.GetKeyDown(KeyCode.N) && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name.Contains("Lobby")) {
-            //print("Scene Name: " + UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
-            List<GameObject> fishList = new List<GameObject>(GunfishList.Get());
-            GetComponent<Collider2D>().enabled = false;
-
-            int index = Random.Range(0, fishList.Count);
-
-            if (RaceManager.instance.fishTable.ContainsKey(connectionToClient)) {
-                index = (RaceManager.instance.fishTable[connectionToClient] + 1) % fishList.Count;
-                RaceManager.instance.fishTable[connectionToClient] = index;
-            }
-
-            GameObject newFish = Instantiate(fishList[index], transform.position, transform.rotation) as GameObject;
-            newFish.GetComponent<LineRenderer>().enabled = false;
-            newFish.GetComponent<Gunfish>().gameName = gameName;
-
-            Rigidbody2D myRb = GetComponent<Rigidbody2D>();
-            Rigidbody2D otherRb = newFish.GetComponent<Rigidbody2D>();
-
-            otherRb.position = myRb.position;
-            otherRb.rotation = myRb.rotation;
-            otherRb.velocity = myRb.velocity;
-            otherRb.angularVelocity = myRb.angularVelocity;
-
-            NetworkServer.ReplacePlayerForConnection(connectionToClient, newFish, playerControllerId);
-            NetworkServer.Destroy(nameplate.gameObject);
-            NetworkServer.Destroy(gameObject);
-
-            newFish.GetComponent<LineRenderer>().enabled = true;
+        if (Input.GetKeyDown(KeyCode.M) && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name.Contains("Lobby")) {
+            //call server
+            ChangeFeesh();
         }
+    }
+
+    public void ChangeFeesh()
+    {
+        //print("Scene Name: " + UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+        List<GameObject> fishList = new List<GameObject>(GunfishList.Get());
+        GetComponent<Collider2D>().enabled = false;
+
+        int index = Random.Range(0, fishList.Count); // initial number when you connect to server for first time
+
+        if (RaceManager.instance.fishTable.ContainsKey(connectionToClient))
+        {
+            index = (RaceManager.instance.fishTable[connectionToClient] + 1) % fishList.Count;
+            RaceManager.instance.fishTable[connectionToClient] = index;
+        }
+
+        NetworkManager.singleton.client.Send(MessageTypes.CHANGEFEEESH, new GunfishSelectMsg(netId, index));
+    }
+
+    public void ChangeFeesh(int index)
+    {
+
+        List<GameObject> fishList = new List<GameObject>(GunfishList.Get());
+        GameObject newFish = Instantiate(fishList[index], transform.position, transform.rotation) as GameObject;
+        newFish.GetComponent<LineRenderer>().enabled = false;
+        newFish.GetComponent<Gunfish>().gameName = gameName;
+
+        Rigidbody2D myRb = GetComponent<Rigidbody2D>();
+        Rigidbody2D otherRb = newFish.GetComponent<Rigidbody2D>();
+
+        otherRb.position = myRb.position;
+        otherRb.rotation = myRb.rotation;
+        otherRb.velocity = myRb.velocity;
+        otherRb.angularVelocity = myRb.angularVelocity;
+
+        NetworkServer.ReplacePlayerForConnection(connectionToClient, newFish, playerControllerId);
+        NetworkServer.Destroy(nameplate.gameObject);
+        NetworkServer.Destroy(gameObject);
+
+        newFish.GetComponent<LineRenderer>().enabled = true;
     }
 
     //If the movement is non-zero, apply it. Since Gunfish
@@ -368,6 +382,7 @@ public class Gunfish : NetworkBehaviour {
     [ClientRpc]
     public void RpcSetName(string newName) {
         gameName = newName;
+        Stun(3f);
         if (nameplate) {
             nameplate.SetName(gameName);
         } else {

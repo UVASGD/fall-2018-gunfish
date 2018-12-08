@@ -28,6 +28,18 @@ public class GunfishMsg : MessageBase {
     }
 }
 
+public class GunfishSelectMsg : MessageBase {
+    public NetworkInstanceId netId;
+    public int index;
+
+    public GunfishSelectMsg() { }
+
+    public GunfishSelectMsg(NetworkInstanceId netId, int index) {
+        this.netId = netId;
+        this.index = index;
+    }
+}
+
 public class SpawnMsg : MessageBase
 {
     public string path;

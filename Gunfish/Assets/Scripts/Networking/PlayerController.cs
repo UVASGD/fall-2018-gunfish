@@ -28,6 +28,7 @@ public class PlayerController : NetworkBehaviour {
         NetworkManager.singleton.client.RegisterHandler(MessageTypes.GUNSHOT, OnGunshot);
 
         NetworkManager.singleton.client.RegisterHandler(MessageTypes.SPAWNCROWN, SpawnCrown);
+        NetworkManager.singleton.client.RegisterHandler(MessageTypes.CHANGEFEEESH, OnChangeFeesh);
 
         foreach (Gunfish fish in FindObjectsOfType<Gunfish>()) {
             if (fish.hasAuthority) {
@@ -95,6 +96,14 @@ public class PlayerController : NetworkBehaviour {
 
         Crowner.SpawnCrown(ClientScene.FindLocalObject(msg.netId));
         print("Find Local: "+ClientScene.FindLocalObject(msg.netId));
+    }
+
+    private void OnChangeFeesh(NetworkMessage netMsg) {
+        GunfishSelectMsg msg = netMsg.ReadMessage<GunfishSelectMsg>();
+
+        Gunfish gunfish = ClientScene.FindLocalObject(msg.netId).GetComponent<Gunfish>();
+
+        gunfish.ChangeFeesh(msg.index);
     }
     #endregion
 }
