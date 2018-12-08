@@ -35,18 +35,17 @@ public class CustomNetworkManager : NetworkManager
             if (RaceManager.instance.pointTable[conn] > 0) {
                 playerName += "\nPoints: " + RaceManager.instance.pointTable[conn];
                 if(RaceManager.instance.pointTable[conn] >= RaceManager.instance.MaxPointsEarned) {
-                    //SpawnCrown(player);
-                    NetworkServer.SendToAll(MessageTypes.SPAWNCROWN, new GunfishMsg(player.GetComponent<NetworkIdentity>().netId));
+                    Crowner.SpawnCrown(player);
+                    
                 }
             } else {
-                //SpawnCrown(player);
-                NetworkServer.SendToAll(MessageTypes.SPAWNCROWN, new GunfishMsg(player.GetComponent<NetworkIdentity>().netId));
+                Crowner.SpawnCrown(player);
                 RaceManager.instance.pointTable[conn] = 0;
             }
         }
 
         NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
-        StartCoroutine(SetRpc(player, playerName));
+        StartCoroutine(SetRpc(player, playerName, RaceManager.instance.pointTable[conn] >= RaceManager.instance.MaxPointsEarned));
         ConnectionManager.instance.AddGunfish(player.GetComponent<Gunfish>());
         spawnNum++;
     }
@@ -55,7 +54,9 @@ public class CustomNetworkManager : NetworkManager
     /// Spawn a crayon on a winning fish
     /// </summary>
     /// <param name="fish"></param>
-    public static void SpawnCrown(GameObject fish) {
+    /// 
+    /*
+    void SpawnCrown(GameObject fish) {
         if (RaceManager.instance.CrownPrefab != null) {
             GameObject crown = Instantiate(RaceManager.instance.CrownPrefab);
             Transform crownLoc = fish.transform.FindDeepChild("CrownLocation");
@@ -65,13 +66,16 @@ public class CustomNetworkManager : NetworkManager
             crown.transform.localRotation = Quaternion.Euler(0, 0, -180);
         }
     }
+    */
 
     //NOTE: This is simply a race condition. Replace this with something not stupid
-    public IEnumerator SetRpc (GameObject player, string playerName) {
+    public IEnumerator SetRpc (GameObject player, string playerName, bool crowned) {
         yield return new WaitForEndOfFrame();
         yield return new WaitForEndOfFrame();
         if (player.GetComponent<Gunfish>()) {
             player.GetComponent<Gunfish>().RpcSetName(playerName);
+            if (crowned)
+                player.GetComponent<Gunfish>().crowned = crowned;
         }
     }
 

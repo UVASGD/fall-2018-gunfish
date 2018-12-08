@@ -70,6 +70,10 @@ public class Gunfish : NetworkBehaviour {
     public GameObject nameplatePrefab;
     NamePlate nameplate;
     public string gameName;
+
+    [Header("Score")]
+    [SyncVar(hook ="OnCrowned")]
+    public bool crowned = false;
     #endregion
 
     public void ApplyVariableDefaults() {
@@ -369,6 +373,11 @@ public class Gunfish : NetworkBehaviour {
         } else {
             print("Nameplate is null!");
         }
+    }
+
+    public void OnCrowned(bool crown) {
+        crowned = crown;
+        Crowner.SpawnCrown(gameObject);
     }
 
     //SERVER CALLBACKS

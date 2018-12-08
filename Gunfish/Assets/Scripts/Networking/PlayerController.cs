@@ -93,7 +93,7 @@ public class PlayerController : NetworkBehaviour {
     {
         GunfishMsg msg = netMsg.ReadMessage<GunfishMsg>();
 
-        CustomNetworkManager.SpawnCrown(ClientScene.FindLocalObject(msg.netId));
+        Crowner.SpawnCrown(ClientScene.FindLocalObject(msg.netId));
         print("Find Local: "+ClientScene.FindLocalObject(msg.netId));
     }
     #endregion
