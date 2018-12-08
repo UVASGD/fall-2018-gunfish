@@ -47,7 +47,7 @@ public class ServerController : NetworkBehaviour {
 
         //GunfishSelectMsg gunMsg = new GunfishSelectMsg(msg.netId, gunfish.ChangeFeesh());
 
-        NetworkServer.SendToAll(MessageTypes.CHANGEFEEESH, msg);
+        //NetworkServer.SendToAll(MessageTypes.CHANGEFEEESH, msg);
 
         gunfish.ChangeFeesh();
     }
