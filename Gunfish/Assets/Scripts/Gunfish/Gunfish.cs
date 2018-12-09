@@ -20,7 +20,6 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Networking;
-using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(NetworkConnection))]
 [RequireComponent(typeof(Rigidbody2D))]
@@ -138,6 +137,10 @@ public class Gunfish : NetworkBehaviour {
         nameplate = nameplateObj.GetComponent<NamePlate>();
         nameplate.SetOwner(middleRb.gameObject);
         SetName(gameName);
+
+        if (RaceManager.instance.gameActive) {
+            Stun(3f);
+        }
 
         if (crowned)
             Crowner.SpawnCrown(gameObject);
@@ -397,9 +400,6 @@ public class Gunfish : NetworkBehaviour {
 
 
     public void SetName(string newName) {
-        if (SceneManager.GetActiveScene().buildIndex < 0) {
-            Stun(3f);
-        }
         if (nameplate) {
             nameplate.SetName(newName);
         } else {
