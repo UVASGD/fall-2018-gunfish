@@ -29,7 +29,7 @@ public class CustomNetworkManager : NetworkManager
         }
 
         GameObject player = (GameObject)Instantiate(fishList[index], targetPosition, Quaternion.identity);
-        print("PLAYER: " + player);
+        //print("PLAYER: " + player);
         string playerName = "Player " + (conn.connectionId + 1);
         if (RaceManager.instance && RaceManager.instance.pointTable.ContainsKey(conn)) {
             if (RaceManager.instance.pointTable[conn] > 0) {

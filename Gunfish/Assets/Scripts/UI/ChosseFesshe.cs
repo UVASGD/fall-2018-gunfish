@@ -58,7 +58,7 @@ public class ChosseFesshe : MonoBehaviour {
 
     public void OnChooseFish(int index)
     {
-        print(index);
+        //print(index);
         PlayerController.ownedGunfish.ClientChangeFeesh(index);
         Close();
     }

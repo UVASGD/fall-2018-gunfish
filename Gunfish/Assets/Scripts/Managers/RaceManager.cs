@@ -166,7 +166,7 @@ public class RaceManager : NetworkBehaviour {
             NetworkServer.SendToAll(MessageTypes.REQUESTENDTEXT, new RequestEndTextMsg());
             yield return new WaitForSeconds(2f);
         } else {
-            print("Build index: " + SceneManager.GetActiveScene().buildIndex);
+            //print("Build index: " + SceneManager.GetActiveScene().buildIndex);
         }
 
         fishFinished.Clear();

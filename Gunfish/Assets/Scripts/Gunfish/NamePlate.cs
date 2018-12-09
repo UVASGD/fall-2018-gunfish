@@ -35,7 +35,7 @@ public class NamePlate : MonoBehaviour {
 
         float t = 0f;
         while (t < 1) {
-            print("Color: " + text.color);
+            //print("Color: " + text.color);
             t += Time.deltaTime / 2f;
             text.color = Color.Lerp(Color.yellow, Color.white, t);
             yield return new WaitForEndOfFrame();

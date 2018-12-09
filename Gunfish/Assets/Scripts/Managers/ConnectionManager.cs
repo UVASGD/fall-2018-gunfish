@@ -30,7 +30,7 @@ public class ConnectionManager : NetworkBehaviour {
 
     public void AddGunfish (Gunfish fish) {
         readyFish.Add(fish, false);
-        if (!SceneManager.GetActiveScene().name.Contains("Lobby")) {
+        if (RaceManager.instance.gameActive) {
             fish.Stun(3f);
         }
         notReadyCount++;

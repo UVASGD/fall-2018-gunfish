@@ -233,7 +233,7 @@ public class Gunfish : NetworkBehaviour {
 
     public void ChangeFeesh(int index) {
         List<GameObject> fishList = new List<GameObject>(GunfishList.Get());
-        print("s:" + fishList.Count);
+        //print("s:" + fishList.Count);
         GameObject newFish = Instantiate(fishList[index], transform.position, transform.rotation) as GameObject;
         newFish.GetComponent<LineRenderer>().enabled = false;
         newFish.GetComponent<Gunfish>().gameName = gameName;
