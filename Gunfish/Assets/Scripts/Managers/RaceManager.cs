@@ -21,6 +21,7 @@ public class RaceManager : NetworkBehaviour {
     public int fishCount;
     public int MaxPointsEarned = -1;
 
+    [SyncVar]
     public bool gameActive;
 
     public int secondsToWaitInLobby = 10;
