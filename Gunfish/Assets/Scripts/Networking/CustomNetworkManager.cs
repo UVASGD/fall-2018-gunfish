@@ -131,6 +131,6 @@ public class CustomNetworkManager : NetworkManager
 
     public GameObject FindMainMenu()
     {
-        return GameObject.Find("mainmenu");
+        return GameObject.Find("mainmenu").transform.parent.gameObject;
     }
 }
