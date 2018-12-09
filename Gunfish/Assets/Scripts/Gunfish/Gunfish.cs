@@ -69,10 +69,10 @@ public class Gunfish : NetworkBehaviour {
     [Header("Nameplate")]
     public GameObject nameplatePrefab;
     NamePlate nameplate;
+    [SyncVar]
     public string gameName;
 
-    [Header("Score")]
-    [SyncVar(hook ="OnCrowned")]
+    [SyncVar]
     public bool crowned = false;
     #endregion
 
@@ -104,7 +104,6 @@ public class Gunfish : NetworkBehaviour {
 
     //When the Gunfish is started (server and client), assign fish info
     private void Start() {
-        middleRb = transform.GetChild((transform.childCount / 2) - 1).GetComponent<Rigidbody2D>();
 
         if (isServer || hasAuthority) {
             if (!rb)
@@ -133,10 +132,14 @@ public class Gunfish : NetworkBehaviour {
             }
         }
 
+        middleRb = transform.GetChild((transform.childCount / 2) - 1).GetComponent<Rigidbody2D>();
         GameObject nameplateObj = Instantiate(nameplatePrefab, transform.position, Quaternion.identity);
         nameplate = nameplateObj.GetComponent<NamePlate>();
         nameplate.SetOwner(middleRb.gameObject);
-        nameplate.SetName(gameName);
+        SetName(gameName);
+
+        if (crowned)
+            Crowner.SpawnCrown(gameObject);
 
         //Disable HingeJoints on all but the local player to
         //prevent weird desyncs in movement
@@ -391,20 +394,28 @@ public class Gunfish : NetworkBehaviour {
         }
     }
 
-    [ClientRpc]
-    public void RpcSetName(string newName) {
-        gameName = newName;
+
+    public void SetName(string newName) {
         Stun(3f);
         if (nameplate) {
-            nameplate.SetName(gameName);
+            nameplate.SetName(newName);
         } else {
             print("Nameplate is null!");
         }
     }
 
-    public void OnCrowned(bool crown) {
-        crowned = crown;
-        Crowner.SpawnCrown(gameObject);
+ 
+    [ClientRpc]
+    public void RpcSetName(string newName) {
+        SetName(newName);
+    }
+
+    [ClientRpc]
+    public void RpcCrown() {
+        if (!crowned) {
+            crowned = true;
+            Crowner.SpawnCrown(gameObject);
+        }
     }
 
     //SERVER CALLBACKS
