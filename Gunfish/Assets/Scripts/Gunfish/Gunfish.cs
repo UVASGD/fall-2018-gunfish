@@ -396,7 +396,9 @@ public class Gunfish : NetworkBehaviour {
 
 
     public void SetName(string newName) {
-        Stun(3f);
+        if (RaceManager.instance.gameActive) {
+            Stun(3f);
+        }
         if (nameplate) {
             nameplate.SetName(newName);
         } else {

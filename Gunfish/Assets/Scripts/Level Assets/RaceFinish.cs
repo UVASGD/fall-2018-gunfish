@@ -18,7 +18,7 @@ public class RaceFinish : NetworkBehaviour {
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.gameObject.CompareTag("Gunfish")) {
             Gunfish gunfish = other.gameObject.GetComponentInParent<Gunfish>();
-            gunfish.Stun(1000);
+            //gunfish.Stun(1000);
 
             foreach (var fish in finishedFish) {
                 if (fish == gunfish) return;
