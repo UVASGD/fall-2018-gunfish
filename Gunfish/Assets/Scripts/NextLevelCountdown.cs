@@ -17,13 +17,8 @@ public class NextLevelCountdown : NetworkBehaviour {
     }
 
     private void Start () {
-        //if (!instance) {
-        //    instance = this;
-        //} else {
-        //    Destroy(this);
-        //}
-
-        //DontDestroyOnLoad(this);
+        RectTransform rt = GetComponent<RectTransform>();
+        rt.localPosition = new Vector3(0, 0, 0);
     }
 
     void OnRequestTime (NetworkMessage netMsg) {
