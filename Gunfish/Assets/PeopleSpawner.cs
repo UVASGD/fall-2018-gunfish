@@ -20,6 +20,7 @@ public class PeopleSpawner : MonoBehaviour {
     IEnumerator Spawn () {
         foreach (Transform child in transform) {
             child.localPosition = Vector3.zero;
+            child.GetComponent<UnnetworkedGunfish>().nameplate.ChangeNameColor();
             yield return new WaitForSeconds(5f);
         }
     }

@@ -23,4 +23,23 @@ public class NamePlate : MonoBehaviour {
         pc.locked = true;
         //pc.translationOffset = Vector3.back;
     }
+
+    public void ChangeNameColor () {
+        StartCoroutine(ColorChange());
+    }
+
+    private IEnumerator ColorChange () {
+        text.color = Color.yellow;
+
+        yield return new WaitForSeconds(2f);
+
+        float t = 0f;
+        while (t < 1) {
+            print("Color: " + text.color);
+            t += Time.deltaTime / 2f;
+            text.color = Color.Lerp(Color.yellow, Color.white, t);
+            yield return new WaitForEndOfFrame();
+        }
+        text.color = Color.white;
+    }
 }

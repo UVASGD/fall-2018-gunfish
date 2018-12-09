@@ -19,6 +19,7 @@ public class MenuMeme : MonoBehaviour {
         transform.position += Vector3.down * Time.deltaTime * 2f;
 
         if (transform.localPosition.y < -33f) {
+            transform.localPosition = transform.localPosition / 2 + Vector3.right * Mathf.Sign(transform.position.x) * 10f;
             transform.localPosition = Vector3.zero;
         }
 	}

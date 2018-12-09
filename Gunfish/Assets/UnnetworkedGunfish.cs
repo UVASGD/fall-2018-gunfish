@@ -48,7 +48,7 @@ public class UnnetworkedGunfish : MonoBehaviour {
 
     [Header("Nameplate")]
     public GameObject nameplatePrefab;
-    NamePlate nameplate;
+    public NamePlate nameplate;
     [TextArea] public string gameName;
 
     [Header("Score")]
@@ -119,6 +119,8 @@ public class UnnetworkedGunfish : MonoBehaviour {
         nameplate.SetOwner(middleRb.gameObject);
         nameplate.SetName(gameName);
     }
+
+    
 
     //Calls input handler on appropriate local players.
     //Also handles cooldowns
