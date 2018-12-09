@@ -31,7 +31,7 @@ public class ConnectionManager : NetworkBehaviour {
     public void AddGunfish (Gunfish fish) {
         readyFish.Add(fish, false);
         if (RaceManager.instance.gameActive) {
-            fish.Stun(3f);
+            //fish.Stun(3f);
         }
         notReadyCount++;
         RaceManager.instance.TrySwapLevel();
