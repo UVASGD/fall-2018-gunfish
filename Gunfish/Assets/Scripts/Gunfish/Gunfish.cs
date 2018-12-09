@@ -20,6 +20,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(NetworkConnection))]
 [RequireComponent(typeof(Rigidbody2D))]
@@ -396,7 +397,7 @@ public class Gunfish : NetworkBehaviour {
 
 
     public void SetName(string newName) {
-        if (RaceManager.instance.gameActive) {
+        if (SceneManager.GetActiveScene().buildIndex < 0) {
             Stun(3f);
         }
         if (nameplate) {
